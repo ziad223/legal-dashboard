@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة تحكم Legal Technology</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+          colors: {
+            legalGreen: '#41684e',
+            legalGreenDark: '#345842',
+            legalGold: '#d0ad62',
+            legalGoldDark: '#bb9650',
+            pageBg: '#f2f1ef'
+          },
+          boxShadow: {
+            soft: '0 12px 35px rgba(0,0,0,.08)',
+            card: '0 8px 20px rgba(0,0,0,.08)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Cairo', sans-serif; }
+    body { background: #f2f1ef; }
+    .scroll-hide::-webkit-scrollbar { width: 6px; }
+    .scroll-hide::-webkit-scrollbar-thumb { background: #d0ad62; border-radius: 999px; }
+    .glass { backdrop-filter: blur(14px); background: rgba(255,255,255,.82); }
+  </style>
+</head>
+<body class="min-h-screen overflow-x-hidden text-slate-900">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed right-0 top-0 z-40 h-screen w-[320px] translate-x-full overflow-y-auto bg-legalGreen text-legalGold shadow-2xl transition-transform duration-300 lg:translate-x-0 scroll-hide">
+      <div class="relative h-48 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=900&auto=format&fit=crop')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-legalGreen via-legalGreen/50 to-transparent"></div>
+        <div class="relative z-10 flex h-full flex-col items-center justify-center gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white/90 shadow-soft">
+            <span class="text-2xl font-black text-legalGreen">LT</span>
+          </div>
+          <p class="text-lg font-extrabold text-white">super admin</p>
+        </div>
+      </div>
+
+      <nav class="p-4">
+        <a class="mb-2 flex items-center justify-between rounded-2xl bg-legalGold px-5 py-4 font-bold text-legalGreenDark shadow-card" href="index.html">
+          <span>الرئيسية</span>
+          <i class="fa-solid fa-house text-xl"></i>
+        </a>
+        <div class="space-y-1 text-[15px] font-bold">
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="consultation-requests.html"><span>طلبات الإستشارة</span><i class="fa-solid fa-cube text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="reports-and-statistics.html"><span>التقارير والإحصائيات</span><i class="fa-solid fa-chart-line text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="case-management.html"><span>إدارة القضايا</span><i class="fa-solid fa-scale-balanced text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="#"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="#"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="#"><span>المكتبة القانونية</span><i class="fa-solid fa-book-open text-lg"></i></a>
+
+          <div class="rounded-2xl">
+            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right transition hover:bg-white/10 hover:text-white" type="button">
+              <span class="flex items-center gap-3"><span>الموظفين والموارد البشرية</span></span>
+              <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
+            </button>
+            <div class="accordion-content hidden pb-2 pr-5">
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">قائمة الموظفين</a>
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">الأقسام والوظائف</a>
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">الحضور والإجازات</a>
+            </div>
+          </div>
+
+          <div class="rounded-2xl">
+            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right transition hover:bg-white/10 hover:text-white" type="button">
+              <span class="flex items-center gap-3"><span>تعديل وإضافة القوائم المنسدلة</span></span>
+              <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
+            </button>
+            <div class="accordion-content hidden pb-2 pr-5">
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">إضافة عنصر جديد</a>
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">تعديل القوائم</a>
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">إعدادات القوائم</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="w-full pr-0 transition-all duration-300 lg:pr-[320px]">
+      <!-- Topbar -->
+      <header class="sticky top-0 z-30 border-b border-black/5 bg-white/85 backdrop-blur-xl shadow-sm">
+        <div class="flex min-h-20 items-center justify-between gap-4 px-6">
+          <div class="flex items-center gap-3">
+            <button class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white"><i class="fa-solid fa-power-off text-base"></i></button>
+            <button class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white"><i class="fa-solid fa-gear text-base"></i></button>
+            <span class="rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-white shadow">ONLINE</span>
+          </div>
+
+          <div class="hidden flex-1 items-center justify-center md:flex">
+            <div class="relative w-full max-w-xl">
+              <input type="search" placeholder="بحث سريع داخل لوحة التحكم..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-5 pr-12 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-legalGold">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="hidden text-left sm:block">
+              <p class="text-sm font-extrabold text-slate-900">Legal Technology</p>
+              <p class="text-xs font-bold text-slate-400">لوحة الإدارة القانونية</p>
+            </div>
+            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-legalGreen text-lg font-black text-legalGold shadow-card">LT</div>
+            <button id="menuBtn" class="grid h-11 w-11 place-items-center rounded-xl text-2xl text-legalGold transition hover:bg-legalGold/15 lg:hidden">☰</button>
+          </div>
+        </div>
+        <div class="mx-5 mb-4 flex items-center justify-between rounded-[22px] bg-gradient-to-l from-legalGold to-legalGoldDark px-6 py-3 text-sm font-bold text-legalGreenDark shadow-card">
+          <div class="flex items-center gap-3">
+            <span class="grid h-9 w-9 place-items-center rounded-xl bg-white/20 text-white">
+                <i class="fa-solid fa-house text-base"></i>
+            </span>
+            <div>
+              <p class="text-xs text-white/80">المسار الحالي</p>
+              <p>الرئيسية / لوحة التحكم</p>
+            </div>
+          </div>
+          <button class="rounded-xl bg-white/20 px-4 py-2 text-xs font-extrabold text-white transition hover:bg-white/30">تحديث البيانات</button>
+        </div>
+      </header>
+
+      <section class="p-5 md:p-8">
+        <!-- Stats -->
+        <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <article class="relative overflow-hidden rounded-[28px] bg-white px-7 py-8 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
+            <div class="flex min-h-[92px] items-start justify-between gap-6" dir="ltr">
+              <div class="pt-1 text-[38px] leading-none text-legalGold">
+                <i class="fa-solid fa-scale-balanced"></i>
+              </div>
+              <div class="text-right" dir="rtl">
+                <p class="text-3xl font-black leading-none text-black">0</p>
+                <h3 class="mt-5 text-2xl font-extrabold leading-none text-black">القضايا</h3>
+              </div>
+            </div>
+          </article>
+
+          <article class="relative overflow-hidden rounded-[28px] bg-white px-7 py-8 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
+            <div class="flex min-h-[92px] items-start justify-between gap-6" dir="ltr">
+              <div class="pt-1 text-[38px] leading-none text-legalGold">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </div>
+              <div class="text-right" dir="rtl">
+                <p class="text-3xl font-black leading-none text-black">0</p>
+                <h3 class="mt-5 text-2xl font-extrabold leading-none text-black">التحرير</h3>
+              </div>
+            </div>
+          </article>
+
+          <article class="relative overflow-hidden rounded-[28px] bg-white px-7 py-8 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
+            <div class="flex min-h-[92px] items-start justify-between gap-6" dir="ltr">
+              <div class="pt-1 text-[38px] leading-none text-legalGold">
+                <i class="fa-solid fa-file-signature"></i>
+              </div>
+              <div class="text-right" dir="rtl">
+                <p class="text-3xl font-black leading-none text-black">0</p>
+                <h3 class="mt-5 text-2xl font-extrabold leading-none text-black">العقود</h3>
+              </div>
+            </div>
+          </article>
+
+          <article class="relative overflow-hidden rounded-[28px] bg-white px-7 py-8 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
+            <div class="flex min-h-[92px] items-start justify-between gap-6" dir="ltr">
+              <div class="pt-1 text-[38px] leading-none text-legalGold">
+                <i class="fa-regular fa-handshake"></i>
+              </div>
+              <div class="text-right" dir="rtl">
+                <p class="text-3xl font-black leading-none text-black">0</p>
+                <h3 class="mt-5 text-2xl font-extrabold leading-none text-black">الوكالات</h3>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Panels -->
+        <div class="mt-7 grid gap-6 xl:grid-cols-2">
+          <section class="rounded-[26px] bg-white shadow-card">
+            <div class="flex items-center justify-between rounded-t-[26px] bg-legalGold px-5 py-2 font-extrabold text-legalGreenDark">
+              <h2>طلبات الإستشارة</h2><button class="rounded-full bg-white/20 px-4 py-1 text-xs text-white hover:bg-white/30">إضافة جديد</button>
+            </div>
+            <div class="min-h-36 p-5"><p class="rounded-2xl border border-dashed border-slate-200 p-6 text-center text-slate-400">لا توجد بيانات حالياً</p></div>
+          </section>
+          <section class="rounded-[26px] bg-white shadow-card">
+            <div class="flex items-center justify-between rounded-t-[26px] bg-legalGold px-5 py-2 font-extrabold text-legalGreenDark">
+              <h2>القضايا الجديدة</h2><button class="rounded-full bg-white/20 px-4 py-1 text-xs text-white hover:bg-white/30">إضافة جديد</button>
+            </div>
+            <div class="min-h-36 p-5"><p class="rounded-2xl border border-dashed border-slate-200 p-6 text-center text-slate-400">لا توجد بيانات حالياً</p></div>
+          </section>
+          <section class="rounded-[26px] bg-white shadow-card xl:col-span-1">
+            <div class="flex items-center justify-between rounded-t-[26px] bg-legalGold px-5 py-2 font-extrabold text-legalGreenDark">
+              <h2>المهام</h2><button class="rounded-full bg-white/20 px-4 py-1 text-xs text-white hover:bg-white/30">إضافة جديد</button>
+            </div>
+            <div class="min-h-40 p-5"><p class="rounded-2xl border border-dashed border-slate-200 p-6 text-center text-slate-400">لا توجد بيانات حالياً</p></div>
+          </section>
+          <section class="rounded-[26px] bg-white shadow-card xl:col-span-1">
+            <div class="flex items-center justify-between rounded-t-[26px] bg-legalGold px-5 py-2 font-extrabold text-legalGreenDark">
+              <h2>مهام متأخرة</h2><button class="rounded-full bg-white/20 px-4 py-1 text-xs text-white hover:bg-white/30">إضافة جديد</button>
+            </div>
+            <div class="min-h-40 p-5"><p class="rounded-2xl border border-dashed border-slate-200 p-6 text-center text-slate-400">لا توجد بيانات حالياً</p></div>
+          </section>
+          <section class="rounded-[26px] bg-white shadow-card">
+            <div class="flex items-center justify-between rounded-t-[26px] bg-legalGold px-5 py-2 font-extrabold text-legalGreenDark">
+              <h2>الأحداث</h2><button class="rounded-full bg-white/20 px-4 py-1 text-xs text-white hover:bg-white/30">إضافة جديد</button>
+            </div>
+            <div class="min-h-40 p-5"><p class="rounded-2xl border border-dashed border-slate-200 p-6 text-center text-slate-400">لا توجد بيانات حالياً</p></div>
+          </section>
+          <section class="rounded-[26px] bg-white shadow-card">
+            <div class="flex items-center justify-between rounded-t-[26px] bg-legalGold px-5 py-2 font-extrabold text-legalGreenDark">
+              <h2>الملاحظات</h2><button class="rounded-full bg-white/20 px-4 py-1 text-xs text-white hover:bg-white/30">إضافة جديد</button>
+            </div>
+            <div class="min-h-40 p-5"><p class="rounded-2xl border border-dashed border-slate-200 p-6 text-center text-slate-400">لا توجد بيانات حالياً</p></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const menuBtn = document.getElementById('menuBtn');
+    const overlay = document.getElementById('overlay');
+
+    function openMenu() {
+      sidebar.classList.remove('translate-x-full');
+      sidebar.classList.add('translate-x-0');
+      overlay.classList.remove('hidden');
+      menuBtn.innerHTML = '✕';
+    }
+
+    function closeMenu() {
+      sidebar.classList.add('translate-x-full');
+      sidebar.classList.remove('translate-x-0');
+      overlay.classList.add('hidden');
+      menuBtn.innerHTML = '☰';
+    }
+
+    menuBtn.addEventListener('click', () => {
+      if (sidebar.classList.contains('translate-x-0')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+    overlay.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.accordion-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const chevron = btn.querySelector('.chevron');
+        const isOpen = !content.classList.contains('hidden');
+
+        document.querySelectorAll('.accordion-content').forEach((item) => item.classList.add('hidden'));
+        document.querySelectorAll('.chevron').forEach((item) => item.classList.remove('-rotate-90'));
+
+        if (!isOpen) {
+          content.classList.remove('hidden');
+          chevron.classList.add('-rotate-90');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

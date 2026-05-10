@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>التقارير والإحصائيات | Legal Technology</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+          colors: {
+            legalGreen: '#41684e',
+            legalGreenDark: '#345842',
+            legalGold: '#d0ad62',
+            legalGoldDark: '#bb9650',
+            pageBg: '#f2f1ef'
+          },
+          boxShadow: {
+            soft: '0 12px 35px rgba(0,0,0,.08)',
+            card: '0 8px 20px rgba(0,0,0,.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { font-family: 'Cairo', sans-serif; }
+    body { background: #f2f1ef; }
+    .scroll-hide::-webkit-scrollbar { width: 6px; }
+    .scroll-hide::-webkit-scrollbar-thumb { background: #d0ad62; border-radius: 999px; }
+    .table-row { transition: all .25s ease; }
+    .table-row:hover { background: #faf7ef; transform: translateY(-1px); }
+    table th { font-size: 11px !important; }
+    table td { font-size: 11px !important; white-space: nowrap; }
+    .status-badge { display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:5px 10px; font-size:10px; font-weight:900; white-space: nowrap; }
+    .custom-select-wrap { position: relative; width: 100%; }
+    .custom-select {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid #e2e8f0;
+      background: linear-gradient(135deg, #ffffff, #f8fafc);
+      padding: 12px 16px 12px 46px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #334155;
+      outline: none;
+      transition: all .25s ease;
+      box-shadow: 0 8px 18px rgba(0,0,0,.04);
+      direction: rtl;
+      text-align: right;
+      cursor: pointer;
+    }
+    .custom-select:focus {
+      border-color: #d0ad62;
+      box-shadow: 0 0 0 4px rgba(208,173,98,.16);
+      background: #fff;
+    }
+    .custom-select-wrap::after {
+      content: "\f078";
+      font-family: "Font Awesome 7 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 16px;
+      right: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      font-size: 12px;
+      pointer-events: none;
+    }
+    .modal-box { animation: modalIn .25s ease both; }
+    @keyframes modalIn { from { opacity:0; transform: translateY(12px) scale(.97); } to { opacity:1; transform: translateY(0) scale(1); } }
+    .mini-bar { height: 7px; border-radius: 999px; background: #e2e8f0; overflow: hidden; }
+    .mini-bar span { display: block; height: 100%; border-radius: 999px; background: linear-gradient(135deg,#41684e,#d0ad62); }
+  </style>
+</head>
+
+<body class="min-h-screen overflow-x-hidden text-slate-900">
+
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed right-0 top-0 z-40 h-screen w-[320px] translate-x-full overflow-y-auto bg-legalGreen text-legalGold shadow-2xl transition-transform duration-300 lg:translate-x-0 scroll-hide">
+      <div class="relative h-48 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=900&auto=format&fit=crop')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-legalGreen via-legalGreen/50 to-transparent"></div>
+        <div class="relative z-10 flex h-full flex-col items-center justify-center gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white/90 shadow-soft">
+            <span class="text-2xl font-black text-legalGreen">LT</span>
+          </div>
+          <p class="text-lg font-extrabold text-white">super admin</p>
+        </div>
+      </div>
+
+      <nav class="p-4">
+        <a class="mb-2 flex items-center justify-between rounded-2xl px-5 py-4 font-bold transition hover:bg-white/10 hover:text-white" href="index.html">
+          <span>الرئيسية</span>
+          <i class="fa-solid fa-house text-xl"></i>
+        </a>
+
+        <div class="space-y-1 text-[15px] font-bold">
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="consultation-requests.html">
+            <span>طلبات الإستشارة</span>
+            <i class="fa-solid fa-cube text-lg"></i>
+          </a>
+
+          <a class="flex items-center justify-between rounded-2xl bg-legalGold px-5 py-3 text-legalGreenDark shadow-card" href="reports-and-statistics.html">
+            <span>التقارير والإحصائيات</span>
+            <i class="fa-solid fa-chart-line text-lg"></i>
+          </a>
+
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="case-management.html">
+            <span>إدارة القضايا</span>
+            <i class="fa-solid fa-scale-balanced text-lg"></i>
+          </a>
+
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="customers-and-contracts.html">
+            <span>العملاء والعقود</span>
+            <i class="fa-solid fa-handshake text-lg"></i>
+          </a>
+
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="#">
+            <span>المهام والتنظيم</span>
+            <i class="fa-solid fa-rectangle-list text-lg"></i>
+          </a>
+
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="#">
+            <span>النماذج والمستندات</span>
+            <i class="fa-solid fa-layer-group text-lg"></i>
+          </a>
+
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="#">
+            <span>المكتبة القانونية</span>
+            <i class="fa-solid fa-book-open text-lg"></i>
+          </a>
+
+          <div class="rounded-2xl">
+            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right transition hover:bg-white/10 hover:text-white" type="button">
+              <span class="flex items-center gap-3">
+                <span>الموظفين والموارد البشرية</span>
+                <i class="fa-solid fa-user text-lg"></i>
+              </span>
+              <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
+            </button>
+            <div class="accordion-content hidden pb-2 pr-5">
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">قائمة الموظفين</a>
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">الأقسام والوظائف</a>
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">الحضور والإجازات</a>
+            </div>
+          </div>
+
+          <div class="rounded-2xl">
+            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right transition hover:bg-white/10 hover:text-white" type="button">
+              <span class="flex items-center gap-3">
+                <span>تعديل وإضافة القوائم المنسدلة</span>
+                <i class="fa-solid fa-gear text-lg"></i>
+              </span>
+              <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
+            </button>
+            <div class="accordion-content hidden pb-2 pr-5">
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">إضافة عنصر جديد</a>
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">تعديل القوائم</a>
+              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">إعدادات القوائم</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="w-full pr-0 transition-all duration-300 lg:pr-[320px]">
+      <!-- Topbar -->
+      <header class="sticky top-0 z-30 border-b border-black/5 bg-white/85 backdrop-blur-xl shadow-sm">
+        <div class="flex min-h-20 items-center justify-between gap-4 px-6">
+          <div class="flex items-center gap-3">
+            <button class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white">
+              <i class="fa-solid fa-power-off text-base"></i>
+            </button>
+            <button class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white">
+              <i class="fa-solid fa-gear text-base"></i>
+            </button>
+            <span class="rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-white shadow">ONLINE</span>
+          </div>
+
+          <div class="hidden flex-1 items-center justify-center md:flex">
+            <div class="relative w-full max-w-xl">
+              <input id="topSearch" type="search" placeholder="بحث في التقارير..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-5 pr-12 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-legalGold">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="hidden text-left sm:block">
+              <p class="text-sm font-extrabold text-slate-900">Legal Technology</p>
+              <p class="text-xs font-bold text-slate-400">التقارير والإحصائيات</p>
+            </div>
+            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-legalGreen text-lg font-black text-legalGold shadow-card">LT</div>
+            <button id="menuBtn" class="grid h-11 w-11 place-items-center rounded-xl text-2xl text-legalGold transition hover:bg-legalGold/15 lg:hidden">☰</button>
+          </div>
+        </div>
+
+        <div class="mx-5 mb-4 flex flex-col gap-3 rounded-[22px] bg-gradient-to-l from-legalGold to-legalGoldDark px-6 py-3 text-sm font-bold text-legalGreenDark shadow-card md:flex-row md:items-center md:justify-between">
+          <div class="flex items-center gap-3">
+            <span class="grid h-9 w-9 place-items-center rounded-xl bg-white/20 text-white">
+              <i class="fa-solid fa-house text-base"></i>
+            </span>
+            <div>
+              <p class="text-xs text-white/80">المسار الحالي</p>
+              <p>الرئيسية / التقارير والإحصائيات</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button id="exportBtn" class="inline-flex items-center justify-center gap-2 rounded-xl bg-white/20 px-4 py-2 text-xs font-extrabold text-white transition hover:bg-white/30">
+              <i class="fa-solid fa-file-export"></i>
+              تصدير ملف
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-5 md:p-8">
+        <!-- Page Header -->
+        <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <span class="inline-flex items-center gap-2 rounded-full bg-legalGold/15 px-4 py-2 text-xs font-black text-legalGoldDark">
+              <i class="fa-solid fa-chart-line"></i>
+              لوحة التقارير القانونية
+            </span>
+            <h1 class="mt-3 text-3xl font-black text-slate-900 md:text-4xl">التقارير والإحصائيات</h1>
+            <p class="mt-2 text-sm font-semibold text-slate-500">متابعة الأداء، القضايا، العقود، العملاء، ونسب الإنجاز داخل النظام.</p>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <button id="openReportModalBtn" class="inline-flex items-center gap-2 rounded-2xl bg-legalGreen px-5 py-3 text-sm font-black text-white shadow-card transition hover:bg-legalGreenDark">
+              <i class="fa-solid fa-plus"></i>
+              تقرير جديد
+            </button>
+            <button id="printBtn" class="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-legalGreen shadow-card transition hover:bg-legalGold hover:text-white">
+              <i class="fa-solid fa-print"></i>
+              طباعة التقرير
+            </button>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="mb-7 rounded-[28px] bg-white p-5 shadow-card">
+          <div class="grid gap-4 md:grid-cols-4">
+            <div class="relative md:col-span-1">
+              <input id="reportSearch" type="search" placeholder="بحث داخل التقارير..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 py-3 pr-12 text-[12px] font-bold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15">
+              <i class="fa-solid fa-search absolute right-4 top-1/2 -translate-y-1/2 text-legalGold"></i>
+            </div>
+
+            <div class="custom-select-wrap">
+              <select id="periodFilter" class="custom-select">
+                <option value="all">كل الفترات</option>
+                <option value="today">اليوم</option>
+                <option value="week">هذا الأسبوع</option>
+                <option value="month">هذا الشهر</option>
+                <option value="year">هذه السنة</option>
+              </select>
+            </div>
+
+            <div class="custom-select-wrap">
+              <select id="categoryFilter" class="custom-select">
+                <option value="all">كل الأقسام</option>
+                <option value="cases">القضايا</option>
+                <option value="contracts">العقود</option>
+                <option value="clients">العملاء</option>
+                <option value="consultations">الإستشارات</option>
+              </select>
+            </div>
+
+            <div class="custom-select-wrap">
+              <select id="statusFilter" class="custom-select">
+                <option value="all">كل الحالات</option>
+                <option value="high">أداء مرتفع</option>
+                <option value="medium">أداء متوسط</option>
+                <option value="low">يحتاج متابعة</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="mb-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <article class="rounded-[28px] bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <p class="text-sm font-bold text-slate-400">إجمالي القضايا</p>
+                <h3 class="mt-2 text-4xl font-black text-slate-900">128</h3>
+                <span class="mt-3 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-[11px] font-black text-emerald-700">+12%</span>
+              </div>
+              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-legalGold/15 text-2xl text-legalGold">
+                <i class="fa-solid fa-scale-balanced"></i>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-[28px] bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <p class="text-sm font-bold text-slate-400">العقود النشطة</p>
+                <h3 class="mt-2 text-4xl font-black text-legalGreen">64</h3>
+                <span class="mt-3 inline-flex rounded-full bg-blue-100 px-3 py-1 text-[11px] font-black text-blue-700">+8%</span>
+              </div>
+              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-emerald-100 text-2xl text-emerald-600">
+                <i class="fa-solid fa-file-signature"></i>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-[28px] bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <p class="text-sm font-bold text-slate-400">طلبات الإستشارة</p>
+                <h3 class="mt-2 text-4xl font-black text-amber-600">37</h3>
+                <span class="mt-3 inline-flex rounded-full bg-amber-100 px-3 py-1 text-[11px] font-black text-amber-700">نشط</span>
+              </div>
+              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-amber-100 text-2xl text-amber-600">
+                <i class="fa-solid fa-inbox"></i>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-[28px] bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <p class="text-sm font-bold text-slate-400">نسبة الإنجاز</p>
+                <h3 class="mt-2 text-4xl font-black text-blue-600">82%</h3>
+                <span class="mt-3 inline-flex rounded-full bg-blue-100 px-3 py-1 text-[11px] font-black text-blue-700">ممتاز</span>
+              </div>
+              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-blue-100 text-2xl text-blue-600">
+                <i class="fa-solid fa-chart-pie"></i>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Chart + Progress -->
+        <div class="mb-7 grid gap-6 xl:grid-cols-3">
+          <section class="rounded-[30px] bg-white p-6 shadow-card xl:col-span-2">
+            <div class="mb-5 flex items-center justify-between">
+              <div>
+                <h2 class="text-lg font-black text-slate-900">أداء القضايا خلال السنة</h2>
+                <p class="text-[11px] font-bold text-slate-400">عدد الملفات القانونية المسجلة شهرياً</p>
+              </div>
+              <button id="chartDetailsBtn" class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-600 transition hover:bg-legalGold hover:text-white">
+                تفاصيل
+              </button>
+            </div>
+
+            <div class="flex h-72 items-end gap-3 rounded-3xl bg-slate-50 p-5">
+              <div class="flex h-full flex-1 flex-col justify-end items-center gap-2"><div class="w-full rounded-t-2xl bg-legalGreen" style="height:38%"></div><span class="text-[10px] font-black text-slate-400">يناير</span></div>
+              <div class="flex h-full flex-1 flex-col justify-end items-center gap-2"><div class="w-full rounded-t-2xl bg-legalGold" style="height:55%"></div><span class="text-[10px] font-black text-slate-400">فبراير</span></div>
+              <div class="flex h-full flex-1 flex-col justify-end items-center gap-2"><div class="w-full rounded-t-2xl bg-legalGreen" style="height:48%"></div><span class="text-[10px] font-black text-slate-400">مارس</span></div>
+              <div class="flex h-full flex-1 flex-col justify-end items-center gap-2"><div class="w-full rounded-t-2xl bg-legalGold" style="height:70%"></div><span class="text-[10px] font-black text-slate-400">أبريل</span></div>
+              <div class="flex h-full flex-1 flex-col justify-end items-center gap-2"><div class="w-full rounded-t-2xl bg-legalGreen" style="height:84%"></div><span class="text-[10px] font-black text-slate-400">مايو</span></div>
+              <div class="flex h-full flex-1 flex-col justify-end items-center gap-2"><div class="w-full rounded-t-2xl bg-legalGold" style="height:61%"></div><span class="text-[10px] font-black text-slate-400">يونيو</span></div>
+            </div>
+          </section>
+
+          <section class="rounded-[30px] bg-white p-6 shadow-card">
+            <h2 class="text-lg font-black text-slate-900">نسب الأقسام</h2>
+            <p class="mb-5 mt-1 text-[11px] font-bold text-slate-400">ملخص الأداء حسب القسم</p>
+
+            <div class="space-y-5">
+              <div>
+                <div class="mb-2 flex items-center justify-between text-[12px] font-black">
+                  <span>القضايا</span><span>86%</span>
+                </div>
+                <div class="mini-bar"><span style="width:86%"></span></div>
+              </div>
+              <div>
+                <div class="mb-2 flex items-center justify-between text-[12px] font-black">
+                  <span>العقود</span><span>74%</span>
+                </div>
+                <div class="mini-bar"><span style="width:74%"></span></div>
+              </div>
+              <div>
+                <div class="mb-2 flex items-center justify-between text-[12px] font-black">
+                  <span>الإستشارات</span><span>62%</span>
+                </div>
+                <div class="mini-bar"><span style="width:62%"></span></div>
+              </div>
+              <div>
+                <div class="mb-2 flex items-center justify-between text-[12px] font-black">
+                  <span>المهام</span><span>91%</span>
+                </div>
+                <div class="mini-bar"><span style="width:91%"></span></div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Table -->
+        <div class="overflow-hidden rounded-[30px] bg-white shadow-card">
+          <div class="flex flex-col gap-3 border-b border-slate-100 p-5 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h2 class="text-lg font-black text-slate-900">قائمة التقارير</h2>
+              <p class="mt-1 text-[11px] font-bold text-slate-400">تقارير النظام حسب القسم والفترة والحالة</p>
+            </div>
+
+            <div class="flex gap-2">
+              <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-600 transition hover:bg-legalGold hover:text-white">
+                <i class="fa-solid fa-filter ml-1"></i>
+                فلترة
+              </button>
+              <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-600 transition hover:bg-legalGold hover:text-white">
+                <i class="fa-solid fa-download ml-1"></i>
+                تحميل
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[980px] text-right">
+              <thead>
+                <tr class="bg-legalGreen text-white">
+                  <th class="whitespace-nowrap px-4 py-4 font-black">#</th>
+                  <th class="whitespace-nowrap px-4 py-4 font-black">اسم التقرير</th>
+                  <th class="whitespace-nowrap px-4 py-4 font-black">القسم</th>
+                  <th class="whitespace-nowrap px-4 py-4 font-black">الفترة</th>
+                  <th class="whitespace-nowrap px-4 py-4 font-black">عدد السجلات</th>
+                  <th class="whitespace-nowrap px-4 py-4 font-black">الأداء</th>
+                  <th class="whitespace-nowrap px-4 py-4 font-black">الحالة</th>
+                  <th class="whitespace-nowrap px-4 py-4 font-black text-center">خيارات</th>
+                </tr>
+              </thead>
+
+              <tbody id="reportsTable" class="divide-y divide-slate-100"></tbody>
+            </table>
+          </div>
+
+          <div class="flex flex-col gap-3 border-t border-slate-100 p-5 md:flex-row md:items-center md:justify-between">
+            <p id="rowsCount" class="text-[12px] font-bold text-slate-500">عرض 0 من 0 تقارير</p>
+            <div class="flex items-center gap-2">
+              <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-500">السابق</button>
+              <button class="rounded-xl bg-legalGold px-4 py-2 text-[12px] font-black text-white">1</button>
+              <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-500">التالي</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- Add/Edit Modal -->
+  <div id="reportModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-2xl rounded-[30px] bg-white p-6 shadow-2xl">
+      <div class="mb-5 flex items-center justify-between">
+        <div>
+          <h3 id="reportModalTitle" class="text-lg font-black text-slate-900">إضافة تقرير</h3>
+          <p class="mt-1 text-[11px] font-bold text-slate-400">أدخل بيانات التقرير والإحصائية</p>
+        </div>
+        <button id="closeReportModal" class="grid h-11 w-11 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-500 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        <input id="formTitle" type="text" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="اسم التقرير">
+
+        <div class="custom-select-wrap">
+          <select id="formCategory" class="custom-select">
+            <option value="cases">القضايا</option>
+            <option value="contracts">العقود</option>
+            <option value="clients">العملاء</option>
+            <option value="consultations">الإستشارات</option>
+          </select>
+        </div>
+
+        <div class="custom-select-wrap">
+          <select id="formPeriod" class="custom-select">
+            <option value="today">اليوم</option>
+            <option value="week">هذا الأسبوع</option>
+            <option value="month">هذا الشهر</option>
+            <option value="year">هذه السنة</option>
+          </select>
+        </div>
+
+        <div class="custom-select-wrap">
+          <select id="formStatus" class="custom-select">
+            <option value="high">أداء مرتفع</option>
+            <option value="medium">أداء متوسط</option>
+            <option value="low">يحتاج متابعة</option>
+          </select>
+        </div>
+
+        <input id="formRecords" type="number" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="عدد السجلات">
+        <input id="formPerformance" type="number" min="0" max="100" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="نسبة الأداء">
+
+        <textarea id="formNotes" rows="4" class="md:col-span-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="ملاحظات التقرير"></textarea>
+      </div>
+
+      <div class="mt-6 flex items-center justify-end gap-3">
+        <button id="cancelReportModal" class="rounded-2xl bg-slate-100 px-5 py-3 text-[12px] font-black text-slate-600 transition hover:bg-slate-200">إلغاء</button>
+        <button id="saveReportBtn" class="rounded-2xl bg-legalGreen px-6 py-3 text-[12px] font-black text-white shadow-card transition hover:bg-legalGreenDark">حفظ التقرير</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Modal -->
+  <div id="viewModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-xl rounded-[30px] bg-white p-6 shadow-2xl">
+      <div class="mb-5 flex items-center justify-between">
+        <h3 class="text-lg font-black text-slate-900">تفاصيل التقرير</h3>
+        <button id="closeViewModal" class="grid h-11 w-11 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-500 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div id="viewModalContent" class="space-y-3 text-[12px] font-bold text-slate-600"></div>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-md rounded-[30px] bg-white p-6 text-center shadow-2xl">
+      <div class="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-3xl bg-red-100 text-2xl text-red-600">
+        <i class="fa-solid fa-trash"></i>
+      </div>
+      <h3 class="text-lg font-black text-slate-900">حذف التقرير</h3>
+      <p class="mt-2 text-[12px] font-bold text-slate-500">هل أنت متأكد أنك تريد حذف هذا التقرير؟</p>
+      <div class="mt-6 flex justify-center gap-3">
+        <button id="cancelDeleteBtn" class="rounded-2xl bg-slate-100 px-5 py-3 text-[12px] font-black text-slate-600">إلغاء</button>
+        <button id="confirmDeleteBtn" class="rounded-2xl bg-red-600 px-5 py-3 text-[12px] font-black text-white">حذف</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const menuBtn = document.getElementById('menuBtn');
+    const overlay = document.getElementById('overlay');
+
+    function openMenu() {
+      sidebar.classList.remove('translate-x-full');
+      sidebar.classList.add('translate-x-0');
+      overlay.classList.remove('hidden');
+      menuBtn.innerHTML = '✕';
+    }
+
+    function closeMenu() {
+      sidebar.classList.add('translate-x-full');
+      sidebar.classList.remove('translate-x-0');
+      overlay.classList.add('hidden');
+      menuBtn.innerHTML = '☰';
+    }
+
+    menuBtn.addEventListener('click', () => {
+      if (sidebar.classList.contains('translate-x-0')) closeMenu();
+      else openMenu();
+    });
+
+    overlay.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.accordion-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const chevron = btn.querySelector('.chevron');
+        const isOpen = !content.classList.contains('hidden');
+
+        document.querySelectorAll('.accordion-content').forEach((item) => item.classList.add('hidden'));
+        document.querySelectorAll('.chevron').forEach((item) => item.classList.remove('-rotate-90'));
+
+        if (!isOpen) {
+          content.classList.remove('hidden');
+          chevron.classList.add('-rotate-90');
+        }
+      });
+    });
+
+    const categoryText = {
+      cases: 'القضايا',
+      contracts: 'العقود',
+      clients: 'العملاء',
+      consultations: 'الإستشارات'
+    };
+
+    const periodText = {
+      today: 'اليوم',
+      week: 'هذا الأسبوع',
+      month: 'هذا الشهر',
+      year: 'هذه السنة'
+    };
+
+    const statusMap = {
+      high: { text: 'أداء مرتفع', cls: 'bg-emerald-100 text-emerald-700', dot: 'bg-emerald-500' },
+      medium: { text: 'أداء متوسط', cls: 'bg-amber-100 text-amber-700', dot: 'bg-amber-500' },
+      low: { text: 'يحتاج متابعة', cls: 'bg-red-100 text-red-700', dot: 'bg-red-500' }
+    };
+
+    let reports = [
+      { id: 2001, title: 'تقرير القضايا الشهرية', category: 'cases', period: 'month', records: 48, performance: 86, status: 'high', notes: 'ارتفاع جيد في إنجاز ملفات القضايا هذا الشهر.' },
+      { id: 2002, title: 'تقرير العقود النشطة', category: 'contracts', period: 'month', records: 31, performance: 74, status: 'medium', notes: 'عدد العقود النشطة مستقر ويحتاج متابعة دورية.' },
+      { id: 2003, title: 'تقرير العملاء الجدد', category: 'clients', period: 'week', records: 16, performance: 68, status: 'medium', notes: 'زيادة في العملاء الجدد خلال الأسبوع الحالي.' },
+      { id: 2004, title: 'تقرير الإستشارات المتأخرة', category: 'consultations', period: 'today', records: 7, performance: 45, status: 'low', notes: 'يوجد عدد من الطلبات يحتاج رد سريع.' }
+    ];
+
+    let editingId = null;
+    let deletingId = null;
+
+    const reportsTable = document.getElementById('reportsTable');
+    const rowsCount = document.getElementById('rowsCount');
+    const reportSearch = document.getElementById('reportSearch');
+    const topSearch = document.getElementById('topSearch');
+    const periodFilter = document.getElementById('periodFilter');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const statusFilter = document.getElementById('statusFilter');
+
+    function renderRows() {
+      const term = ((reportSearch.value || topSearch.value || '')).toLowerCase().trim();
+      const period = periodFilter.value;
+      const category = categoryFilter.value;
+      const status = statusFilter.value;
+
+      const filtered = reports.filter(item => {
+        const text = `${item.title} ${categoryText[item.category]} ${periodText[item.period]} ${item.id}`.toLowerCase();
+        return (!term || text.includes(term)) &&
+               (period === 'all' || item.period === period) &&
+               (category === 'all' || item.category === category) &&
+               (status === 'all' || item.status === status);
+      });
+
+      reportsTable.innerHTML = filtered.map(item => {
+        const st = statusMap[item.status];
+
+        return `
+          <tr class="table-row" data-id="${item.id}">
+            <td class="px-4 py-3 font-black text-legalGold">#${item.id}</td>
+            <td class="px-4 py-3">
+              <div class="flex items-center gap-3">
+                <div class="grid h-9 w-9 place-items-center rounded-2xl bg-legalGold/15 text-legalGold">
+                  <i class="fa-solid fa-chart-simple"></i>
+                </div>
+                <div>
+                  <p class="font-black text-slate-900">${item.title}</p>
+                  <p class="text-[10px] font-bold text-slate-400">${item.notes}</p>
+                </div>
+              </div>
+            </td>
+            <td class="px-4 py-3 font-bold text-slate-600">${categoryText[item.category]}</td>
+            <td class="px-4 py-3 font-bold text-slate-500">${periodText[item.period]}</td>
+            <td class="px-4 py-3 font-bold text-slate-500">${item.records}</td>
+            <td class="px-4 py-3">
+              <div class="flex items-center gap-3">
+                <span class="w-10 font-black text-legalGreen">${item.performance}%</span>
+                <div class="mini-bar w-24"><span style="width:${item.performance}%"></span></div>
+              </div>
+            </td>
+            <td class="px-4 py-3">
+              <span class="status-badge ${st.cls}">
+                <span class="h-2 w-2 rounded-full ${st.dot}"></span>
+                ${st.text}
+              </span>
+            </td>
+            <td class="px-4 py-3">
+              <div class="flex justify-center gap-2">
+                <button class="view-btn grid h-8 w-8 place-items-center rounded-xl bg-blue-100 text-blue-600 transition hover:bg-blue-600 hover:text-white" data-id="${item.id}"><i class="fa-solid fa-eye"></i></button>
+                <button class="edit-btn grid h-8 w-8 place-items-center rounded-xl bg-legalGold/15 text-legalGold transition hover:bg-legalGold hover:text-white" data-id="${item.id}"><i class="fa-solid fa-pen"></i></button>
+                <button class="delete-btn grid h-8 w-8 place-items-center rounded-xl bg-red-100 text-red-600 transition hover:bg-red-600 hover:text-white" data-id="${item.id}"><i class="fa-solid fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      rowsCount.textContent = `عرض ${filtered.length} من ${reports.length} تقارير`;
+      bindActionButtons();
+    }
+
+    function bindActionButtons() {
+      document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.addEventListener('click', () => openViewModal(Number(btn.dataset.id)));
+      });
+
+      document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', () => openReportModal(Number(btn.dataset.id)));
+      });
+
+      document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', () => openDeleteModal(Number(btn.dataset.id)));
+      });
+    }
+
+    const reportModal = document.getElementById('reportModal');
+    const reportModalTitle = document.getElementById('reportModalTitle');
+    const closeReportModal = document.getElementById('closeReportModal');
+    const cancelReportModal = document.getElementById('cancelReportModal');
+    const saveReportBtn = document.getElementById('saveReportBtn');
+
+    const formTitle = document.getElementById('formTitle');
+    const formCategory = document.getElementById('formCategory');
+    const formPeriod = document.getElementById('formPeriod');
+    const formStatus = document.getElementById('formStatus');
+    const formRecords = document.getElementById('formRecords');
+    const formPerformance = document.getElementById('formPerformance');
+    const formNotes = document.getElementById('formNotes');
+
+    function openReportModal(id = null) {
+      editingId = id;
+      const item = reports.find(r => r.id === id);
+
+      reportModalTitle.textContent = id ? 'تعديل التقرير' : 'إضافة تقرير';
+
+      formTitle.value = item?.title || '';
+      formCategory.value = item?.category || 'cases';
+      formPeriod.value = item?.period || 'month';
+      formStatus.value = item?.status || 'medium';
+      formRecords.value = item?.records || '';
+      formPerformance.value = item?.performance || '';
+      formNotes.value = item?.notes || '';
+
+      reportModal.classList.remove('hidden');
+      reportModal.classList.add('flex');
+    }
+
+    function closeReportModalFn() {
+      reportModal.classList.add('hidden');
+      reportModal.classList.remove('flex');
+      editingId = null;
+    }
+
+    saveReportBtn.addEventListener('click', () => {
+      const payload = {
+        title: formTitle.value.trim() || 'تقرير جديد',
+        category: formCategory.value,
+        period: formPeriod.value,
+        records: Number(formRecords.value || 0),
+        performance: Math.min(100, Math.max(0, Number(formPerformance.value || 0))),
+        status: formStatus.value,
+        notes: formNotes.value.trim() || 'لا توجد ملاحظات'
+      };
+
+      if (editingId) {
+        const index = reports.findIndex(r => r.id === editingId);
+        reports[index] = { ...reports[index], ...payload };
+      } else {
+        reports.unshift({ id: Date.now().toString().slice(-4), ...payload });
+      }
+
+      closeReportModalFn();
+      renderRows();
+    });
+
+    closeReportModal.addEventListener('click', closeReportModalFn);
+    cancelReportModal.addEventListener('click', closeReportModalFn);
+    reportModal.addEventListener('click', e => { if (e.target === reportModal) closeReportModalFn(); });
+
+    document.getElementById('openReportModalBtn').addEventListener('click', () => openReportModal());
+
+    const viewModal = document.getElementById('viewModal');
+    const closeViewModal = document.getElementById('closeViewModal');
+    const viewModalContent = document.getElementById('viewModalContent');
+
+    function openViewModal(id) {
+      const item = reports.find(r => r.id === id);
+      if (!item) return;
+
+      viewModalContent.innerHTML = `
+        <div class="rounded-2xl bg-slate-50 p-4"><b>رقم التقرير:</b> #${item.id}</div>
+        <div class="rounded-2xl bg-slate-50 p-4"><b>اسم التقرير:</b> ${item.title}</div>
+        <div class="rounded-2xl bg-slate-50 p-4"><b>القسم:</b> ${categoryText[item.category]}</div>
+        <div class="rounded-2xl bg-slate-50 p-4"><b>الفترة:</b> ${periodText[item.period]}</div>
+        <div class="rounded-2xl bg-slate-50 p-4"><b>عدد السجلات:</b> ${item.records}</div>
+        <div class="rounded-2xl bg-slate-50 p-4"><b>نسبة الأداء:</b> ${item.performance}%</div>
+        <div class="rounded-2xl bg-slate-50 p-4"><b>الحالة:</b> ${statusMap[item.status].text}</div>
+        <div class="rounded-2xl bg-slate-50 p-4"><b>الملاحظات:</b> ${item.notes}</div>
+      `;
+
+      viewModal.classList.remove('hidden');
+      viewModal.classList.add('flex');
+    }
+
+    function closeViewModalFn() {
+      viewModal.classList.add('hidden');
+      viewModal.classList.remove('flex');
+    }
+
+    closeViewModal.addEventListener('click', closeViewModalFn);
+    viewModal.addEventListener('click', e => { if (e.target === viewModal) closeViewModalFn(); });
+
+    const deleteModal = document.getElementById('deleteModal');
+    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+
+    function openDeleteModal(id) {
+      deletingId = id;
+      deleteModal.classList.remove('hidden');
+      deleteModal.classList.add('flex');
+    }
+
+    function closeDeleteModal() {
+      deleteModal.classList.add('hidden');
+      deleteModal.classList.remove('flex');
+      deletingId = null;
+    }
+
+    cancelDeleteBtn.addEventListener('click', closeDeleteModal);
+    deleteModal.addEventListener('click', e => { if (e.target === deleteModal) closeDeleteModal(); });
+
+    confirmDeleteBtn.addEventListener('click', () => {
+      reports = reports.filter(r => r.id !== deletingId);
+      closeDeleteModal();
+      renderRows();
+    });
+
+    [reportSearch, topSearch, periodFilter, categoryFilter, statusFilter].forEach(el => {
+      el.addEventListener('input', renderRows);
+      el.addEventListener('change', renderRows);
+    });
+
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+    document.getElementById('exportBtn').addEventListener('click', () => alert('تم تجهيز ملف التصدير بنجاح'));
+    document.getElementById('chartDetailsBtn').addEventListener('click', () => alert('تفاصيل الرسم البياني: أعلى أداء خلال شهر مايو بنسبة 84%'));
+
+    renderRows();
+  </script>
+</body>
+</html>
