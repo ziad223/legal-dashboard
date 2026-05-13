@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>العملاء والعقود | Legal Technology</title>
+  <title>الموظفين | Legal Technology</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,11 +38,34 @@
     body { background: #f2f1ef; }
     .scroll-hide::-webkit-scrollbar { width: 6px; }
     .scroll-hide::-webkit-scrollbar-thumb { background: #d0ad62; border-radius: 999px; }
-    .table-row { transition: all .25s ease; }
-    .table-row:hover { background: #faf7ef; transform: translateY(-1px); }
+
+    .employee-row {
+      transition: all .25s ease;
+      background: #fff;
+      border-radius: 34px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.05);
+    }
+    .employee-row:hover {
+      background: #faf7ef;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 35px rgba(0,0,0,.08);
+    }
+
     table th { font-size: 11px !important; }
-    table td { font-size: 11px !important; white-space: nowrap; }
-    .status-badge { display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:5px 10px; font-size:10px; font-weight:900; white-space: nowrap; }
+    table td { font-size: 12px !important; }
+
+    .status-badge {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      border-radius:8px;
+      padding:6px 14px;
+      font-size:10px;
+      font-weight:900;
+      white-space: nowrap;
+    }
+
     .custom-select-wrap { position: relative; width: 100%; }
     .custom-select {
       appearance: none;
@@ -73,15 +96,58 @@
       font-weight: 900;
       position: absolute;
       left: 16px;
-      right: auto;
       top: 50%;
       transform: translateY(-50%);
       color: #9ca3af;
       font-size: 12px;
       pointer-events: none;
     }
+
+    .input-field {
+      border-radius: 18px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 800;
+      outline: none;
+      transition: .25s ease;
+      width: 100%;
+    }
+    .input-field:focus {
+      border-color: #d0ad62;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(208,173,98,.16);
+    }
+
     .modal-box { animation: modalIn .25s ease both; }
-    @keyframes modalIn { from { opacity:0; transform: translateY(12px) scale(.97); } to { opacity:1; transform: translateY(0) scale(1); } }
+    @keyframes modalIn {
+      from { opacity:0; transform: translateY(12px) scale(.97); }
+      to { opacity:1; transform: translateY(0) scale(1); }
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 12px;
+      transition: .25s ease;
+      font-size: 15px;
+    }
+
+    .role-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 5px 10px;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 10px;
+      font-weight: 900;
+      border: 1px solid #e2e8f0;
+    }
   </style>
 </head>
 
@@ -111,19 +177,19 @@
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="consultation-requests.html"><span>طلبات الإستشارة</span><i class="fa-solid fa-cube text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="reports-and-statistics.html"><span>التقارير والإحصائيات</span><i class="fa-solid fa-chart-line text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="case-management.html"><span>إدارة القضايا</span><i class="fa-solid fa-scale-balanced text-lg"></i></a>
-          <a class="flex items-center justify-between rounded-2xl bg-legalGold px-5 py-3 text-legalGreenDark shadow-card" href="customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="tasks-and-organization.html"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="forms-and-documents.html"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
           <!-- <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="#"><span>المكتبة القانونية</span><i class="fa-solid fa-book-open text-lg"></i></a> -->
 
           <div class="rounded-2xl">
-            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right transition hover:bg-white/10 hover:text-white" type="button">
+            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right bg-legalGold text-legalGreenDark shadow-card" type="button">
               <span class="flex items-center gap-3"><span>الموظفين والموارد البشرية</span></span>
-              <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
+              <span class="chevron transition-transform duration-300 -rotate-90"><i class="fa-solid fa-chevron-left"></i></span>
             </button>
-            <div class="accordion-content hidden pb-2 pr-5">
+            <div class="accordion-content pb-2 pr-5">
               <a href="permissions.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">الصلاحيات</a>
-              <a href="employees.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">الموظفين</a>
+              <a href="employees.html" class="block rounded-xl bg-white/10 px-5 py-3 text-sm text-white transition">الموظفين</a>
             </div>
           </div>
 
@@ -164,7 +230,7 @@
 
           <div class="hidden flex-1 items-center justify-center md:flex">
             <div class="relative w-full max-w-xl">
-              <input id="globalSearchInput" type="search" placeholder="بحث في العملاء والعقود..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-5 pr-12 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" />
+              <input id="globalSearchInput" type="search" placeholder="بحث في الموظفين..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-5 pr-12 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-legalGold">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </span>
@@ -174,7 +240,7 @@
           <div class="flex items-center gap-3">
             <div class="hidden text-left sm:block">
               <p class="text-sm font-extrabold text-slate-900">Legal Technology</p>
-              <p class="text-xs font-bold text-slate-400">العملاء والعقود</p>
+              <p class="text-xs font-bold text-slate-400">الموظفين</p>
             </div>
             <img src="logo_legal.png" alt="Logo" class="h-12 w-12 rounded-2xl object-contain shadow-card">
             <button id="menuBtn" class="grid h-11 w-11 place-items-center rounded-xl text-2xl text-legalGold transition hover:bg-legalGold/15 lg:hidden">☰</button>
@@ -188,7 +254,7 @@
             </span>
             <div>
               <p class="text-xs text-white/80">المسار الحالي</p>
-              <p>الرئيسية / العملاء والعقود</p>
+              <p>الرئيسية / الموظفين والموارد البشرية / الموظفين</p>
             </div>
           </div>
 
@@ -197,40 +263,45 @@
               <i class="fa-solid fa-file-export"></i>
               تصدير ملف excel
             </button>
+            <button id="openEmployeeModalBtn" class="inline-flex items-center justify-center gap-2 rounded-xl bg-white/20 px-4 py-2 text-xs font-extrabold text-white transition hover:bg-white/30">
+              <i class="fa-solid fa-circle-plus"></i>
+              إضافة جديد
+            </button>
           </div>
         </div>
       </header>
 
       <section class="p-5 md:p-8">
+
         <!-- Page Header -->
         <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <span class="inline-flex items-center gap-2 rounded-full bg-legalGold/15 px-4 py-2 text-xs font-black text-legalGoldDark">
-              <i class="fa-solid fa-handshake"></i>
-              إدارة العملاء والعقود
+              <i class="fa-solid fa-users"></i>
+              إدارة الموظفين
             </span>
-            <h1 class="mt-3 text-3xl font-black text-slate-900 md:text-4xl">العملاء والعقود</h1>
-            <p class="mt-2 text-sm font-semibold text-slate-500">متابعة العملاء، البريد الإلكتروني، حالة العميل، والعقود المرتبطة.</p>
+            <h1 class="mt-3 text-3xl font-black text-slate-900 md:text-4xl">الموظفين</h1>
+            <p class="mt-2 text-sm font-semibold text-slate-500">إضافة وتعديل الموظفين وربط كل موظف بالصلاحية المناسبة وحالة الحساب.</p>
           </div>
 
           <div class="flex flex-wrap gap-3">
-            <button id="openClientModalBtn" class="inline-flex items-center gap-2 rounded-2xl bg-legalGreen px-5 py-3 text-sm font-black text-white shadow-card transition hover:bg-legalGreenDark">
+            <button id="openEmployeeModalBtn2" class="inline-flex items-center gap-2 rounded-2xl bg-legalGreen px-5 py-3 text-sm font-black text-white shadow-card transition hover:bg-legalGreenDark">
               <i class="fa-solid fa-plus"></i>
-              إضافة جديد
+              إضافة موظف
             </button>
-            <button id="printBtn" class="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-legalGreen shadow-card transition hover:bg-legalGold hover:text-white">
+            <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-legalGreen shadow-card transition hover:bg-legalGold hover:text-white">
               <i class="fa-solid fa-print"></i>
               طباعة
             </button>
           </div>
         </div>
 
-        <!-- Stats Cards -->
+        <!-- Stats -->
         <div class="mb-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           <article class="rounded-[28px] bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
             <div class="flex items-center justify-between gap-4">
               <div>
-                <p class="text-sm font-bold text-slate-400">إجمالي العملاء</p>
+                <p class="text-sm font-bold text-slate-400">إجمالي الموظفين</p>
                 <h3 id="statTotal" class="mt-2 text-4xl font-black text-slate-900">0</h3>
               </div>
               <div class="grid h-14 w-14 place-items-center rounded-2xl bg-legalGold/15 text-2xl text-legalGold">
@@ -242,7 +313,7 @@
           <article class="rounded-[28px] bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
             <div class="flex items-center justify-between gap-4">
               <div>
-                <p class="text-sm font-bold text-slate-400">عملاء نشطين</p>
+                <p class="text-sm font-bold text-slate-400">نشط</p>
                 <h3 id="statActive" class="mt-2 text-4xl font-black text-emerald-600">0</h3>
               </div>
               <div class="grid h-14 w-14 place-items-center rounded-2xl bg-emerald-100 text-2xl text-emerald-600">
@@ -254,11 +325,11 @@
           <article class="rounded-[28px] bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
             <div class="flex items-center justify-between gap-4">
               <div>
-                <p class="text-sm font-bold text-slate-400">عقود سارية</p>
-                <h3 id="statContracts" class="mt-2 text-4xl font-black text-blue-600">0</h3>
+                <p class="text-sm font-bold text-slate-400">محامين</p>
+                <h3 id="statLawyers" class="mt-2 text-4xl font-black text-blue-600">0</h3>
               </div>
               <div class="grid h-14 w-14 place-items-center rounded-2xl bg-blue-100 text-2xl text-blue-600">
-                <i class="fa-solid fa-file-signature"></i>
+                <i class="fa-solid fa-scale-balanced"></i>
               </div>
             </div>
           </article>
@@ -266,11 +337,11 @@
           <article class="rounded-[28px] bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
             <div class="flex items-center justify-between gap-4">
               <div>
-                <p class="text-sm font-bold text-slate-400">بانتظار متابعة</p>
-                <h3 id="statPending" class="mt-2 text-4xl font-black text-amber-600">0</h3>
+                <p class="text-sm font-bold text-slate-400">غير موثق</p>
+                <h3 id="statUnverified" class="mt-2 text-4xl font-black text-red-600">0</h3>
               </div>
-              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-amber-100 text-2xl text-amber-600">
-                <i class="fa-solid fa-clock"></i>
+              <div class="grid h-14 w-14 place-items-center rounded-2xl bg-red-100 text-2xl text-red-600">
+                <i class="fa-solid fa-user-xmark"></i>
               </div>
             </div>
           </article>
@@ -280,7 +351,7 @@
         <div class="mb-6 rounded-[28px] bg-white p-5 shadow-card">
           <div class="grid gap-4 md:grid-cols-4">
             <div class="relative md:col-span-2">
-              <input id="tableSearch" type="search" placeholder="ابحث باسم العميل أو البريد أو رقم العقد..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 py-3 pr-12 text-[12px] font-bold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15">
+              <input id="tableSearch" type="search" placeholder="ابحث بالاسم أو البريد الإلكتروني..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 py-3 pr-12 text-[12px] font-bold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15">
               <i class="fa-solid fa-search absolute right-4 top-1/2 -translate-y-1/2 text-legalGold"></i>
             </div>
 
@@ -288,67 +359,43 @@
               <select id="statusFilter" class="custom-select">
                 <option value="all">كل الحالات</option>
                 <option value="active">نشط</option>
-                <option value="pending">قيد المتابعة</option>
-                <option value="expired">منتهي</option>
+                <option value="unverified">غير موثق</option>
+                <option value="disabled">موقوف</option>
               </select>
             </div>
 
             <div class="custom-select-wrap">
-              <select id="typeFilter" class="custom-select">
-                <option value="all">كل الأنواع</option>
-                <option value="individual">فرد</option>
-                <option value="company">شركة</option>
-                <option value="vip">عميل مميز</option>
+              <select id="roleFilter" class="custom-select">
+                <option value="all">كل الصلاحيات</option>
+                <option value="admin">المشرف</option>
+                <option value="lawyer">محامي</option>
+                <option value="none">--</option>
               </select>
             </div>
           </div>
         </div>
 
-        <!-- Table -->
-        <div class="overflow-hidden rounded-[30px] bg-white shadow-card">
-          <div class="flex flex-col gap-3 border-b border-slate-100 p-5 md:flex-row md:items-center md:justify-between">
-            <div>
-              <h2 class="text-lg font-black text-slate-900">قائمة العملاء والعقود</h2>
-              <p class="mt-1 text-[11px] font-bold text-slate-400">بيانات العملاء المسجلة والعقود المرتبطة بهم</p>
-            </div>
-
-            <div class="flex gap-2">
-              <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-600 transition hover:bg-legalGold hover:text-white">
-                <i class="fa-solid fa-filter ml-1"></i>
-                فلترة
-              </button>
-              <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-600 transition hover:bg-legalGold hover:text-white">
-                <i class="fa-solid fa-download ml-1"></i>
-                تحميل
-              </button>
-            </div>
+        <!-- Header Row Like Screenshot -->
+        <div class="mb-5 rounded-[24px] bg-legalGreen px-6 py-5 text-white shadow-card">
+          <div class="grid grid-cols-12 items-center gap-4 text-center text-[12px] font-black">
+            <div class="col-span-1">#</div>
+            <div class="col-span-2">الإسم</div>
+            <div class="col-span-3">البريد الإلكتروني</div>
+            <div class="col-span-2">الصلاحيات</div>
+            <div class="col-span-2">الحالة</div>
+            <div class="col-span-2">خيارات</div>
           </div>
+        </div>
 
-          <div class="overflow-x-auto">
-            <table class="w-full min-w-[980px] text-right">
-              <thead>
-                <tr class="bg-legalGreen text-white">
-                  <th class="whitespace-nowrap px-4 py-4 font-black">#</th>
-                  <th class="whitespace-nowrap px-4 py-4 font-black">الإسم</th>
-                  <th class="whitespace-nowrap px-4 py-4 font-black">البريد الإلكتروني</th>
-                  <th class="whitespace-nowrap px-4 py-4 font-black">رقم العقد</th>
-                  <th class="whitespace-nowrap px-4 py-4 font-black">نوع العميل</th>
-                  <th class="whitespace-nowrap px-4 py-4 font-black">الحالة</th>
-                  <th class="whitespace-nowrap px-4 py-4 font-black text-center">خيارات</th>
-                </tr>
-              </thead>
+        <!-- Rows -->
+        <div id="employeeCards" class="space-y-5"></div>
 
-              <tbody id="clientsTable" class="divide-y divide-slate-100"></tbody>
-            </table>
-          </div>
-
-          <div class="flex flex-col gap-3 border-t border-slate-100 p-5 md:flex-row md:items-center md:justify-between">
-            <p id="rowsCount" class="text-[12px] font-bold text-slate-500">عرض 0 من 0 عملاء</p>
-            <div class="flex items-center gap-2">
-              <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-500">السابق</button>
-              <button class="rounded-xl bg-legalGold px-4 py-2 text-[12px] font-black text-white">1</button>
-              <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-500">التالي</button>
-            </div>
+        <div class="mt-6 flex flex-col gap-3 rounded-[24px] bg-white p-5 shadow-card md:flex-row md:items-center md:justify-between">
+          <p id="rowsCount" class="text-[12px] font-bold text-slate-500">عرض 0 من 0 موظفين</p>
+          <div class="flex items-center gap-2">
+            <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-500">السابق</button>
+            <button class="rounded-xl bg-legalGold px-4 py-2 text-[12px] font-black text-white">1</button>
+            <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-500">التالي</button>
           </div>
         </div>
       </section>
@@ -358,46 +405,46 @@
   <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
 
   <!-- Add/Edit Modal -->
-  <div id="clientModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
-    <div class="modal-box w-full max-w-2xl rounded-[30px] bg-white p-6 shadow-2xl">
+  <div id="employeeModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-3xl rounded-[30px] bg-white p-6 shadow-2xl">
       <div class="mb-5 flex items-center justify-between">
         <div>
-          <h3 id="clientModalTitle" class="text-lg font-black text-slate-900">إضافة عميل</h3>
-          <p class="mt-1 text-[11px] font-bold text-slate-400">أدخل بيانات العميل والعقد المرتبط</p>
+          <h3 id="employeeModalTitle" class="text-lg font-black text-slate-900">إضافة موظف</h3>
+          <p class="mt-1 text-[11px] font-bold text-slate-400">أدخل بيانات الموظف وحدد الصلاحية وحالة الحساب.</p>
         </div>
-        <button id="closeClientModal" class="grid h-11 w-11 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-500 hover:text-white">
+        <button id="closeEmployeeModal" class="grid h-11 w-11 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-500 hover:text-white">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
       <div class="grid gap-4 md:grid-cols-2">
-        <input id="formName" type="text" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="اسم العميل">
-        <input id="formEmail" type="email" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="البريد الإلكتروني">
-        <input id="formPhone" type="text" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="رقم الهاتف">
-        <input id="formContract" type="text" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="رقم العقد">
+        <input id="formName" type="text" class="input-field" placeholder="اسم الموظف">
+        <input id="formEmail" type="email" class="input-field" placeholder="البريد الإلكتروني">
+        <input id="formPhone" type="text" class="input-field" placeholder="رقم الهاتف">
+        <input id="formPassword" type="password" class="input-field" placeholder="كلمة المرور">
 
         <div class="custom-select-wrap">
-          <select id="formType" class="custom-select">
-            <option value="individual">فرد</option>
-            <option value="company">شركة</option>
-            <option value="vip">عميل مميز</option>
+          <select id="formRole" class="custom-select">
+            <option value="admin">المشرف</option>
+            <option value="lawyer">محامي</option>
+            <option value="none">--</option>
           </select>
         </div>
 
         <div class="custom-select-wrap">
           <select id="formStatus" class="custom-select">
             <option value="active">نشط</option>
-            <option value="pending">قيد المتابعة</option>
-            <option value="expired">منتهي</option>
+            <option value="unverified">غير موثق</option>
+            <option value="disabled">موقوف</option>
           </select>
         </div>
 
-        <textarea id="formNotes" rows="4" class="md:col-span-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="ملاحظات العميل"></textarea>
+        <textarea id="formNotes" rows="4" class="md:col-span-2 input-field" placeholder="ملاحظات الموظف"></textarea>
       </div>
 
       <div class="mt-6 flex items-center justify-end gap-3">
-        <button id="cancelClientModal" class="rounded-2xl bg-slate-100 px-5 py-3 text-[12px] font-black text-slate-600 transition hover:bg-slate-200">إلغاء</button>
-        <button id="saveClientBtn" class="rounded-2xl bg-legalGreen px-6 py-3 text-[12px] font-black text-white shadow-card transition hover:bg-legalGreenDark">حفظ العميل</button>
+        <button id="cancelEmployeeModal" class="rounded-2xl bg-slate-100 px-5 py-3 text-[12px] font-black text-slate-600 transition hover:bg-slate-200">إلغاء</button>
+        <button id="saveEmployeeBtn" class="rounded-2xl bg-legalGreen px-6 py-3 text-[12px] font-black text-white shadow-card transition hover:bg-legalGreenDark">حفظ الموظف</button>
       </div>
     </div>
   </div>
@@ -406,7 +453,7 @@
   <div id="viewModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
     <div class="modal-box w-full max-w-xl rounded-[30px] bg-white p-6 shadow-2xl">
       <div class="mb-5 flex items-center justify-between">
-        <h3 class="text-lg font-black text-slate-900">تفاصيل العميل</h3>
+        <h3 class="text-lg font-black text-slate-900">تفاصيل الموظف</h3>
         <button id="closeViewModal" class="grid h-11 w-11 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-500 hover:text-white">
           <i class="fa-solid fa-xmark"></i>
         </button>
@@ -421,8 +468,8 @@
       <div class="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-3xl bg-red-100 text-2xl text-red-600">
         <i class="fa-solid fa-trash"></i>
       </div>
-      <h3 class="text-lg font-black text-slate-900">حذف العميل</h3>
-      <p class="mt-2 text-[12px] font-bold text-slate-500">هل أنت متأكد أنك تريد حذف هذا العميل؟</p>
+      <h3 class="text-lg font-black text-slate-900">حذف الموظف</h3>
+      <p class="mt-2 text-[12px] font-bold text-slate-500">هل أنت متأكد أنك تريد حذف هذا الموظف؟</p>
       <div class="mt-6 flex justify-center gap-3">
         <button id="cancelDeleteBtn" class="rounded-2xl bg-slate-100 px-5 py-3 text-[12px] font-black text-slate-600">إلغاء</button>
         <button id="confirmDeleteBtn" class="rounded-2xl bg-red-600 px-5 py-3 text-[12px] font-black text-white">حذف</button>
@@ -472,91 +519,105 @@
       });
     });
 
-    const typeText = {
-      individual: 'فرد',
-      company: 'شركة',
-      vip: 'عميل مميز'
+    const roleText = {
+      admin: 'المشرف',
+      lawyer: 'محامي',
+      none: '--'
     };
 
     const statusMap = {
-      active: { text: 'نشط', cls: 'bg-emerald-100 text-emerald-700', dot: 'bg-emerald-500' },
-      pending: { text: 'قيد المتابعة', cls: 'bg-amber-100 text-amber-700', dot: 'bg-amber-500' },
-      expired: { text: 'منتهي', cls: 'bg-red-100 text-red-700', dot: 'bg-red-500' }
+      active: { text: 'نشط', cls: 'bg-green-500 text-white' },
+      unverified: { text: 'غير موثق', cls: 'bg-blue-500 text-white' },
+      disabled: { text: 'موقوف', cls: 'bg-red-500 text-white' }
     };
 
-    let clients = [
-      { id: 20, name: 'aya aya', email: 'phone.local@0900000001', phone: '+966 55 123 4567', contract: 'CNT-2026-001', type: 'individual', status: 'active', notes: 'عميل نشط ولديه عقد استشارة سنوي.' },
-      { id: 22, name: 'nour nour', email: 'phone.local@0900000003', phone: '+966 54 800 2211', contract: 'CNT-2026-003', type: 'vip', status: 'active', notes: 'عميل مميز يحتاج متابعة دورية.' },
-      { id: 26, name: 'دخالة خالد', email: 'phone.local@0900010000', phone: '+966 50 444 9988', contract: 'CNT-2026-008', type: 'company', status: 'pending', notes: 'بانتظار توقيع ملحق العقد.' },
-      { id: 31, name: 'شركة النور التجارية', email: 'info@alnour.com', phone: '+966 56 202 3030', contract: 'CNT-2025-110', type: 'company', status: 'expired', notes: 'العقد منتهي ويحتاج تجديد.' }
+    let employees = [
+      { id: 1, name: 'super admin', email: 'admin@ecit.com.sa', phone: '+966 500 000 001', role: 'admin', status: 'active', notes: 'مدير النظام الرئيسي.' },
+      { id: 2, name: 'test test', email: '', phone: '+966 500 000 002', role: 'lawyer', status: 'active', notes: 'موظف تجريبي.' },
+      { id: 19, name: 'eman eman', email: 'phone.local@0900000000', phone: '+966 500 000 019', role: 'lawyer', status: 'active', notes: 'محامي داخل النظام.' },
+      { id: 21, name: 'nady nady', email: 'phone.local@0900000002', phone: '+966 500 000 021', role: 'none', status: 'active', notes: 'لم يتم تحديد الصلاحية.' },
+      { id: 23, name: 'mohammed mohammed', email: 'phone.local@0900000004', phone: '+966 500 000 023', role: 'none', status: 'active', notes: 'لم يتم تحديد الصلاحية.' },
+      { id: 24, name: 'bebo bebo', email: 'phone.local@0900000006', phone: '+966 500 000 024', role: 'none', status: 'active', notes: 'لم يتم تحديد الصلاحية.' },
+      { id: 25, name: 'emem emem', email: 'phone.local@90000000', phone: '+966 500 000 025', role: 'none', status: 'unverified', notes: 'حساب غير موثق.' }
     ];
 
     let editingId = null;
     let deletingId = null;
 
-    const clientsTable = document.getElementById('clientsTable');
+    const employeeCards = document.getElementById('employeeCards');
     const rowsCount = document.getElementById('rowsCount');
     const topSearch = document.getElementById('topSearch');
     const tableSearch = document.getElementById('tableSearch');
     const statusFilter = document.getElementById('statusFilter');
-    const typeFilter = document.getElementById('typeFilter');
+    const roleFilter = document.getElementById('roleFilter');
 
     function updateStats() {
-      document.getElementById('statTotal').textContent = clients.length;
-      document.getElementById('statActive').textContent = clients.filter(c => c.status === 'active').length;
-      document.getElementById('statContracts').textContent = clients.filter(c => c.status !== 'expired').length;
-      document.getElementById('statPending').textContent = clients.filter(c => c.status === 'pending').length;
+      document.getElementById('statTotal').textContent = employees.length;
+      document.getElementById('statActive').textContent = employees.filter(e => e.status === 'active').length;
+      document.getElementById('statLawyers').textContent = employees.filter(e => e.role === 'lawyer').length;
+      document.getElementById('statUnverified').textContent = employees.filter(e => e.status === 'unverified').length;
     }
 
     function renderRows() {
       const term = ((tableSearch.value || topSearch.value || '')).toLowerCase().trim();
       const status = statusFilter.value;
-      const type = typeFilter.value;
+      const role = roleFilter.value;
 
-      const filtered = clients.filter(item => {
-        const text = `${item.name} ${item.email} ${item.phone} ${item.contract} ${item.id}`.toLowerCase();
+      const filtered = employees.filter(item => {
+        const text = `${item.name} ${item.email} ${item.phone} ${roleText[item.role]} ${item.id}`.toLowerCase();
         return (!term || text.includes(term)) &&
                (status === 'all' || item.status === status) &&
-               (type === 'all' || item.type === type);
+               (role === 'all' || item.role === role);
       });
 
-      clientsTable.innerHTML = filtered.map(item => {
+      employeeCards.innerHTML = filtered.map(item => {
         const st = statusMap[item.status];
-        const initial = item.name.trim().charAt(0) || 'ع';
 
         return `
-          <tr class="table-row" data-id="${item.id}">
-            <td class="px-4 py-3 font-black text-legalGold">#${item.id}</td>
-            <td class="px-4 py-3">
-              <div class="flex items-center gap-3">
-                <div class="grid h-9 w-9 place-items-center rounded-2xl bg-legalGold/15 font-black text-legalGold">${initial}</div>
-                <div>
-                  <p class="font-black text-slate-900">${item.name}</p>
-                  <p class="text-[10px] font-bold text-slate-400">${item.phone}</p>
+          <article class="employee-row px-6 py-7" data-id="${item.id}">
+            <div class="grid grid-cols-12 items-center gap-4 text-center">
+              <div class="col-span-1 text-lg font-black text-slate-900">${item.id}</div>
+
+              <div class="col-span-2">
+                <p class="font-black text-slate-900">${item.name}</p>
+              </div>
+
+              <div class="col-span-3">
+                <p class="font-bold text-slate-400">${item.email || '-'}</p>
+              </div>
+
+              <div class="col-span-2">
+                <span class="role-chip">
+                  <i class="fa-solid fa-pen text-legalGold"></i>
+                  ${roleText[item.role]}
+                </span>
+              </div>
+
+              <div class="col-span-2">
+                <span class="status-badge ${st.cls}">${st.text}</span>
+              </div>
+
+              <div class="col-span-2">
+                <div class="flex items-center justify-center gap-2">
+                  <button class="delete-btn icon-btn text-red-600 hover:bg-red-600 hover:text-white" data-id="${item.id}">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+
+                  <button class="edit-btn icon-btn text-legalGold hover:bg-legalGold hover:text-white" data-id="${item.id}">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+
+                  <button class="view-btn icon-btn text-legalGreen hover:bg-legalGreen hover:text-white" data-id="${item.id}">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
                 </div>
               </div>
-            </td>
-            <td class="px-4 py-3 font-bold text-slate-500">${item.email}</td>
-            <td class="px-4 py-3 font-bold text-slate-600">${item.contract}</td>
-            <td class="px-4 py-3 font-bold text-slate-500">${typeText[item.type]}</td>
-            <td class="px-4 py-3">
-              <span class="status-badge ${st.cls}">
-                <span class="h-2 w-2 rounded-full ${st.dot}"></span>
-                ${st.text}
-              </span>
-            </td>
-            <td class="px-4 py-3">
-              <div class="flex justify-center gap-2">
-                <button class="view-btn grid h-8 w-8 place-items-center rounded-xl bg-blue-100 text-blue-600 transition hover:bg-blue-600 hover:text-white" data-id="${item.id}"><i class="fa-solid fa-eye"></i></button>
-                <button class="edit-btn grid h-8 w-8 place-items-center rounded-xl bg-legalGold/15 text-legalGold transition hover:bg-legalGold hover:text-white" data-id="${item.id}"><i class="fa-solid fa-pen"></i></button>
-                <button class="delete-btn grid h-8 w-8 place-items-center rounded-xl bg-red-100 text-red-600 transition hover:bg-red-600 hover:text-white" data-id="${item.id}"><i class="fa-solid fa-trash"></i></button>
-              </div>
-            </td>
-          </tr>
+            </div>
+          </article>
         `;
       }).join('');
 
-      rowsCount.textContent = `عرض ${filtered.length} من ${clients.length} عملاء`;
+      rowsCount.textContent = `عرض ${filtered.length} من ${employees.length} موظفين`;
       updateStats();
       bindActionButtons();
     }
@@ -567,7 +628,7 @@
       });
 
       document.querySelectorAll('.edit-btn').forEach(btn => {
-        btn.addEventListener('click', () => openClientModal(Number(btn.dataset.id)));
+        btn.addEventListener('click', () => openEmployeeModal(Number(btn.dataset.id)));
       });
 
       document.querySelectorAll('.delete-btn').forEach(btn => {
@@ -575,89 +636,88 @@
       });
     }
 
-    const clientModal = document.getElementById('clientModal');
-    const clientModalTitle = document.getElementById('clientModalTitle');
-    const closeClientModal = document.getElementById('closeClientModal');
-    const cancelClientModal = document.getElementById('cancelClientModal');
-    const saveClientBtn = document.getElementById('saveClientBtn');
+    const employeeModal = document.getElementById('employeeModal');
+    const employeeModalTitle = document.getElementById('employeeModalTitle');
+    const closeEmployeeModal = document.getElementById('closeEmployeeModal');
+    const cancelEmployeeModal = document.getElementById('cancelEmployeeModal');
+    const saveEmployeeBtn = document.getElementById('saveEmployeeBtn');
 
     const formName = document.getElementById('formName');
     const formEmail = document.getElementById('formEmail');
     const formPhone = document.getElementById('formPhone');
-    const formContract = document.getElementById('formContract');
-    const formType = document.getElementById('formType');
+    const formPassword = document.getElementById('formPassword');
+    const formRole = document.getElementById('formRole');
     const formStatus = document.getElementById('formStatus');
     const formNotes = document.getElementById('formNotes');
 
-    function openClientModal(id = null) {
+    function openEmployeeModal(id = null) {
       editingId = id;
-      const item = clients.find(c => c.id === id);
+      const item = employees.find(e => e.id === id);
 
-      clientModalTitle.textContent = id ? 'تعديل العميل' : 'إضافة عميل';
+      employeeModalTitle.textContent = id ? 'تعديل الموظف' : 'إضافة موظف';
 
       formName.value = item?.name || '';
       formEmail.value = item?.email || '';
       formPhone.value = item?.phone || '';
-      formContract.value = item?.contract || '';
-      formType.value = item?.type || 'individual';
+      formPassword.value = '';
+      formRole.value = item?.role || 'none';
       formStatus.value = item?.status || 'active';
       formNotes.value = item?.notes || '';
 
-      clientModal.classList.remove('hidden');
-      clientModal.classList.add('flex');
+      employeeModal.classList.remove('hidden');
+      employeeModal.classList.add('flex');
     }
 
-    function closeClientModalFn() {
-      clientModal.classList.add('hidden');
-      clientModal.classList.remove('flex');
+    function closeEmployeeModalFn() {
+      employeeModal.classList.add('hidden');
+      employeeModal.classList.remove('flex');
       editingId = null;
     }
 
-    saveClientBtn.addEventListener('click', () => {
+    saveEmployeeBtn.addEventListener('click', () => {
       const payload = {
-        name: formName.value.trim() || 'عميل جديد',
-        email: formEmail.value.trim() || 'client@example.com',
+        name: formName.value.trim() || 'موظف جديد',
+        email: formEmail.value.trim() || '',
         phone: formPhone.value.trim() || '+966',
-        contract: formContract.value.trim() || 'CNT-NEW',
-        type: formType.value,
+        role: formRole.value,
         status: formStatus.value,
         notes: formNotes.value.trim() || 'لا توجد ملاحظات'
       };
 
       if (editingId) {
-        const index = clients.findIndex(c => c.id === editingId);
-        clients[index] = { ...clients[index], ...payload };
+        const index = employees.findIndex(e => e.id === editingId);
+        employees[index] = { ...employees[index], ...payload };
       } else {
-        clients.unshift({ id: Date.now().toString().slice(-4), ...payload });
+        employees.unshift({ id: Date.now().toString().slice(-4), ...payload });
       }
 
-      closeClientModalFn();
+      closeEmployeeModalFn();
       renderRows();
     });
 
-    closeClientModal.addEventListener('click', closeClientModalFn);
-    cancelClientModal.addEventListener('click', closeClientModalFn);
-    clientModal.addEventListener('click', e => { if (e.target === clientModal) closeClientModalFn(); });
+    closeEmployeeModal.addEventListener('click', closeEmployeeModalFn);
+    cancelEmployeeModal.addEventListener('click', closeEmployeeModalFn);
+    employeeModal.addEventListener('click', e => { if (e.target === employeeModal) closeEmployeeModalFn(); });
 
-    document.getElementById('openClientModalBtn').addEventListener('click', () => openClientModal());
+    document.getElementById('openEmployeeModalBtn').addEventListener('click', () => openEmployeeModal());
+    document.getElementById('openEmployeeModalBtn2').addEventListener('click', () => openEmployeeModal());
 
     const viewModal = document.getElementById('viewModal');
     const closeViewModal = document.getElementById('closeViewModal');
     const viewModalContent = document.getElementById('viewModalContent');
 
     function openViewModal(id) {
-      const item = clients.find(c => c.id === id);
+      const item = employees.find(e => e.id === id);
       if (!item) return;
 
       viewModalContent.innerHTML = `
-        <div class="rounded-2xl bg-slate-50 p-4"><b>رقم العميل:</b> #${item.id}</div>
+        <div class="rounded-2xl bg-slate-50 p-4"><b>رقم الموظف:</b> #${item.id}</div>
         <div class="rounded-2xl bg-slate-50 p-4"><b>الإسم:</b> ${item.name}</div>
-        <div class="rounded-2xl bg-slate-50 p-4"><b>البريد:</b> ${item.email}</div>
+        <div class="rounded-2xl bg-slate-50 p-4"><b>البريد الإلكتروني:</b> ${item.email || '-'}</div>
         <div class="rounded-2xl bg-slate-50 p-4"><b>الهاتف:</b> ${item.phone}</div>
-        <div class="rounded-2xl bg-slate-50 p-4"><b>رقم العقد:</b> ${item.contract}</div>
-        <div class="rounded-2xl bg-slate-50 p-4"><b>نوع العميل:</b> ${typeText[item.type]}</div>
+        <div class="rounded-2xl bg-slate-50 p-4"><b>الصلاحية:</b> ${roleText[item.role]}</div>
         <div class="rounded-2xl bg-slate-50 p-4"><b>الحالة:</b> ${statusMap[item.status].text}</div>
-        <div class="rounded-2xl bg-slate-50 p-4"><b>الملاحظات:</b> ${item.notes}</div>
+        <div class="rounded-2xl bg-slate-50 p-4"><b>ملاحظات:</b> ${item.notes}</div>
       `;
 
       viewModal.classList.remove('hidden');
@@ -692,12 +752,12 @@
     deleteModal.addEventListener('click', e => { if (e.target === deleteModal) closeDeleteModal(); });
 
     confirmDeleteBtn.addEventListener('click', () => {
-      clients = clients.filter(c => c.id !== deletingId);
+      employees = employees.filter(e => e.id !== deletingId);
       closeDeleteModal();
       renderRows();
     });
 
-    [tableSearch, topSearch, statusFilter, typeFilter].forEach(el => {
+    [tableSearch, topSearch, statusFilter, roleFilter].forEach(el => {
       el.addEventListener('input', renderRows);
       el.addEventListener('change', renderRows);
     });

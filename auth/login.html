@@ -1,0 +1,172 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تسجيل الدخول | Legal Technology</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        .bg-shape {
+            background:
+                linear-gradient(135deg, #0b7f73 25%, transparent 25%) -50px 0/100px 100px,
+                linear-gradient(225deg, #0f8f82 25%, transparent 25%) -50px 0/100px 100px,
+                linear-gradient(315deg, #0b6f64 25%, transparent 25%) 0px 0/100px 100px,
+                linear-gradient(45deg, #118f81 25%, #0a776d 25%) 0px 0/100px 100px;
+        }
+
+        .glass-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+        }
+
+        .input-style {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #d6d6d6;
+            background: transparent;
+            padding: 14px 45px 14px 12px;
+            outline: none;
+            transition: .3s;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .input-style:focus {
+            border-color: #caa55d;
+        }
+
+        .login-btn {
+            background: linear-gradient(to left, #d0ad62, #b89348);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(208, 173, 98, .35);
+        }
+    </style>
+</head>
+
+<body class="bg-shape min-h-screen flex items-center justify-center p-6">
+
+    <div class="glass-card w-full max-w-md rounded-[35px] p-10">
+
+        <div class="flex justify-center mb-8">
+            <div class="bg-white rounded-3xl p-3 shadow-lg">
+                <img src="../logo_legal.png" class="w-40 object-contain" alt="">
+            </div>
+        </div>
+
+        <h1 class="text-3xl font-black text-center text-[#41684e] mb-2">
+            تسجيل الدخول
+        </h1>
+
+        <p class="text-center text-gray-400 text-sm font-bold mb-10">
+            مرحباً بك في لوحة التحكم القانونية
+        </p>
+
+        <form id="loginForm" class="space-y-6">
+
+            <div class="relative">
+                <i
+                    class="fa-solid fa-envelope absolute right-3 top-1/2 -translate-y-1/2 text-[#caa55d]"></i>
+
+                <input type="email" id="email" placeholder="البريد الإلكتروني"
+                    class="input-style" required />
+            </div>
+
+            <div class="relative">
+                <i
+                    class="fa-solid fa-lock absolute right-3 top-1/2 -translate-y-1/2 text-[#caa55d]"></i>
+
+                <input type="password" id="password" placeholder="كلمة المرور"
+                    class="input-style" required />
+            </div>
+
+            <div class="flex items-center justify-between text-sm">
+
+                <label class="flex items-center gap-2 font-bold text-gray-600">
+                    <input type="checkbox"
+                        class="accent-[#caa55d] w-4 h-4">
+                    تذكرني
+                </label>
+
+                <a href="forgot-password.html"
+                    class="text-[#caa55d] font-extrabold hover:underline">
+                    نسيت كلمة المرور؟
+                </a>
+
+            </div>
+
+            <button type="submit"
+                class="login-btn w-full rounded-2xl py-4 text-white font-black text-sm transition-all duration-300">
+
+                <i class="fa-solid fa-right-to-bracket ml-2"></i>
+                تسجيل الدخول
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (login(email, password)) {
+                Toast.fire({
+                    icon: 'success',
+                    title: 'تم تسجيل الدخول بنجاح'
+                }).then(() => {
+                    window.location.href = '../index.html';
+                });
+            } else {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'خطأ في الدخول',
+                    text: 'البريد الإلكتروني أو كلمة المرور غير صحيحة'
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

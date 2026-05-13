@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أنواع المذكرات | Legal Technology</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+          colors: {
+            legalGreen: '#41684e',
+            legalGreenDark: '#345842',
+            legalGold: '#d0ad62',
+            legalGoldDark: '#bb9650',
+            pageBg: '#f2f1ef'
+          },
+          boxShadow: {
+            soft: '0 12px 35px rgba(0,0,0,.08)',
+            card: '0 8px 20px rgba(0,0,0,.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { font-family:'Cairo', sans-serif; }
+    body { background:#f2f1ef; }
+    .scroll-hide::-webkit-scrollbar { width:6px; }
+    .scroll-hide::-webkit-scrollbar-thumb { background:#d0ad62; border-radius:999px; }
+
+    .memo-row {
+      background:#fff;
+      border-radius:34px;
+      box-shadow:0 8px 20px rgba(0,0,0,.05);
+      transition:all .25s ease;
+    }
+    .memo-row:hover {
+      background:#faf7ef;
+      transform:translateY(-1px);
+      box-shadow:0 12px 35px rgba(0,0,0,.08);
+    }
+
+    .input-field {
+      width:100%;
+      border-radius:18px;
+      border:1px solid #e2e8f0;
+      background:#f8fafc;
+      padding:12px 16px;
+      font-size:12px;
+      font-weight:800;
+      outline:none;
+      transition:.25s ease;
+    }
+    .input-field:focus {
+      border-color:#d0ad62;
+      background:#fff;
+      box-shadow:0 0 0 4px rgba(208,173,98,.16);
+    }
+
+    .icon-btn {
+      width:34px;
+      height:34px;
+      display:inline-grid;
+      place-items:center;
+      border-radius:12px;
+      transition:.25s ease;
+      font-size:15px;
+    }
+
+    .modal-box { animation:modalIn .25s ease both; }
+    @keyframes modalIn {
+      from { opacity:0; transform:translateY(12px) scale(.97); }
+      to { opacity:1; transform:translateY(0) scale(1); }
+    }
+
+    .empty-box {
+      border:2px dashed #d8c7a0;
+      background:rgba(255,255,255,.65);
+    }
+
+    @media print {
+      aside, header, .no-print { display:none!important; }
+      main { padding-right:0!important; }
+      body { background:#fff!important; }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen overflow-x-hidden text-slate-900">
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed right-0 top-0 z-40 h-screen w-[320px] translate-x-full overflow-y-auto bg-legalGreen text-legalGold shadow-2xl transition-transform duration-300 lg:translate-x-0 scroll-hide">
+      <div class="relative h-48 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=900&auto=format&fit=crop')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-legalGreen via-legalGreen/50 to-transparent"></div>
+        <div class="relative z-10 flex h-full flex-col items-center justify-center gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white shadow-soft">
+            <img src="../logo_legal.png" alt="Logo" class="h-12 w-12 object-contain">
+          </div>
+          <p class="text-lg font-extrabold text-white">super admin</p>
+        </div>
+      <nav class="p-4">
+        <a href="../index.html" class="mb-2 flex items-center justify-between rounded-2xl px-5 py-4 font-bold transition hover:bg-white/10 hover:text-white" href="../index.html">
+          <span>الرئيسية</span>
+          <i class="fa-solid fa-house text-xl"></i>
+        </a>
+
+        <div class="space-y-1 text-[15px] font-bold">
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="../consultation-requests.html"><span>طلبات الإستشارة</span><i class="fa-solid fa-cube text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="../reports-and-statistics.html"><span>التقارير والإحصائيات</span><i class="fa-solid fa-chart-line text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="../case-management.html"><span>إدارة القضايا</span><i class="fa-solid fa-scale-balanced text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="../customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="../tasks-and-organization.html"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="../forms-and-documents.html"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
+
+          <div class="rounded-2xl">
+            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right transition hover:bg-white/10 hover:text-white" type="button">
+              <span class="flex items-center gap-3"><span>الموظفين والموارد البشرية</span></span>
+              <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
+            </button>
+            <div class="accordion-content hidden pb-2 pr-5">
+              <a href="../permissions.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">الصلاحيات</a>
+              <a href="../employees.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">الموظفين</a>
+            </div>
+          </div>
+
+          <div class="rounded-2xl">
+            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right bg-legalGold text-legalGreenDark shadow-card" type="button">
+              <span class="flex items-center gap-3"><span>تعديل وإضافة القوائم المنسدلة</span></span>
+              <span class="chevron transition-transform duration-300 -rotate-90"><i class="fa-solid fa-chevron-left"></i></span>
+            </button>
+            <div class="accordion-content pb-2 pr-5">
+              <a href="case-status.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">حالة القضية </a>
+              <a href="case-classification.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">تصنيف القضية </a>
+              <a href="sub-classification.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> التصنيف الفرعي للقضية </a>
+              <a href="case-stages.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">مراحل القضية  </a>
+              <a href="notes-types.html" class="block rounded-xl bg-white/10 px-5 py-3 text-sm text-white transition"> أنواع المذكرات  </a>
+              <a href="court-fees.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> التكاليف القضائية   </a>
+            </div>
+          </div>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="../settings.html"><span>الإعدادات العامة</span><i class="fa-solid fa-gear text-lg"></i></a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="w-full pr-0 transition-all duration-300 lg:pr-[320px]">
+      <!-- Topbar -->
+      <header class="sticky top-0 z-30 border-b border-black/5 bg-white/85 backdrop-blur-xl shadow-sm">
+        <div class="flex min-h-20 items-center justify-between gap-4 px-6">
+          <div class="flex items-center gap-3">
+            <button class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white">
+              <i class="fa-solid fa-power-off text-base"></i>
+            </button>
+            <a href="../settings.html" class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white">
+              <i class="fa-solid fa-gear text-base"></i>
+            </a>
+            <span class="rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-white shadow">ONLINE</span>
+          </div>
+
+          <div class="hidden flex-1 items-center justify-center md:flex">
+            <div class="relative w-full max-w-xl">
+              <input id="globalSearchInput" type="search" placeholder="بحث في أنواع المذكرات..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-5 pr-12 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-legalGold">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="hidden text-left sm:block">
+              <p class="text-sm font-extrabold text-slate-900">Legal Technology</p>
+              <p class="text-xs font-bold text-slate-400">أنواع المذكرات</p>
+            </div>
+            <img src="../logo_legal.png" alt="Logo" class="h-12 w-12 rounded-2xl object-contain shadow-card">
+            <button id="menuBtn" class="grid h-11 w-11 place-items-center rounded-xl text-2xl text-legalGold transition hover:bg-legalGold/15 lg:hidden">☰</button>
+          </div>
+        </div>
+
+        <div class="mx-5 mb-4 flex flex-col gap-3 rounded-[22px] bg-gradient-to-l from-legalGold to-legalGoldDark px-6 py-3 text-sm font-bold text-legalGreenDark shadow-card md:flex-row md:items-center md:justify-between">
+          <div class="flex items-center gap-3">
+            <span class="grid h-9 w-9 place-items-center rounded-xl bg-white/20 text-white">
+              <i class="fa-solid fa-house text-base"></i>
+            </span>
+            <div>
+              <p class="text-xs text-white/80">المسار الحالي</p>
+              <p>الرئيسية / تعديل وإضافة القوائم المنسدلة / أنواع المذكرات</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button id="openMemoModalBtn" class="inline-flex items-center justify-center gap-2 rounded-xl bg-white/20 px-4 py-2 text-xs font-extrabold text-white transition hover:bg-white/30">
+              <i class="fa-solid fa-circle-plus"></i>
+              إضافة جديد
+            </button>
+            <button class="inline-flex items-center justify-center gap-2 rounded-xl bg-white/20 px-4 py-2 text-xs font-extrabold text-white transition hover:bg-white/30">
+              <i class="fa-solid fa-gear"></i>
+              القوائم المنسدلة الأخرى
+              <i class="fa-solid fa-chevron-down text-[10px]"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-5 md:p-8">
+        <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <span class="inline-flex items-center gap-2 rounded-full bg-legalGold/15 px-4 py-2 text-xs font-black text-legalGoldDark">
+              <i class="fa-solid fa-file-lines"></i>
+              إدارة أنواع المذكرات
+            </span>
+            <h1 class="mt-3 text-3xl font-black text-slate-900 md:text-4xl">أنواع المذكرات</h1>
+            <p class="mt-2 text-sm font-semibold text-slate-500">إضافة وتعديل وحذف أنواع المذكرات المستخدمة داخل النظام.</p>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <button id="openMemoModalBtn2" class="inline-flex items-center gap-2 rounded-2xl bg-legalGreen px-5 py-3 text-sm font-black text-white shadow-card transition hover:bg-legalGreenDark">
+              <i class="fa-solid fa-plus"></i>
+              إضافة نوع مذكرة
+            </button>
+            <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-legalGreen shadow-card transition hover:bg-legalGold hover:text-white">
+              <i class="fa-solid fa-print"></i>
+              طباعة
+            </button>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="mb-6 rounded-[28px] bg-white p-5 shadow-card">
+          <div class="grid gap-4 md:grid-cols-3">
+            <div class="relative md:col-span-2">
+              <input id="tableSearch" type="search" placeholder="ابحث بعنوان نوع المذكرة..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-5 py-3 pr-12 text-[12px] font-bold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15">
+              <i class="fa-solid fa-search absolute right-4 top-1/2 -translate-y-1/2 text-legalGold"></i>
+            </div>
+            <button id="exportBtn" class="rounded-2xl bg-legalGreen px-5 py-3 text-[12px] font-black text-white shadow-card transition hover:bg-legalGreenDark">
+              <i class="fa-solid fa-file-export ml-1"></i>
+              تصدير Excel
+            </button>
+          </div>
+        </div>
+
+        <!-- Header Row Like Screenshot -->
+        <div class="mb-5 rounded-[24px] bg-legalGreen px-6 py-5 text-white shadow-card">
+          <div class="grid grid-cols-12 items-center gap-4 text-center text-[12px] font-black">
+            <div class="col-span-2">#</div>
+            <div class="col-span-7">العنوان</div>
+            <div class="col-span-3">خيارات</div>
+          </div>
+        </div>
+
+        <!-- Rows -->
+        <div id="memoCards" class="space-y-5"></div>
+
+        <div id="emptyState" class="hidden rounded-[34px] empty-box p-12 text-center shadow-card">
+          <div class="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-3xl bg-legalGold/15 text-3xl text-legalGold">
+            <i class="fa-solid fa-file-circle-plus"></i>
+          </div>
+          <h3 class="text-xl font-black text-slate-900">لا توجد أنواع مذكرات حتى الآن</h3>
+          <p class="mt-2 text-sm font-bold text-slate-500">اضغط على زر إضافة جديد لبدء إدخال أول نوع مذكرة.</p>
+          <button onclick="openMemoModal()" class="mt-5 rounded-2xl bg-legalGreen px-6 py-3 text-sm font-black text-white shadow-card transition hover:bg-legalGreenDark">
+            إضافة نوع مذكرة
+          </button>
+        </div>
+
+        <div class="mt-6 flex flex-col gap-3 rounded-[24px] bg-white p-5 shadow-card md:flex-row md:items-center md:justify-between">
+          <p id="rowsCount" class="text-[12px] font-bold text-slate-500">عرض 0 من 0 أنواع</p>
+          <div class="flex items-center gap-2">
+            <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-500">السابق</button>
+            <button class="rounded-xl bg-legalGold px-4 py-2 text-[12px] font-black text-white">1</button>
+            <button class="rounded-xl bg-slate-100 px-4 py-2 text-[12px] font-black text-slate-500">التالي</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- Add/Edit Modal -->
+  <div id="memoModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-xl rounded-[30px] bg-white p-6 shadow-2xl">
+      <div class="mb-5 flex items-center justify-between">
+        <div>
+          <h3 id="memoModalTitle" class="text-lg font-black text-slate-900">إضافة نوع مذكرة</h3>
+          <p class="mt-1 text-[11px] font-bold text-slate-400">أدخل عنوان نوع المذكرة.</p>
+        </div>
+        <button id="closeMemoModal" class="grid h-11 w-11 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-500 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="mb-2 block text-[12px] font-black text-slate-600">العنوان</label>
+          <input id="formTitle" type="text" class="input-field" placeholder="مثال: مذكرة جوابية">
+        </div>
+
+        <textarea id="formNotes" rows="4" class="input-field" placeholder="ملاحظات اختيارية"></textarea>
+      </div>
+
+      <div class="mt-6 flex items-center justify-end gap-3">
+        <button id="cancelMemoModal" class="rounded-2xl bg-slate-100 px-5 py-3 text-[12px] font-black text-slate-600 transition hover:bg-slate-200">إلغاء</button>
+        <button id="saveMemoBtn" class="rounded-2xl bg-legalGreen px-6 py-3 text-[12px] font-black text-white shadow-card transition hover:bg-legalGreenDark">حفظ النوع</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-md rounded-[30px] bg-white p-6 text-center shadow-2xl">
+      <div class="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-3xl bg-red-100 text-2xl text-red-600">
+        <i class="fa-solid fa-trash"></i>
+      </div>
+      <h3 class="text-lg font-black text-slate-900">حذف نوع المذكرة</h3>
+      <p class="mt-2 text-[12px] font-bold text-slate-500">هل أنت متأكد أنك تريد حذف هذا النوع؟</p>
+      <div class="mt-6 flex justify-center gap-3">
+        <button id="cancelDeleteBtn" class="rounded-2xl bg-slate-100 px-5 py-3 text-[12px] font-black text-slate-600">إلغاء</button>
+        <button id="confirmDeleteBtn" class="rounded-2xl bg-red-600 px-5 py-3 text-[12px] font-black text-white">حذف</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const menuBtn = document.getElementById('menuBtn');
+    const overlay = document.getElementById('overlay');
+
+    function openMenu() {
+      sidebar.classList.remove('translate-x-full');
+      sidebar.classList.add('translate-x-0');
+      overlay.classList.remove('hidden');
+      menuBtn.innerHTML = '✕';
+    }
+
+    function closeMenu() {
+      sidebar.classList.add('translate-x-full');
+      sidebar.classList.remove('translate-x-0');
+      overlay.classList.add('hidden');
+      menuBtn.innerHTML = '☰';
+    }
+
+    menuBtn.addEventListener('click', () => {
+      if (sidebar.classList.contains('translate-x-0')) closeMenu();
+      else openMenu();
+    });
+
+    overlay.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.accordion-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const chevron = btn.querySelector('.chevron');
+        const isOpen = !content.classList.contains('hidden');
+
+        document.querySelectorAll('.accordion-content').forEach((item) => item.classList.add('hidden'));
+        document.querySelectorAll('.chevron').forEach((item) => item.classList.remove('-rotate-90'));
+
+        if (!isOpen) {
+          content.classList.remove('hidden');
+          chevron.classList.add('-rotate-90');
+        }
+      });
+    });
+
+    let memos = [
+      { id: 1, title: 'مذكرة جوابية', notes: 'نوع مذكرة للرد على الدعوى.' },
+      { id: 2, title: 'مذكرة اعتراضية', notes: 'نوع مذكرة للاعتراض.' },
+      { id: 3, title: 'مذكرة ختامية', notes: 'نوع مذكرة ختامية.' }
+    ];
+
+    let editingId = null;
+    let deletingId = null;
+
+    const memoCards = document.getElementById('memoCards');
+    const emptyState = document.getElementById('emptyState');
+    const rowsCount = document.getElementById('rowsCount');
+    const tableSearch = document.getElementById('tableSearch');
+    const topSearch = document.getElementById('topSearch');
+
+    function renderRows() {
+      const term = ((tableSearch.value || topSearch.value || '')).toLowerCase().trim();
+
+      const filtered = memos.filter(item => {
+        const text = `${item.id} ${item.title} ${item.notes}`.toLowerCase();
+        return !term || text.includes(term);
+      });
+
+      memoCards.innerHTML = filtered.map(item => `
+        <article class="memo-row px-6 py-7" data-id="${item.id}">
+          <div class="grid grid-cols-12 items-center gap-4 text-center">
+            <div class="col-span-2 text-lg font-black text-slate-900">${item.id}</div>
+
+            <div class="col-span-7">
+              <p class="font-black text-slate-900">${item.title}</p>
+              <p class="mt-1 text-[10px] font-bold text-slate-400">${item.notes || ''}</p>
+            </div>
+
+            <div class="col-span-3">
+              <div class="flex items-center justify-center gap-2">
+                <button class="delete-btn icon-btn text-red-600 hover:bg-red-600 hover:text-white" data-id="${item.id}">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+
+                <button class="edit-btn icon-btn text-legalGold hover:bg-legalGold hover:text-white" data-id="${item.id}">
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      emptyState.classList.toggle('hidden', filtered.length !== 0);
+      rowsCount.textContent = `عرض ${filtered.length} من ${memos.length} أنواع`;
+      bindActionButtons();
+    }
+
+    function bindActionButtons() {
+      document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', () => openMemoModal(Number(btn.dataset.id)));
+      });
+
+      document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', () => openDeleteModal(Number(btn.dataset.id)));
+      });
+    }
+
+    const memoModal = document.getElementById('memoModal');
+    const memoModalTitle = document.getElementById('memoModalTitle');
+    const closeMemoModal = document.getElementById('closeMemoModal');
+    const cancelMemoModal = document.getElementById('cancelMemoModal');
+    const saveMemoBtn = document.getElementById('saveMemoBtn');
+
+    const formTitle = document.getElementById('formTitle');
+    const formNotes = document.getElementById('formNotes');
+
+    function openMemoModal(id = null) {
+      editingId = id;
+      const item = memos.find(m => m.id === id);
+
+      memoModalTitle.textContent = id ? 'تعديل نوع المذكرة' : 'إضافة نوع مذكرة';
+
+      formTitle.value = item?.title || '';
+      formNotes.value = item?.notes || '';
+
+      memoModal.classList.remove('hidden');
+      memoModal.classList.add('flex');
+    }
+
+    function closeMemoModalFn() {
+      memoModal.classList.add('hidden');
+      memoModal.classList.remove('flex');
+      editingId = null;
+    }
+
+    saveMemoBtn.addEventListener('click', () => {
+      const payload = {
+        title: formTitle.value.trim() || 'نوع مذكرة جديد',
+        notes: formNotes.value.trim()
+      };
+
+      if (editingId) {
+        const index = memos.findIndex(m => m.id === editingId);
+        memos[index] = { ...memos[index], ...payload };
+      } else {
+        memos.unshift({ id: Date.now().toString().slice(-4), ...payload });
+      }
+
+      closeMemoModalFn();
+      renderRows();
+    });
+
+    closeMemoModal.addEventListener('click', closeMemoModalFn);
+    cancelMemoModal.addEventListener('click', closeMemoModalFn);
+    memoModal.addEventListener('click', e => { if (e.target === memoModal) closeMemoModalFn(); });
+
+    document.getElementById('openMemoModalBtn').addEventListener('click', () => openMemoModal());
+    document.getElementById('openMemoModalBtn2').addEventListener('click', () => openMemoModal());
+
+    const deleteModal = document.getElementById('deleteModal');
+    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+
+    function openDeleteModal(id) {
+      deletingId = id;
+      deleteModal.classList.remove('hidden');
+      deleteModal.classList.add('flex');
+    }
+
+    function closeDeleteModal() {
+      deleteModal.classList.add('hidden');
+      deleteModal.classList.remove('flex');
+      deletingId = null;
+    }
+
+    cancelDeleteBtn.addEventListener('click', closeDeleteModal);
+    deleteModal.addEventListener('click', e => { if (e.target === deleteModal) closeDeleteModal(); });
+
+    confirmDeleteBtn.addEventListener('click', () => {
+      memos = memos.filter(m => m.id !== deletingId);
+      closeDeleteModal();
+      renderRows();
+    });
+
+    [tableSearch, topSearch].forEach(el => {
+      el.addEventListener('input', renderRows);
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', () => alert('تم تجهيز ملف Excel بنجاح'));
+
+    renderRows();
+  </script>
+  <script src="../js/global-search.js"></script>
+</body>
+</html>

@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="js/auth.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -40,14 +41,13 @@
 <body class="min-h-screen overflow-x-hidden text-slate-900">
 
   <div class="flex min-h-screen">
-    <!-- Sidebar -->
     <aside id="sidebar" class="fixed right-0 top-0 z-40 h-screen w-[320px] translate-x-full overflow-y-auto bg-legalGreen text-legalGold shadow-2xl transition-transform duration-300 lg:translate-x-0 scroll-hide">
       <div class="relative h-48 overflow-hidden">
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=900&auto=format&fit=crop')] bg-cover bg-center"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-legalGreen via-legalGreen/50 to-transparent"></div>
         <div class="relative z-10 flex h-full flex-col items-center justify-center gap-3">
-          <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white/90 shadow-soft">
-            <span class="text-2xl font-black text-legalGreen">LT</span>
+          <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white shadow-soft">
+            <img src="logo_legal.png" alt="Logo" class="h-12 w-12 object-contain">
           </div>
           <p class="text-lg font-extrabold text-white">super admin</p>
         </div>
@@ -63,9 +63,9 @@
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="reports-and-statistics.html"><span>التقارير والإحصائيات</span><i class="fa-solid fa-chart-line text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="case-management.html"><span>إدارة القضايا</span><i class="fa-solid fa-scale-balanced text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
-          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="#"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
-          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="#"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
-          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="#"><span>المكتبة القانونية</span><i class="fa-solid fa-book-open text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="tasks-and-organization.html"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="forms-and-documents.html"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
+          <!-- <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="#"><span>المكتبة القانونية</span><i class="fa-solid fa-book-open text-lg"></i></a> -->
 
           <div class="rounded-2xl">
             <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right transition hover:bg-white/10 hover:text-white" type="button">
@@ -73,9 +73,8 @@
               <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
             </button>
             <div class="accordion-content hidden pb-2 pr-5">
-              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">قائمة الموظفين</a>
-              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">الأقسام والوظائف</a>
-              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">الحضور والإجازات</a>
+              <a href="permissions.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">الصلاحيات</a>
+              <a href="employees.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">الموظفين</a>
             </div>
           </div>
 
@@ -85,11 +84,16 @@
               <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
             </button>
             <div class="accordion-content hidden pb-2 pr-5">
-              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">إضافة عنصر جديد</a>
-              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">تعديل القوائم</a>
-              <a href="#" class="block rounded-xl px-5 py-2 text-sm text-legalGold/80 transition hover:bg-white/10 hover:text-white">إعدادات القوائم</a>
+              <a href="./dropdownListsPages/case-status.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">حالة القضية </a>
+              <a href="./dropdownListsPages/case-classification.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">تصنيف القضية </a>
+              <a href="./dropdownListsPages/sub-classification.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> التصنيف الفرعي للقضية </a>
+              <a href="./dropdownListsPages/case-stages.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">مراحل القضية  </a>
+              <a href="./dropdownListsPages/notes-types.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> أنواع المذكرات  </a>
+              <a href="./dropdownListsPages/court-fees.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> التكاليف القضائية   </a>
+
             </div>
           </div>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="settings.html"><span>الإعدادات العامة</span><i class="fa-solid fa-gear text-lg"></i></a>
         </div>
       </nav>
     </aside>
@@ -100,26 +104,26 @@
       <header class="sticky top-0 z-30 border-b border-black/5 bg-white/85 backdrop-blur-xl shadow-sm">
         <div class="flex min-h-20 items-center justify-between gap-4 px-6">
           <div class="flex items-center gap-3">
-            <button class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white"><i class="fa-solid fa-power-off text-base"></i></button>
-            <button class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white"><i class="fa-solid fa-gear text-base"></i></button>
+            <button onclick="logout()" class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white"><i class="fa-solid fa-power-off text-base"></i></button>
+            <a href="settings.html" class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white"><i class="fa-solid fa-gear text-base"></i></a>
             <span class="rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-white shadow">ONLINE</span>
           </div>
 
           <div class="hidden flex-1 items-center justify-center md:flex">
             <div class="relative w-full max-w-xl">
-              <input type="search" placeholder="بحث سريع داخل لوحة التحكم..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-5 pr-12 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" />
+              <input id="globalSearchInput" type="search" placeholder="بحث سريع داخل لوحة التحكم..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-5 pr-12 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" />
               <span class="absolute right-4 top-1/2 -translate-y-1/2 text-legalGold">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </span>
             </div>
           </div>
 
-          <div class="flex items-center gap-3">
+          <div class="flex items-center ">
             <div class="hidden text-left sm:block">
               <p class="text-sm font-extrabold text-slate-900">Legal Technology</p>
               <p class="text-xs font-bold text-slate-400">لوحة الإدارة القانونية</p>
             </div>
-            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-legalGreen text-lg font-black text-legalGold shadow-card">LT</div>
+            <img src="logo_legal.png" alt="Logo" class="h-12 w-12 rounded-2xl object-contain shadow-card">
             <button id="menuBtn" class="grid h-11 w-11 place-items-center rounded-xl text-2xl text-legalGold transition hover:bg-legalGold/15 lg:hidden">☰</button>
           </div>
         </div>
@@ -278,5 +282,6 @@
       });
     });
   </script>
+  <script src="js/global-search.js"></script>
 </body>
 </html>

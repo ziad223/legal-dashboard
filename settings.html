@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الإعدادات العامة | Legal Technology</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="js/auth.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+          colors: {
+            legalGreen: '#41684e',
+            legalGreenDark: '#345842',
+            legalGold: '#d0ad62',
+            legalGoldDark: '#bb9650',
+            pageBg: '#f2f1ef'
+          },
+          boxShadow: {
+            soft: '0 12px 35px rgba(0,0,0,.08)',
+            card: '0 8px 20px rgba(0,0,0,.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { font-family: 'Cairo', sans-serif; }
+    body { background: #f2f1ef; }
+    .scroll-hide::-webkit-scrollbar { width: 6px; }
+    .scroll-hide::-webkit-scrollbar-thumb { background: #d0ad62; border-radius: 999px; }
+    .input-field {
+      width: 100%; border-radius: 18px; border: 1px solid #e2e8f0; background: #f8fafc;
+      padding: 13px 16px; font-size: 12px; font-weight: 800; color: #334155; outline: none;
+      transition: all .25s ease;
+    }
+    .input-field:focus { border-color:#d0ad62; background:#fff; box-shadow:0 0 0 4px rgba(208,173,98,.16); }
+    .custom-select-wrap { position: relative; width: 100%; }
+    .custom-select {
+      appearance:none; -webkit-appearance:none; width:100%; border-radius:18px; border:1px solid #e2e8f0;
+      background:linear-gradient(135deg,#fff,#f8fafc); padding:13px 16px 13px 46px; font-size:12px;
+      font-weight:800; color:#334155; outline:none; transition:.25s ease; direction:rtl; text-align:right; cursor:pointer;
+    }
+    .custom-select:focus { border-color:#d0ad62; box-shadow:0 0 0 4px rgba(208,173,98,.16); background:#fff; }
+    .custom-select-wrap::after {
+      content:"\f078"; font-family:"Font Awesome 7 Free"; font-weight:900; position:absolute; left:16px; top:50%;
+      transform:translateY(-50%); color:#9ca3af; font-size:12px; pointer-events:none;
+    }
+    .upload-box {
+      border: 1.5px dashed #d0ad62; border-radius: 24px; background: linear-gradient(135deg,#fff,#fbf7ee);
+      transition: .25s ease; cursor: pointer;
+    }
+    .upload-box:hover { border-color:#41684e; transform: translateY(-1px); box-shadow:0 12px 26px rgba(0,0,0,.07); }
+    .section-card { border-radius: 30px; background: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.08); overflow:hidden; }
+    .section-head { border-bottom:1px solid #eef2f7; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .section-body { padding:24px; }
+    .modal-box { animation: modalIn .25s ease both; }
+    @keyframes modalIn { from { opacity:0; transform: translateY(12px) scale(.97); } to { opacity:1; transform: translateY(0) scale(1); } }
+  </style>
+</head>
+
+<body class="min-h-screen overflow-x-hidden text-slate-900">
+  <div class="flex min-h-screen">
+
+    <aside id="sidebar" class="fixed right-0 top-0 z-40 h-screen w-[320px] translate-x-full overflow-y-auto bg-legalGreen text-legalGold shadow-2xl transition-transform duration-300 lg:translate-x-0 scroll-hide">
+      <div class="relative h-48 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=900&auto=format&fit=crop')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-legalGreen via-legalGreen/50 to-transparent"></div>
+        <div class="relative z-10 flex h-full flex-col items-center justify-center gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white shadow-soft">
+            <img src="logo_legal.png" alt="Logo" class="h-12 w-12 object-contain">
+          </div>
+          <p class="text-lg font-extrabold text-white">super admin</p>
+        </div>
+      </div>
+      <nav class="p-4">
+        <a href="index.html" class="mb-2 flex items-center justify-between rounded-2xl px-5 py-4 font-bold transition hover:bg-white/10 hover:text-white" href="index.html">
+          <span>الرئيسية</span>
+          <i class="fa-solid fa-house text-xl"></i>
+        </a>
+
+        <div class="space-y-1 text-[15px] font-bold">
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="consultation-requests.html"><span>طلبات الإستشارة</span><i class="fa-solid fa-cube text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="reports-and-statistics.html"><span>التقارير والإحصائيات</span><i class="fa-solid fa-chart-line text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="case-management.html"><span>إدارة القضايا</span><i class="fa-solid fa-scale-balanced text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="tasks-and-organization.html"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="forms-and-documents.html"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
+
+          <div class="rounded-2xl">
+            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right transition hover:bg-white/10 hover:text-white" type="button">
+              <span class="flex items-center gap-3"><span>الموظفين والموارد البشرية</span></span>
+              <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
+            </button>
+            <div class="accordion-content hidden pb-2 pr-5">
+              <a href="permissions.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">الصلاحيات</a>
+              <a href="employees.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">الموظفين</a>
+            </div>
+          </div>
+
+          <div class="rounded-2xl">
+            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right transition hover:bg-white/10 hover:text-white" type="button">
+              <span class="flex items-center gap-3"><span>تعديل وإضافة القوائم المنسدلة</span></span>
+              <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
+            </button>
+            <div class="accordion-content hidden pb-2 pr-5">
+              <a href="./dropdownListsPages/case-status.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">حالة القضية </a>
+              <a href="./dropdownListsPages/case-classification.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">تصنيف القضية </a>
+              <a href="./dropdownListsPages/sub-classification.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> التصنيف الفرعي للقضية </a>
+              <a href="./dropdownListsPages/case-stages.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">مراحل القضية  </a>
+              <a href="./dropdownListsPages/notes-types.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> أنواع المذكرات  </a>
+              <a href="./dropdownListsPages/court-fees.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> التكاليف القضائية   </a>
+            </div>
+          </div>
+          <a class="flex items-center justify-between rounded-2xl bg-legalGold px-5 py-3 font-bold text-legalGreenDark shadow-card" href="settings.html"><span>الإعدادات العامة</span><i class="fa-solid fa-gear text-lg"></i></a>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="w-full pr-0 transition-all duration-300 lg:pr-[320px]">
+      <header class="sticky top-0 z-30 border-b border-black/5 bg-white/85 backdrop-blur-xl shadow-sm">
+        <div class="flex min-h-20 items-center justify-between gap-4 px-6">
+          <div class="flex items-center gap-3">
+            <button onclick="logout()" class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-legalGold transition hover:bg-legalGold hover:text-white"><i class="fa-solid fa-power-off"></i></button>
+            <button class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-legalGold transition hover:bg-legalGold hover:text-white"><i class="fa-solid fa-rotate-right"></i></button>
+            <span class="rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-white shadow">ONLINE</span>
+          </div>
+          <div class="hidden flex-1 items-center justify-center md:flex">
+            <div class="relative w-full max-w-xl">
+              <input id="globalSearchInput" type="search" placeholder="بحث في الإعدادات العامة..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-5 pr-12 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-legalGold"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="hidden text-left sm:block"><p class="text-sm font-extrabold">Legal Technology</p><p class="text-xs font-bold text-slate-400">الإعدادات العامة</p></div>
+            <img src="logo_legal.png" alt="Logo" class="h-12 w-12 rounded-2xl object-contain shadow-card">
+            <button id="menuBtn" class="grid h-11 w-11 place-items-center rounded-xl text-2xl text-legalGold transition hover:bg-legalGold/15 lg:hidden">☰</button>
+          </div>
+        </div>
+        <div class="mx-5 mb-4 flex flex-col gap-3 rounded-[22px] bg-gradient-to-l from-legalGold to-legalGoldDark px-6 py-3 text-sm font-bold text-legalGreenDark shadow-card md:flex-row md:items-center md:justify-between">
+          <div class="flex items-center gap-3"><span class="grid h-9 w-9 place-items-center rounded-xl bg-white/20 text-white"><i class="fa-solid fa-house"></i></span><div><p class="text-xs text-white/80">المسار الحالي</p><p>الرئيسية / الإعدادات العامة</p></div></div>
+          <div class="flex flex-wrap gap-2"><button type="button" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})" class="rounded-xl bg-white/20 px-4 py-2 text-xs font-extrabold text-white transition hover:bg-white/30"><i class="fa-solid fa-floppy-disk ml-1"></i> حفظ سريع</button></div>
+        </div>
+      </header>
+
+      <section class="p-5 md:p-8">
+        <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <span class="inline-flex items-center gap-2 rounded-full bg-legalGold/15 px-4 py-2 text-xs font-black text-legalGoldDark"><i class="fa-solid fa-sliders"></i> إدارة إعدادات الموقع</span>
+            <h1 class="mt-3 text-3xl font-black text-slate-900 md:text-4xl">الإعدادات العامة</h1>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <button type="submit" form="settingsForm" class="inline-flex items-center gap-2 rounded-2xl bg-legalGreen px-6 py-3 text-sm font-black text-white shadow-card transition hover:bg-legalGreenDark"><i class="fa-solid fa-check"></i> حفظ الإعدادات</button>
+            <button type="reset" form="settingsForm" class="inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-black text-legalGreen shadow-card transition hover:bg-legalGold hover:text-white"><i class="fa-solid fa-rotate-right"></i> إعادة ضبط</button>
+          </div>
+        </div>
+
+        <form id="settingsForm" class="space-y-7">
+          <div class="section-card">
+            <div class="section-head"><div><h2 class="text-lg font-black">البيانات الأساسية</h2><p class="text-xs font-bold text-slate-400">العناوين، المحتوى، الكلمات الدلالية، الأكواد والصور.</p></div><div class="grid h-12 w-12 place-items-center rounded-2xl bg-legalGold/15 text-xl text-legalGold"><i class="fa-solid fa-circle-info"></i></div></div>
+            <div class="section-body grid gap-5 md:grid-cols-2">
+              <div><label class="mb-2 block text-xs font-black text-slate-600">العنوان بالعربية <span class="text-red-500">*</span></label><input class="input-field" placeholder="اكتب نصاً هنا" /></div>
+              <div><label class="mb-2 block text-xs font-black text-slate-600">العنوان بالإنجليزية <span class="text-red-500">*</span></label><input class="input-field" placeholder="Write text here" /></div>
+              <div class="md:col-span-2"><label class="mb-2 block text-xs font-black text-slate-600">المحتوى بالعربية <span class="text-red-500">*</span></label><textarea rows="4" class="input-field resize-y" placeholder="اكتب المحتوى بالعربية هنا..."></textarea></div>
+              <div class="md:col-span-2"><label class="mb-2 block text-xs font-black text-slate-600">المحتوى بالإنجليزية <span class="text-red-500">*</span></label><textarea rows="4" class="input-field resize-y" placeholder="Write English content here..."></textarea></div>
+              <div><label class="mb-2 block text-xs font-black text-slate-600">الكلمات الدلالية <span class="text-red-500">*</span></label><input class="input-field" placeholder="تنظيم، محركات، بحث، قانون" /></div>
+              <div><label class="mb-2 block text-xs font-black text-slate-600">كود خارجي</label><textarea rows="3" class="input-field resize-y" placeholder="ضع كودك هنا..."></textarea></div>
+              <div class="md:col-span-2"><label class="mb-2 block text-xs font-black text-slate-600">الشعار <span class="text-red-500">*</span></label><label class="upload-box flex min-h-[150px] flex-col items-center justify-center gap-3 p-6 text-center"><input id="logoInput" type="file" accept="image/*" class="hidden"><span class="grid h-16 w-16 place-items-center rounded-3xl bg-legalGreen text-2xl text-legalGold shadow-card"><i class="fa-solid fa-cloud-arrow-up"></i></span><span class="text-sm font-black text-slate-800">اضغط لاختيار صورة الشعار</span><span id="logoName" class="text-xs font-bold text-slate-400">PNG / JPG / WEBP</span></label></div>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <div class="section-head"><div><h2 class="text-lg font-black">تكوين بريد</h2><p class="text-xs font-bold text-slate-400">إعدادات SMTP وإرسال الرسائل.</p></div><div class="grid h-12 w-12 place-items-center rounded-2xl bg-blue-100 text-xl text-blue-600"><i class="fa-solid fa-envelope"></i></div></div>
+            <div class="section-body grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              <div><label class="mb-2 block text-xs font-black text-slate-600">Mail Driver</label><input class="input-field" placeholder="Outgoing Server" /></div>
+              <div><label class="mb-2 block text-xs font-black text-slate-600">Mail Host</label><input class="input-field" placeholder="mail.example.com" /></div>
+              <div><label class="mb-2 block text-xs font-black text-slate-600">Mail Username</label><input class="input-field" value="admin@ecit.com.sa" /></div>
+              <div><label class="mb-2 block text-xs font-black text-slate-600">Mail Password</label><input type="password" class="input-field" value="123456789" /></div>
+              <div><label class="mb-2 block text-xs font-black text-slate-600">Mail Port</label><input class="input-field" placeholder="Port" /></div>
+              <div><label class="mb-2 block text-xs font-black text-slate-600">Encryption</label><div class="custom-select-wrap"><select class="custom-select"><option>tls</option><option>ssl</option><option>none</option></select></div></div>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <div class="section-head"><div><h2 class="text-lg font-black">البريد الإلكتروني للأقسام</h2><p class="text-xs font-bold text-slate-400">أضف بريد كل قسم.</p></div><button id="addDeptEmail" type="button" class="rounded-2xl bg-blue-600 px-5 py-3 text-xs font-black text-white shadow-card hover:bg-blue-700"><i class="fa-solid fa-plus ml-1"></i> إضافة</button></div>
+            <div id="deptEmails" class="section-body space-y-4"><div class="grid gap-4 md:grid-cols-[1fr_1fr_auto]"><input class="input-field" placeholder="البريد الإلكتروني"><input class="input-field" placeholder="القسم"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div></div>
+          </div>
+
+          <div class="section-card"><div class="section-head"><div><h2 class="text-lg font-black">عناوين الشركة</h2><p class="text-xs font-bold text-slate-400">العنوان الأساسي أو الفروع.</p></div><button id="addAddress" type="button" class="rounded-2xl bg-blue-600 px-5 py-3 text-xs font-black text-white shadow-card hover:bg-blue-700"><i class="fa-solid fa-plus ml-1"></i> إضافة</button></div><div id="addresses" class="section-body space-y-4"><div class="grid gap-4 md:grid-cols-[1fr_auto]"><input class="input-field" placeholder="العنوان"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div></div></div>
+
+          <div class="section-card"><div class="section-head"><div><h2 class="text-lg font-black">أرقام الجوال</h2><p class="text-xs font-bold text-slate-400">أرقام التواصل الرسمية.</p></div><button id="addPhone" type="button" class="rounded-2xl bg-blue-600 px-5 py-3 text-xs font-black text-white shadow-card hover:bg-blue-700"><i class="fa-solid fa-plus ml-1"></i> إضافة</button></div><div id="phones" class="section-body space-y-4"><div class="grid gap-4 md:grid-cols-[1fr_auto]"><input class="input-field" placeholder="رقم الجوال"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div></div></div>
+
+          <div class="section-card"><div class="section-head"><div><h2 class="text-lg font-black">أرقام الواتساب</h2><p class="text-xs font-bold text-slate-400">أرقام واتساب الدعم أو المبيعات.</p></div><button id="addWhats" type="button" class="rounded-2xl bg-blue-600 px-5 py-3 text-xs font-black text-white shadow-card hover:bg-blue-700"><i class="fa-solid fa-plus ml-1"></i> إضافة</button></div><div id="whats" class="section-body space-y-4"><div class="grid gap-4 md:grid-cols-[1fr_auto]"><input class="input-field" placeholder="واتساب"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div></div></div>
+
+          <div class="section-card">
+            <div class="section-head"><div><h2 class="text-lg font-black">توليد روابط السوشيال ميديا</h2><p class="text-xs font-bold text-slate-400">الاسم بالعربية، الاسم بالإنجليزية، الرابط، والأيقونة.</p></div><button id="addSocial" type="button" class="rounded-2xl bg-blue-600 px-5 py-3 text-xs font-black text-white shadow-card hover:bg-blue-700"><i class="fa-solid fa-plus ml-1"></i> إضافة</button></div>
+            <div id="socials" class="section-body space-y-4"><div class="grid gap-4 xl:grid-cols-[1fr_1fr_1fr_220px_auto]"><input class="input-field" placeholder="الإسم بالعربية"><input class="input-field" placeholder="الإسم بالإنجليزية"><input class="input-field" placeholder="الموقع"><label class="upload-box flex items-center justify-center gap-2 px-4 py-3 text-xs font-black text-slate-600"><input type="file" class="hidden social-file" accept="image/*"><i class="fa-solid fa-cloud-arrow-up text-legalGold"></i><span>اختيار أيقونة</span></label><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div></div>
+          </div>
+
+          <div class=" bottom-5 z-20 rounded-[26px] bg-white/90 p-4 shadow-soft backdrop-blur-xl">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><p class="text-xs font-bold text-slate-500">راجع البيانات قبل الحفظ، الحقول المميزة بالنجمة مطلوبة.</p><div class="flex gap-3"><button type="reset" class="rounded-2xl bg-slate-100 px-6 py-3 text-xs font-black text-slate-600 hover:bg-slate-200"><i class="fa-solid fa-rotate-right ml-1"></i> RESET</button><button type="submit" class="rounded-2xl bg-blue-600 px-7 py-3 text-xs font-black text-white shadow-card hover:bg-blue-700"><i class="fa-solid fa-arrow-left ml-1"></i> SUBMIT</button></div></div>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+  <div id="successModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"><div class="modal-box w-full max-w-md rounded-[30px] bg-white p-6 text-center shadow-2xl"><div class="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-3xl bg-emerald-100 text-2xl text-emerald-600"><i class="fa-solid fa-check"></i></div><h3 class="text-lg font-black">تم حفظ الإعدادات</h3><p class="mt-2 text-xs font-bold text-slate-500">تم تجهيز الواجهة والبيانات بنجاح.</p><button id="closeSuccess" class="mt-6 rounded-2xl bg-legalGreen px-7 py-3 text-xs font-black text-white">تمام</button></div></div>
+
+  <script>
+    const sidebar = document.getElementById('sidebar'), menuBtn = document.getElementById('menuBtn'), overlay = document.getElementById('overlay');
+    function openMenu(){ sidebar.classList.remove('translate-x-full'); sidebar.classList.add('translate-x-0'); overlay.classList.remove('hidden'); menuBtn.innerHTML='✕'; }
+    function closeMenu(){ sidebar.classList.add('translate-x-full'); sidebar.classList.remove('translate-x-0'); overlay.classList.add('hidden'); menuBtn.innerHTML='☰'; }
+    menuBtn.addEventListener('click',()=> sidebar.classList.contains('translate-x-0') ? closeMenu() : openMenu());
+    overlay.addEventListener('click', closeMenu);
+
+    document.getElementById('logoInput').addEventListener('change', e => { document.getElementById('logoName').textContent = e.target.files[0]?.name || 'PNG / JPG / WEBP'; });
+
+    function bindRemove(){ document.querySelectorAll('.remove-row').forEach(btn => btn.onclick = () => btn.closest('.grid').remove()); }
+    function addRow(containerId, html){ document.getElementById(containerId).insertAdjacentHTML('beforeend', html); bindRemove(); }
+    document.getElementById('addDeptEmail').onclick = () => addRow('deptEmails', `<div class="grid gap-4 md:grid-cols-[1fr_1fr_auto]"><input class="input-field" placeholder="البريد الإلكتروني"><input class="input-field" placeholder="القسم"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div>`);
+    document.getElementById('addAddress').onclick = () => addRow('addresses', `<div class="grid gap-4 md:grid-cols-[1fr_auto]"><input class="input-field" placeholder="العنوان"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div>`);
+    document.getElementById('addPhone').onclick = () => addRow('phones', `<div class="grid gap-4 md:grid-cols-[1fr_auto]"><input class="input-field" placeholder="رقم الجوال"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div>`);
+    document.getElementById('addWhats').onclick = () => addRow('whats', `<div class="grid gap-4 md:grid-cols-[1fr_auto]"><input class="input-field" placeholder="واتساب"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div>`);
+    document.getElementById('addSocial').onclick = () => addRow('socials', `<div class="grid gap-4 xl:grid-cols-[1fr_1fr_1fr_220px_auto]"><input class="input-field" placeholder="الإسم بالعربية"><input class="input-field" placeholder="الإسم بالإنجليزية"><input class="input-field" placeholder="الموقع"><label class="upload-box flex items-center justify-center gap-2 px-4 py-3 text-xs font-black text-slate-600"><input type="file" class="hidden" accept="image/*"><i class="fa-solid fa-cloud-arrow-up text-legalGold"></i><span>اختيار أيقونة</span></label><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div>`);
+    bindRemove();
+
+    const successModal = document.getElementById('successModal');
+    document.getElementById('settingsForm').addEventListener('submit', e => { e.preventDefault(); successModal.classList.remove('hidden'); successModal.classList.add('flex'); });
+    document.getElementById('closeSuccess').onclick = () => { successModal.classList.add('hidden'); successModal.classList.remove('flex'); };
+  </script>
+  <script src="js/global-search.js"></script>
+</body>
+</html>
