@@ -12,89 +12,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { cairo: ['Cairo', 'sans-serif'] },
-          colors: {
-            legalGreen: '#41684e',
-            legalGreenDark: '#345842',
-            legalGold: '#d0ad62',
-            legalGoldDark: '#bb9650',
-            pageBg: '#f2f1ef'
-          },
-          boxShadow: {
-            soft: '0 12px 35px rgba(0,0,0,.08)',
-            card: '0 8px 20px rgba(0,0,0,.08)'
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    * { font-family:'Cairo', sans-serif; }
-    body { background:#f2f1ef; }
-    .scroll-hide::-webkit-scrollbar { width:6px; }
-    .scroll-hide::-webkit-scrollbar-thumb { background:#d0ad62; border-radius:999px; }
-
-    .memo-row {
-      background:#fff;
-      border-radius:34px;
-      box-shadow:0 8px 20px rgba(0,0,0,.05);
-      transition:all .25s ease;
-    }
-    .memo-row:hover {
-      background:#faf7ef;
-      transform:translateY(-1px);
-      box-shadow:0 12px 35px rgba(0,0,0,.08);
-    }
-
-    .input-field {
-      width:100%;
-      border-radius:18px;
-      border:1px solid #e2e8f0;
-      background:#f8fafc;
-      padding:12px 16px;
-      font-size:12px;
-      font-weight:800;
-      outline:none;
-      transition:.25s ease;
-    }
-    .input-field:focus {
-      border-color:#d0ad62;
-      background:#fff;
-      box-shadow:0 0 0 4px rgba(208,173,98,.16);
-    }
-
-    .icon-btn {
-      width:34px;
-      height:34px;
-      display:inline-grid;
-      place-items:center;
-      border-radius:12px;
-      transition:.25s ease;
-      font-size:15px;
-    }
-
-    .modal-box { animation:modalIn .25s ease both; }
-    @keyframes modalIn {
-      from { opacity:0; transform:translateY(12px) scale(.97); }
-      to { opacity:1; transform:translateY(0) scale(1); }
-    }
-
-    .empty-box {
-      border:2px dashed #d8c7a0;
-      background:rgba(255,255,255,.65);
-    }
-
-    @media print {
-      aside, header, .no-print { display:none!important; }
-      main { padding-right:0!important; }
-      body { background:#fff!important; }
-    }
-  </style>
+  <script src="../js/auth.js"></script>
+  <script src="../js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../css/main.css">
 </head>
 
 <body class="min-h-screen overflow-x-hidden text-slate-900">
@@ -111,6 +31,7 @@
           </div>
           <p class="text-lg font-extrabold text-white">super admin</p>
         </div>
+      </div>
       <nav class="p-4">
         <a href="../index.html" class="mb-2 flex items-center justify-between rounded-2xl px-5 py-4 font-bold transition hover:bg-white/10 hover:text-white" href="../index.html">
           <span>الرئيسية</span>
@@ -260,8 +181,11 @@
           </div>
         </div>
 
-        <!-- Rows -->
-        <div id="memoCards" class="space-y-5"></div>
+        <!-- Table Area -->
+        <div class="overflow-hidden rounded-[30px] bg-white shadow-card">
+          <!-- Rows -->
+          <div id="notesCards" class="divide-y divide-slate-100"></div>
+        </div>
 
         <div id="emptyState" class="hidden rounded-[34px] empty-box p-12 text-center shadow-card">
           <div class="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-3xl bg-legalGold/15 text-3xl text-legalGold">
@@ -332,196 +256,8 @@
     </div>
   </div>
 
-  <script>
-    const sidebar = document.getElementById('sidebar');
-    const menuBtn = document.getElementById('menuBtn');
-    const overlay = document.getElementById('overlay');
-
-    function openMenu() {
-      sidebar.classList.remove('translate-x-full');
-      sidebar.classList.add('translate-x-0');
-      overlay.classList.remove('hidden');
-      menuBtn.innerHTML = '✕';
-    }
-
-    function closeMenu() {
-      sidebar.classList.add('translate-x-full');
-      sidebar.classList.remove('translate-x-0');
-      overlay.classList.add('hidden');
-      menuBtn.innerHTML = '☰';
-    }
-
-    menuBtn.addEventListener('click', () => {
-      if (sidebar.classList.contains('translate-x-0')) closeMenu();
-      else openMenu();
-    });
-
-    overlay.addEventListener('click', closeMenu);
-
-    document.querySelectorAll('.accordion-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const content = btn.nextElementSibling;
-        const chevron = btn.querySelector('.chevron');
-        const isOpen = !content.classList.contains('hidden');
-
-        document.querySelectorAll('.accordion-content').forEach((item) => item.classList.add('hidden'));
-        document.querySelectorAll('.chevron').forEach((item) => item.classList.remove('-rotate-90'));
-
-        if (!isOpen) {
-          content.classList.remove('hidden');
-          chevron.classList.add('-rotate-90');
-        }
-      });
-    });
-
-    let memos = [
-      { id: 1, title: 'مذكرة جوابية', notes: 'نوع مذكرة للرد على الدعوى.' },
-      { id: 2, title: 'مذكرة اعتراضية', notes: 'نوع مذكرة للاعتراض.' },
-      { id: 3, title: 'مذكرة ختامية', notes: 'نوع مذكرة ختامية.' }
-    ];
-
-    let editingId = null;
-    let deletingId = null;
-
-    const memoCards = document.getElementById('memoCards');
-    const emptyState = document.getElementById('emptyState');
-    const rowsCount = document.getElementById('rowsCount');
-    const tableSearch = document.getElementById('tableSearch');
-    const topSearch = document.getElementById('topSearch');
-
-    function renderRows() {
-      const term = ((tableSearch.value || topSearch.value || '')).toLowerCase().trim();
-
-      const filtered = memos.filter(item => {
-        const text = `${item.id} ${item.title} ${item.notes}`.toLowerCase();
-        return !term || text.includes(term);
-      });
-
-      memoCards.innerHTML = filtered.map(item => `
-        <article class="memo-row px-6 py-7" data-id="${item.id}">
-          <div class="grid grid-cols-12 items-center gap-4 text-center">
-            <div class="col-span-2 text-lg font-black text-slate-900">${item.id}</div>
-
-            <div class="col-span-7">
-              <p class="font-black text-slate-900">${item.title}</p>
-              <p class="mt-1 text-[10px] font-bold text-slate-400">${item.notes || ''}</p>
-            </div>
-
-            <div class="col-span-3">
-              <div class="flex items-center justify-center gap-2">
-                <button class="delete-btn icon-btn text-red-600 hover:bg-red-600 hover:text-white" data-id="${item.id}">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-
-                <button class="edit-btn icon-btn text-legalGold hover:bg-legalGold hover:text-white" data-id="${item.id}">
-                  <i class="fa-solid fa-pen"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </article>
-      `).join('');
-
-      emptyState.classList.toggle('hidden', filtered.length !== 0);
-      rowsCount.textContent = `عرض ${filtered.length} من ${memos.length} أنواع`;
-      bindActionButtons();
-    }
-
-    function bindActionButtons() {
-      document.querySelectorAll('.edit-btn').forEach(btn => {
-        btn.addEventListener('click', () => openMemoModal(Number(btn.dataset.id)));
-      });
-
-      document.querySelectorAll('.delete-btn').forEach(btn => {
-        btn.addEventListener('click', () => openDeleteModal(Number(btn.dataset.id)));
-      });
-    }
-
-    const memoModal = document.getElementById('memoModal');
-    const memoModalTitle = document.getElementById('memoModalTitle');
-    const closeMemoModal = document.getElementById('closeMemoModal');
-    const cancelMemoModal = document.getElementById('cancelMemoModal');
-    const saveMemoBtn = document.getElementById('saveMemoBtn');
-
-    const formTitle = document.getElementById('formTitle');
-    const formNotes = document.getElementById('formNotes');
-
-    function openMemoModal(id = null) {
-      editingId = id;
-      const item = memos.find(m => m.id === id);
-
-      memoModalTitle.textContent = id ? 'تعديل نوع المذكرة' : 'إضافة نوع مذكرة';
-
-      formTitle.value = item?.title || '';
-      formNotes.value = item?.notes || '';
-
-      memoModal.classList.remove('hidden');
-      memoModal.classList.add('flex');
-    }
-
-    function closeMemoModalFn() {
-      memoModal.classList.add('hidden');
-      memoModal.classList.remove('flex');
-      editingId = null;
-    }
-
-    saveMemoBtn.addEventListener('click', () => {
-      const payload = {
-        title: formTitle.value.trim() || 'نوع مذكرة جديد',
-        notes: formNotes.value.trim()
-      };
-
-      if (editingId) {
-        const index = memos.findIndex(m => m.id === editingId);
-        memos[index] = { ...memos[index], ...payload };
-      } else {
-        memos.unshift({ id: Date.now().toString().slice(-4), ...payload });
-      }
-
-      closeMemoModalFn();
-      renderRows();
-    });
-
-    closeMemoModal.addEventListener('click', closeMemoModalFn);
-    cancelMemoModal.addEventListener('click', closeMemoModalFn);
-    memoModal.addEventListener('click', e => { if (e.target === memoModal) closeMemoModalFn(); });
-
-    document.getElementById('openMemoModalBtn').addEventListener('click', () => openMemoModal());
-    document.getElementById('openMemoModalBtn2').addEventListener('click', () => openMemoModal());
-
-    const deleteModal = document.getElementById('deleteModal');
-    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-
-    function openDeleteModal(id) {
-      deletingId = id;
-      deleteModal.classList.remove('hidden');
-      deleteModal.classList.add('flex');
-    }
-
-    function closeDeleteModal() {
-      deleteModal.classList.add('hidden');
-      deleteModal.classList.remove('flex');
-      deletingId = null;
-    }
-
-    cancelDeleteBtn.addEventListener('click', closeDeleteModal);
-    deleteModal.addEventListener('click', e => { if (e.target === deleteModal) closeDeleteModal(); });
-
-    confirmDeleteBtn.addEventListener('click', () => {
-      memos = memos.filter(m => m.id !== deletingId);
-      closeDeleteModal();
-      renderRows();
-    });
-
-    [tableSearch, topSearch].forEach(el => {
-      el.addEventListener('input', renderRows);
-    });
-
-    document.getElementById('exportBtn').addEventListener('click', () => alert('تم تجهيز ملف Excel بنجاح'));
-
-    renderRows();
-  </script>
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/notes-types.js"></script>
   <script src="../js/global-search.js"></script>
 </body>
 </html>

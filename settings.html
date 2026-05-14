@@ -12,61 +12,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <script src="js/auth.js"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { cairo: ['Cairo', 'sans-serif'] },
-          colors: {
-            legalGreen: '#41684e',
-            legalGreenDark: '#345842',
-            legalGold: '#d0ad62',
-            legalGoldDark: '#bb9650',
-            pageBg: '#f2f1ef'
-          },
-          boxShadow: {
-            soft: '0 12px 35px rgba(0,0,0,.08)',
-            card: '0 8px 20px rgba(0,0,0,.08)'
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    * { font-family: 'Cairo', sans-serif; }
-    body { background: #f2f1ef; }
-    .scroll-hide::-webkit-scrollbar { width: 6px; }
-    .scroll-hide::-webkit-scrollbar-thumb { background: #d0ad62; border-radius: 999px; }
-    .input-field {
-      width: 100%; border-radius: 18px; border: 1px solid #e2e8f0; background: #f8fafc;
-      padding: 13px 16px; font-size: 12px; font-weight: 800; color: #334155; outline: none;
-      transition: all .25s ease;
-    }
-    .input-field:focus { border-color:#d0ad62; background:#fff; box-shadow:0 0 0 4px rgba(208,173,98,.16); }
-    .custom-select-wrap { position: relative; width: 100%; }
-    .custom-select {
-      appearance:none; -webkit-appearance:none; width:100%; border-radius:18px; border:1px solid #e2e8f0;
-      background:linear-gradient(135deg,#fff,#f8fafc); padding:13px 16px 13px 46px; font-size:12px;
-      font-weight:800; color:#334155; outline:none; transition:.25s ease; direction:rtl; text-align:right; cursor:pointer;
-    }
-    .custom-select:focus { border-color:#d0ad62; box-shadow:0 0 0 4px rgba(208,173,98,.16); background:#fff; }
-    .custom-select-wrap::after {
-      content:"\f078"; font-family:"Font Awesome 7 Free"; font-weight:900; position:absolute; left:16px; top:50%;
-      transform:translateY(-50%); color:#9ca3af; font-size:12px; pointer-events:none;
-    }
-    .upload-box {
-      border: 1.5px dashed #d0ad62; border-radius: 24px; background: linear-gradient(135deg,#fff,#fbf7ee);
-      transition: .25s ease; cursor: pointer;
-    }
-    .upload-box:hover { border-color:#41684e; transform: translateY(-1px); box-shadow:0 12px 26px rgba(0,0,0,.07); }
-    .section-card { border-radius: 30px; background: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.08); overflow:hidden; }
-    .section-head { border-bottom:1px solid #eef2f7; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
-    .section-body { padding:24px; }
-    .modal-box { animation: modalIn .25s ease both; }
-    @keyframes modalIn { from { opacity:0; transform: translateY(12px) scale(.97); } to { opacity:1; transform: translateY(0) scale(1); } }
-  </style>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body class="min-h-screen overflow-x-hidden text-slate-900">
@@ -218,28 +165,8 @@
   <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
   <div id="successModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"><div class="modal-box w-full max-w-md rounded-[30px] bg-white p-6 text-center shadow-2xl"><div class="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-3xl bg-emerald-100 text-2xl text-emerald-600"><i class="fa-solid fa-check"></i></div><h3 class="text-lg font-black">تم حفظ الإعدادات</h3><p class="mt-2 text-xs font-bold text-slate-500">تم تجهيز الواجهة والبيانات بنجاح.</p><button id="closeSuccess" class="mt-6 rounded-2xl bg-legalGreen px-7 py-3 text-xs font-black text-white">تمام</button></div></div>
 
-  <script>
-    const sidebar = document.getElementById('sidebar'), menuBtn = document.getElementById('menuBtn'), overlay = document.getElementById('overlay');
-    function openMenu(){ sidebar.classList.remove('translate-x-full'); sidebar.classList.add('translate-x-0'); overlay.classList.remove('hidden'); menuBtn.innerHTML='✕'; }
-    function closeMenu(){ sidebar.classList.add('translate-x-full'); sidebar.classList.remove('translate-x-0'); overlay.classList.add('hidden'); menuBtn.innerHTML='☰'; }
-    menuBtn.addEventListener('click',()=> sidebar.classList.contains('translate-x-0') ? closeMenu() : openMenu());
-    overlay.addEventListener('click', closeMenu);
-
-    document.getElementById('logoInput').addEventListener('change', e => { document.getElementById('logoName').textContent = e.target.files[0]?.name || 'PNG / JPG / WEBP'; });
-
-    function bindRemove(){ document.querySelectorAll('.remove-row').forEach(btn => btn.onclick = () => btn.closest('.grid').remove()); }
-    function addRow(containerId, html){ document.getElementById(containerId).insertAdjacentHTML('beforeend', html); bindRemove(); }
-    document.getElementById('addDeptEmail').onclick = () => addRow('deptEmails', `<div class="grid gap-4 md:grid-cols-[1fr_1fr_auto]"><input class="input-field" placeholder="البريد الإلكتروني"><input class="input-field" placeholder="القسم"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div>`);
-    document.getElementById('addAddress').onclick = () => addRow('addresses', `<div class="grid gap-4 md:grid-cols-[1fr_auto]"><input class="input-field" placeholder="العنوان"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div>`);
-    document.getElementById('addPhone').onclick = () => addRow('phones', `<div class="grid gap-4 md:grid-cols-[1fr_auto]"><input class="input-field" placeholder="رقم الجوال"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div>`);
-    document.getElementById('addWhats').onclick = () => addRow('whats', `<div class="grid gap-4 md:grid-cols-[1fr_auto]"><input class="input-field" placeholder="واتساب"><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div>`);
-    document.getElementById('addSocial').onclick = () => addRow('socials', `<div class="grid gap-4 xl:grid-cols-[1fr_1fr_1fr_220px_auto]"><input class="input-field" placeholder="الإسم بالعربية"><input class="input-field" placeholder="الإسم بالإنجليزية"><input class="input-field" placeholder="الموقع"><label class="upload-box flex items-center justify-center gap-2 px-4 py-3 text-xs font-black text-slate-600"><input type="file" class="hidden" accept="image/*"><i class="fa-solid fa-cloud-arrow-up text-legalGold"></i><span>اختيار أيقونة</span></label><button type="button" class="remove-row rounded-2xl bg-red-100 px-4 text-red-600 hover:bg-red-600 hover:text-white"><i class="fa-solid fa-trash"></i></button></div>`);
-    bindRemove();
-
-    const successModal = document.getElementById('successModal');
-    document.getElementById('settingsForm').addEventListener('submit', e => { e.preventDefault(); successModal.classList.remove('hidden'); successModal.classList.add('flex'); });
-    document.getElementById('closeSuccess').onclick = () => { successModal.classList.add('hidden'); successModal.classList.remove('flex'); };
-  </script>
+  <script src="js/sidebar.js"></script>
+  <script src="js/settings.js"></script>
   <script src="js/global-search.js"></script>
 </body>
 </html>

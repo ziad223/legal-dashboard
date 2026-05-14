@@ -1,0 +1,224 @@
+/* Main Design System & Common Styles */
+
+* {
+  font-family: 'Cairo', sans-serif;
+}
+
+body {
+  background: #f2f1ef;
+}
+
+/* Scrollbar Customization */
+.scroll-hide::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-hide::-webkit-scrollbar-thumb {
+  background: #d0ad62;
+  border-radius: 999px;
+}
+
+/* Glassmorphism */
+.glass {
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+/* Table Row Hover Effects */
+.table-row {
+  transition: all 0.25s ease;
+}
+
+.table-row:hover {
+  background: #faf7ef;
+  transform: translateY(-1px);
+}
+
+/* Table Text Sizes */
+table th {
+  font-size: 11px !important;
+}
+
+table td {
+  font-size: 11px !important;
+  white-space: nowrap;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+/* Custom Select Styling */
+.custom-select-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+  padding: 12px 16px 12px 46px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #334155;
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+  direction: rtl;
+  text-align: right;
+  cursor: pointer;
+}
+
+.custom-select:focus {
+  border-color: #d0ad62;
+  box-shadow: 0 0 0 4px rgba(208, 173, 98, 0.16);
+  background: #fff;
+}
+
+.custom-select-wrap::after {
+  content: "\f078";
+  font-family: "Font Awesome 7 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 16px;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+/* Input Fields Common Style */
+.input-field {
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 800;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+.input-field:focus {
+  border-color: #d0ad62;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(208, 173, 98, 0.16);
+}
+
+/* Modal Animations */
+.modal-box {
+  animation: modalIn 0.25s ease both;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Icon Buttons */
+.icon-btn {
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 12px;
+  transition: 0.25s ease;
+  font-size: 15px;
+}
+
+/* Accordion Transitions */
+.accordion-content {
+  transition: all 0.3s ease;
+}
+
+/* Ensure menu button is above overlay */
+#menuBtn {
+  position: relative;
+  z-index: 50;
+}
+
+/* Settings & Form Sections */
+.section-card {
+  background: white;
+  border-radius: 34px;
+  padding: 30px;
+  box-shadow: 0 12px 35px rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.04);
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 20px;
+}
+
+.section-body {
+  margin-top: 20px;
+}
+
+.upload-box {
+  border: 2px dashed #e2e8f0;
+  border-radius: 28px;
+  background: #f8fafc;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.upload-box:hover {
+  border-color: #d0ad62;
+  background: #fff;
+}
+
+/* Mini Progress Bars */
+.mini-bar {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.mini-bar span {
+  display: block;
+  height: 100%;
+  background: #d0ad62;
+  border-radius: 999px;
+}
+
+/* Printing */
+@media print {
+  aside,
+  header,
+  .no-print {
+    display: none !important;
+  }
+  main {
+    padding-right: 0 !important;
+  }
+  body {
+    background: #fff !important;
+  }
+}

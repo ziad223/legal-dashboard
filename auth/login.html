@@ -8,63 +8,8 @@
     <title>تسجيل الدخول | Legal Technology</title>
     <link rel="icon" type="image/png" href="../logo_legal.png">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-    <style>
-        * {
-            font-family: 'Cairo', sans-serif;
-        }
-
-        body {
-            overflow: hidden;
-        }
-
-        .bg-shape {
-            background:
-                linear-gradient(135deg, #0b7f73 25%, transparent 25%) -50px 0/100px 100px,
-                linear-gradient(225deg, #0f8f82 25%, transparent 25%) -50px 0/100px 100px,
-                linear-gradient(315deg, #0b6f64 25%, transparent 25%) 0px 0/100px 100px,
-                linear-gradient(45deg, #118f81 25%, #0a776d 25%) 0px 0/100px 100px;
-        }
-
-        .glass-card {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.96);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
-        }
-
-        .input-style {
-            width: 100%;
-            border: none;
-            border-bottom: 2px solid #d6d6d6;
-            background: transparent;
-            padding: 14px 45px 14px 12px;
-            outline: none;
-            transition: .3s;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .input-style:focus {
-            border-color: #caa55d;
-        }
-
-        .login-btn {
-            background: linear-gradient(to left, #d0ad62, #b89348);
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(208, 173, 98, .35);
-        }
-    </style>
+  <script src="../js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../css/main.css">
 </head>
 
 <body class="bg-shape min-h-screen flex items-center justify-center p-6">
@@ -132,42 +77,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/auth.js"></script>
-    <script>
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-            }
-        });
-
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            if (login(email, password)) {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'تم تسجيل الدخول بنجاح'
-                }).then(() => {
-                    window.location.href = '../index.html';
-                });
-            } else {
-                Toast.fire({
-                    icon: 'error',
-                    title: 'خطأ في الدخول',
-                    text: 'البريد الإلكتروني أو كلمة المرور غير صحيحة'
-                });
-            }
-        });
-    </script>
-
+    <script src="../js/login.js"></script>
 </body>
-
 </html>

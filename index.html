@@ -11,33 +11,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="js/auth.js"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { cairo: ['Cairo', 'sans-serif'] },
-          colors: {
-            legalGreen: '#41684e',
-            legalGreenDark: '#345842',
-            legalGold: '#d0ad62',
-            legalGoldDark: '#bb9650',
-            pageBg: '#f2f1ef'
-          },
-          boxShadow: {
-            soft: '0 12px 35px rgba(0,0,0,.08)',
-            card: '0 8px 20px rgba(0,0,0,.08)'
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    * { font-family: 'Cairo', sans-serif; }
-    body { background: #f2f1ef; }
-    .scroll-hide::-webkit-scrollbar { width: 6px; }
-    .scroll-hide::-webkit-scrollbar-thumb { background: #d0ad62; border-radius: 999px; }
-    .glass { backdrop-filter: blur(14px); background: rgba(255,255,255,.82); }
-  </style>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body class="min-h-screen overflow-x-hidden text-slate-900">
 
@@ -239,50 +214,7 @@
 
   <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
 
-  <script>
-    const sidebar = document.getElementById('sidebar');
-    const menuBtn = document.getElementById('menuBtn');
-    const overlay = document.getElementById('overlay');
-
-    function openMenu() {
-      sidebar.classList.remove('translate-x-full');
-      sidebar.classList.add('translate-x-0');
-      overlay.classList.remove('hidden');
-      menuBtn.innerHTML = '✕';
-    }
-
-    function closeMenu() {
-      sidebar.classList.add('translate-x-full');
-      sidebar.classList.remove('translate-x-0');
-      overlay.classList.add('hidden');
-      menuBtn.innerHTML = '☰';
-    }
-
-    menuBtn.addEventListener('click', () => {
-      if (sidebar.classList.contains('translate-x-0')) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
-    overlay.addEventListener('click', closeMenu);
-
-    document.querySelectorAll('.accordion-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const content = btn.nextElementSibling;
-        const chevron = btn.querySelector('.chevron');
-        const isOpen = !content.classList.contains('hidden');
-
-        document.querySelectorAll('.accordion-content').forEach((item) => item.classList.add('hidden'));
-        document.querySelectorAll('.chevron').forEach((item) => item.classList.remove('-rotate-90'));
-
-        if (!isOpen) {
-          content.classList.remove('hidden');
-          chevron.classList.add('-rotate-90');
-        }
-      });
-    });
-  </script>
+  <script src="js/sidebar.js"></script>
   <script src="js/global-search.js"></script>
 </body>
 </html>
