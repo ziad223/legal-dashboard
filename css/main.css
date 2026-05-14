@@ -208,46 +208,57 @@ table td {
   border-radius: 999px;
 }
 
-/* Login & Auth Pages Styling */
+/* Login & Auth Pages Styling - Enhanced */
 .bg-shape {
-  background: #f2f1ef;
-  background-image: radial-gradient(at 0% 0%, rgba(208, 173, 98, 0.05) 0px, transparent 50%),
-                    radial-gradient(at 100% 0%, rgba(65, 104, 78, 0.05) 0px, transparent 50%);
+  background: #f8fafc;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(202, 165, 93, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(65, 104, 78, 0.1) 0px, transparent 50%);
+  font-family: 'Cairo', sans-serif !important;
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.1);
+  border-radius: 40px !important;
 }
 
 .input-style {
   width: 100%;
-  background: #fff;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 18px;
-  padding: 14px 45px 14px 16px;
-  font-size: 13px;
+  height: 60px;
+  background: #f1f5f9;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 0 55px 0 20px; /* Space for icon on the right */
+  font-size: 14px;
   font-weight: 700;
   color: #1e293b;
   outline: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .input-style:focus {
   border-color: #caa55d;
-  box-shadow: 0 0 0 4px rgba(202, 165, 93, 0.1);
+  background: #fff;
+  box-shadow: 0 10px 25px -5px rgba(202, 165, 93, 0.2);
 }
 
 .login-btn {
+  height: 60px;
   background: linear-gradient(135deg, #41684e, #2d4a35);
-  box-shadow: 0 10px 20px -5px rgba(65, 104, 78, 0.3);
+  border-radius: 20px;
+  color: white;
+  font-weight: 900;
+  font-size: 16px;
+  box-shadow: 0 20px 30px -10px rgba(65, 104, 78, 0.4);
+  transition: all 0.3s ease;
 }
 
 .login-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 25px -5px rgba(65, 104, 78, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 25px 40px -10px rgba(65, 104, 78, 0.5);
 }
 
 /* Printing */
