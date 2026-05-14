@@ -15,7 +15,7 @@ if (loginForm) {
             // Check credentials (admin@admin.com / 123456)
             if (email === 'admin@admin.com' && password === '123456') {
                 // Mock success
-                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('legal_dashboard_logged_in', 'true');
                 localStorage.setItem('currentUser', JSON.stringify({ name: 'Super Admin', email }));
                 
                 // Change button state
