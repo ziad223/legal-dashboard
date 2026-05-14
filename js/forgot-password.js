@@ -4,7 +4,7 @@ const forgotForm = document.getElementById('forgotForm');
 if (forgotForm) {
     forgotForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const email = document.getElementById('email').value;
+        const email = document.getElementById('email').value.trim();
         
         if (email) {
             // Mock success
@@ -15,8 +15,19 @@ if (forgotForm) {
             }
             
             setTimeout(() => {
-                alert('تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني');
-                window.location.href = 'login.html';
+                Swal.fire({
+                    title: 'تم الإرسال',
+                    text: 'تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني',
+                    icon: 'success',
+                    confirmButtonText: 'حسناً',
+                    confirmButtonColor: '#41684e',
+                    customClass: {
+                        popup: 'rounded-[30px]',
+                        confirmButton: 'rounded-xl font-bold'
+                    }
+                }).then(() => {
+                    window.location.href = 'login.html';
+                });
             }, 1500);
         }
     });

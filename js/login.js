@@ -3,49 +3,57 @@
 const loginForm = document.getElementById('loginForm');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
-const rememberMe = document.getElementById('rememberMe');
 
 if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        const email = emailInput?.value;
-        const password = passwordInput?.value;
+        const email = emailInput?.value.trim();
+        const password = passwordInput?.value.trim();
         
         if (email && password) {
-            // Check if user exists in localStorage (mock auth)
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const user = users.find(u => u.email === email && u.password === password);
-            
-            if (user || (email === 'admin@legal.com' && password === 'admin123')) {
+            // Check credentials (admin@admin.com / 123456)
+            if (email === 'admin@admin.com' && password === '123456') {
                 // Mock success
                 localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('currentUser', JSON.stringify(user || { name: 'Super Admin', email }));
+                localStorage.setItem('currentUser', JSON.stringify({ name: 'Super Admin', email }));
                 
-                // Show success animation or toast
+                // Change button state
                 const btn = loginForm.querySelector('button[type="submit"]');
                 if (btn) {
-                    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> جاري التحميل...';
+                    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> جاري التحقق...';
                     btn.disabled = true;
                 }
-                
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
+
+                // Show Swal Success
+                Swal.fire({
+                    title: 'تم تسجيل الدخول بنجاح',
+                    text: 'مرحباً بك في لوحة التحكم القانونية',
+                    icon: 'success',
+                    timer: 1500,
+                    showConfirmButton: false,
+                    customClass: {
+                        popup: 'rounded-[30px]',
+                        confirmButton: 'rounded-xl'
+                    }
+                }).then(() => {
+                    window.location.href = '../index.html';
+                });
+
             } else {
-                alert('البريد الإلكتروني أو كلمة المرور غير صحيحة');
+                // Show Swal Error
+                Swal.fire({
+                    title: 'خطأ في الدخول',
+                    text: 'البريد الإلكتروني أو كلمة المرور غير صحيحة',
+                    icon: 'error',
+                    confirmButtonText: 'حاول مرة أخرى',
+                    confirmButtonColor: '#41684e',
+                    customClass: {
+                        popup: 'rounded-[30px]',
+                        confirmButton: 'rounded-xl font-bold'
+                    }
+                });
             }
         }
-    });
-}
-
-// Toggle password visibility
-const togglePassword = document.getElementById('togglePassword');
-if (togglePassword && passwordInput) {
-    togglePassword.addEventListener('click', () => {
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-        togglePassword.classList.toggle('fa-eye');
-        togglePassword.classList.toggle('fa-eye-slash');
     });
 }

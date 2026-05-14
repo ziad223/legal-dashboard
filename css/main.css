@@ -208,6 +208,48 @@ table td {
   border-radius: 999px;
 }
 
+/* Login & Auth Pages Styling */
+.bg-shape {
+  background: #f2f1ef;
+  background-image: radial-gradient(at 0% 0%, rgba(208, 173, 98, 0.05) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(65, 104, 78, 0.05) 0px, transparent 50%);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+}
+
+.input-style {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 14px 45px 14px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-style:focus {
+  border-color: #caa55d;
+  box-shadow: 0 0 0 4px rgba(202, 165, 93, 0.1);
+}
+
+.login-btn {
+  background: linear-gradient(135deg, #41684e, #2d4a35);
+  box-shadow: 0 10px 20px -5px rgba(65, 104, 78, 0.3);
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px -5px rgba(65, 104, 78, 0.4);
+}
+
 /* Printing */
 @media print {
   aside,
