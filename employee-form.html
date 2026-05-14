@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إضافة / تعديل موظف | Legal Technology</title>
+  <link rel="icon" type="image/png" href="logo_legal.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="js/auth.js"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="min-h-screen overflow-x-hidden text-slate-900">
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed right-0 top-0 z-40 h-screen w-[320px] translate-x-full overflow-y-auto bg-legalGreen text-legalGold shadow-2xl transition-transform duration-300 lg:translate-x-0 scroll-hide">
+      <div class="relative h-48 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=900&auto=format&fit=crop')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-legalGreen via-legalGreen/50 to-transparent"></div>
+        <div class="relative z-10 flex h-full flex-col items-center justify-center gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white shadow-soft">
+            <img src="logo_legal.png" alt="Logo" class="h-12 w-12 object-contain">
+          </div>
+          <p class="text-lg font-extrabold text-white">super admin</p>
+        </div>
+      </div>
+
+      <nav class="p-4">
+        <a href="index.html" class="mb-2 flex items-center justify-between rounded-2xl px-5 py-4 font-bold transition hover:bg-white/10 hover:text-white">
+          <span>الرئيسية</span>
+          <i class="fa-solid fa-house text-xl"></i>
+        </a>
+
+       <div class="space-y-1 text-[15px] font-bold">
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="consultation-requests.html"><span>طلبات الإستشارة</span><i class="fa-solid fa-cube text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="reports-and-statistics.html"><span>التقارير والإحصائيات</span><i class="fa-solid fa-chart-line text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="case-management.html"><span>إدارة القضايا</span><i class="fa-solid fa-scale-balanced text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="tasks-and-organization.html"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="forms-and-documents.html"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
+
+          <div class="rounded-2xl bg-white/5">
+            <button onclick="toggleHR()" class="flex w-full items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white">
+              <span>الموظفين والموارد البشرية</span>
+              <i class="fa-solid fa-users text-lg"></i>
+            </button>
+            <div id="hrSubmenu" class="mt-1 space-y-1 pr-4">
+              <a class="flex items-center justify-between rounded-2xl bg-legalGold px-5 py-2 text-sm text-legalGreenDark shadow-card" href="employees.html"><span>الموظفين</span></a>
+            </div>
+          </div>
+
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="general-settings.html"><span>الإعدادات العامة</span><i class="fa-solid fa-gear text-lg"></i></a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex flex-1 flex-col lg:pr-[320px]">
+
+      <!-- Topbar -->
+      <header class="sticky top-0 z-30 flex items-center justify-between gap-4 border-b border-slate-100 bg-white/90 px-6 py-4 backdrop-blur-md">
+        <div class="flex items-center gap-3">
+          <button id="menuToggle" class="grid h-10 w-10 place-items-center rounded-xl bg-slate-100 text-slate-600 transition hover:bg-legalGold hover:text-white lg:hidden">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div>
+            <p class="text-xs font-bold text-slate-400">الموظفين والموارد البشرية</p>
+            <p class="text-sm font-black text-slate-800" id="pageTitle">إضافة موظف</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="employees.html" class="inline-flex items-center gap-2 rounded-2xl bg-slate-100 px-4 py-2 text-sm font-black text-slate-700 transition hover:bg-legalGreen hover:text-white">
+            <i class="fa-solid fa-arrow-left"></i>
+            رجوع
+          </a>
+        </div>
+      </header>
+
+      <!-- Page Body -->
+      <main class="flex-1 p-6 lg:p-8">
+
+        <!-- Breadcrumb -->
+        <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-legalGold/10 px-4 py-2 text-xs font-black text-legalGoldDark">
+          <a href="employees.html" class="hover:underline">الموظفين</a>
+          <i class="fa-solid fa-chevron-left text-[10px]"></i>
+          <span id="breadcrumbTitle">إضافة موظف</span>
+        </div>
+
+        <!-- Form Card -->
+        <div class="rounded-[28px] bg-white p-8 shadow-card">
+          <div class="mb-8 flex items-center justify-between">
+            <div>
+              <h1 id="formHeaderTitle" class="text-2xl font-black text-slate-900">إضافة موظف جديد</h1>
+              <p class="mt-1 text-sm font-bold text-slate-400">أدخل بيانات الموظف وحدد الصلاحية وحالة الحساب.</p>
+            </div>
+            <div class="grid h-16 w-16 place-items-center rounded-2xl bg-legalGreen/10 text-3xl text-legalGreen">
+              <i class="fa-solid fa-user-plus"></i>
+            </div>
+          </div>
+
+          <form id="employeeForm" class="space-y-6">
+            
+            <div class="grid gap-6 md:grid-cols-2">
+              <div>
+                <label class="mb-2 block text-[13px] font-black text-slate-600">اسم الموظف</label>
+                <input id="formName" type="text" class="input-field" placeholder="اسم الموظف" required>
+              </div>
+              
+              <div>
+                <label class="mb-2 block text-[13px] font-black text-slate-600">البريد الإلكتروني</label>
+                <input id="formEmail" type="email" class="input-field" placeholder="البريد الإلكتروني" required>
+              </div>
+
+              <div>
+                <label class="mb-2 block text-[13px] font-black text-slate-600">رقم الهاتف</label>
+                <input id="formPhone" type="text" class="input-field" placeholder="رقم الهاتف">
+              </div>
+
+              <div>
+                <label class="mb-2 block text-[13px] font-black text-slate-600">كلمة المرور <span class="text-slate-400 font-normal">(اتركه فارغاً لعدم التغيير)</span></label>
+                <input id="formPassword" type="password" class="input-field" placeholder="كلمة المرور">
+              </div>
+
+              <div>
+                <label class="mb-2 block text-[13px] font-black text-slate-600">الصلاحيات (الدور)</label>
+                <div class="custom-select-wrap">
+                  <select id="formRole" class="custom-select">
+                    <option value="admin">المشرف</option>
+                    <option value="lawyer">محامي</option>
+                    <option value="none">--</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="mb-2 block text-[13px] font-black text-slate-600">حالة الحساب</label>
+                <div class="custom-select-wrap">
+                  <select id="formStatus" class="custom-select">
+                    <option value="active">نشط</option>
+                    <option value="unverified">غير موثق</option>
+                    <option value="disabled">موقوف</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="mb-2 block text-[13px] font-black text-slate-600">ملاحظات الموظف</label>
+                <textarea id="formNotes" rows="5" class="input-field resize-y" placeholder="اكتب الملاحظات هنا..."></textarea>
+              </div>
+            </div>
+
+            <div class="mt-8 flex items-center justify-end gap-4 border-t border-slate-100 pt-6">
+              <a href="employees.html" class="rounded-2xl bg-slate-100 px-6 py-3 text-sm font-black text-slate-600 transition hover:bg-slate-200">إلغاء</a>
+              <button type="submit" id="saveEmployeeBtn" class="inline-flex items-center gap-2 rounded-2xl bg-legalGreen px-8 py-3 text-sm font-black text-white shadow-card transition hover:bg-legalGreenDark">
+                <i class="fa-solid fa-save"></i> حفظ البيانات
+              </button>
+            </div>
+            
+          </form>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/sidebar.js"></script>
+  <script src="js/employee-form.js"></script>
+</body>
+</html>

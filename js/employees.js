@@ -62,7 +62,7 @@ function renderRows() {
     const st = statusMap[item.status];
 
     return `
-      <article class="employee-row px-6 py-7" data-id="${item.id}">
+      <article class="employee-row px-6 py-5 bg-white rounded-[24px] shadow-sm mb-3" data-id="${item.id}">
         <div class="grid grid-cols-12 items-center gap-4 text-center">
           <div class="col-span-1 text-lg font-black text-slate-900">${item.id}</div>
 
@@ -91,13 +91,13 @@ function renderRows() {
                 <i class="fa-solid fa-trash"></i>
               </button>
 
-              <button class="edit-btn icon-btn text-legalGold hover:bg-legalGold hover:text-white" data-id="${item.id}">
+              <a href="employee-form.html?id=${item.id}" class="icon-btn text-legalGold hover:bg-legalGold hover:text-white" title="تعديل الموظف">
                 <i class="fa-solid fa-pen"></i>
-              </button>
+              </a>
 
-              <button class="view-btn icon-btn text-legalGreen hover:bg-legalGreen hover:text-white" data-id="${item.id}">
+              <a href="employee-details.html?id=${item.id}" class="icon-btn text-legalGreen hover:bg-legalGreen hover:text-white" title="تفاصيل الموظف">
                 <i class="fa-solid fa-eye"></i>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -111,13 +111,9 @@ function renderRows() {
 }
 
 function bindActionButtons() {
-  document.querySelectorAll('.view-btn').forEach(btn => {
-    btn.addEventListener('click', () => openViewModal(Number(btn.dataset.id)));
-  });
 
-  document.querySelectorAll('.edit-btn').forEach(btn => {
-    btn.addEventListener('click', () => openEmployeeModal(Number(btn.dataset.id)));
-  });
+
+
 
   document.querySelectorAll('.delete-btn').forEach(btn => {
     btn.addEventListener('click', () => openDeleteModal(Number(btn.dataset.id)));

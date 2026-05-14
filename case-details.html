@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تفاصيل القضية | Legal Technology</title>
+  <link rel="icon" type="image/png" href="logo_legal.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="js/auth.js"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="min-h-screen overflow-x-hidden text-slate-900">
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed right-0 top-0 z-40 h-screen w-[320px] translate-x-full overflow-y-auto bg-legalGreen text-legalGold shadow-2xl transition-transform duration-300 lg:translate-x-0 scroll-hide">
+      <div class="relative h-48 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=900&auto=format&fit=crop')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-legalGreen via-legalGreen/50 to-transparent"></div>
+        <div class="relative z-10 flex h-full flex-col items-center justify-center gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white shadow-soft">
+            <img src="logo_legal.png" alt="Logo" class="h-12 w-12 object-contain">
+          </div>
+          <p class="text-lg font-extrabold text-white">super admin</p>
+        </div>
+      </div>
+
+      <nav class="p-4">
+        <a href="index.html" class="mb-2 flex items-center justify-between rounded-2xl px-5 py-4 font-bold transition hover:bg-white/10 hover:text-white">
+          <span>الرئيسية</span>
+          <i class="fa-solid fa-house text-xl"></i>
+        </a>
+
+       <div class="space-y-1 text-[15px] font-bold">
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="consultation-requests.html"><span>طلبات الإستشارة</span><i class="fa-solid fa-cube text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="reports-and-statistics.html"><span>التقارير والإحصائيات</span><i class="fa-solid fa-chart-line text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl bg-legalGold px-5 py-3 text-legalGreenDark shadow-card" href="case-management.html"><span>إدارة القضايا</span><i class="fa-solid fa-scale-balanced text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="tasks-and-organization.html"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="forms-and-documents.html"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
+
+          <div class="rounded-2xl">
+            <button onclick="toggleHR()" class="flex w-full items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white">
+              <span>الموظفين والموارد البشرية</span>
+              <i class="fa-solid fa-users text-lg"></i>
+            </button>
+            <div id="hrSubmenu" class="hidden mt-1 space-y-1 pr-4">
+              <a class="flex items-center justify-between rounded-2xl px-5 py-2 text-sm transition hover:bg-white/10 hover:text-white" href="employees.html"><span>الموظفين</span></a>
+            </div>
+          </div>
+
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="general-settings.html"><span>الإعدادات العامة</span><i class="fa-solid fa-gear text-lg"></i></a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex flex-1 flex-col lg:pr-[320px]">
+
+      <!-- Topbar -->
+      <header class="sticky top-0 z-30 flex items-center justify-between gap-4 border-b border-slate-100 bg-white/90 px-6 py-4 backdrop-blur-md">
+        <div class="flex items-center gap-3">
+          <button id="menuToggle" class="grid h-10 w-10 place-items-center rounded-xl bg-slate-100 text-slate-600 transition hover:bg-legalGold hover:text-white lg:hidden">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div>
+            <p class="text-xs font-bold text-slate-400">إدارة القضايا</p>
+            <p class="text-sm font-black text-slate-800" id="pageSubtitle">تفاصيل القضية</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="case-management.html" class="inline-flex items-center gap-2 rounded-2xl bg-slate-100 px-4 py-2 text-sm font-black text-slate-700 transition hover:bg-legalGreen hover:text-white">
+            <i class="fa-solid fa-arrow-left"></i>
+            العودة للقضايا
+          </a>
+        </div>
+      </header>
+
+      <!-- Page Body -->
+      <main class="flex-1 p-6 lg:p-8">
+
+        <!-- Breadcrumb -->
+        <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-legalGold/10 px-4 py-2 text-xs font-black text-legalGoldDark">
+          <a href="case-management.html" class="hover:underline">إدارة القضايا</a>
+          <i class="fa-solid fa-chevron-left text-[10px]"></i>
+          <span>تفاصيل القضية</span>
+        </div>
+
+        <!-- Case Header Card -->
+        <div class="mb-8 rounded-[28px] bg-white p-8 shadow-card">
+          <div class="flex flex-wrap items-start justify-between gap-6">
+            <div class="flex items-center gap-5">
+              <div class="grid h-16 w-16 place-items-center rounded-2xl bg-legalGold/15 text-3xl text-legalGold">
+                <i class="fa-solid fa-scale-balanced"></i>
+              </div>
+              <div>
+                <h1 id="caseTitle" class="text-2xl font-black text-slate-900">—</h1>
+                <p id="caseFileNo" class="mt-1 text-sm font-bold text-slate-400">—</p>
+              </div>
+            </div>
+            <div id="caseStatusBadge" class="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-black">
+              <span class="h-2.5 w-2.5 rounded-full bg-current"></span>
+              <span>—</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="mb-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div class="rounded-[22px] bg-white p-5 shadow-card">
+            <p class="mb-1 text-[11px] font-bold text-slate-400">المحامي المسؤول</p>
+            <p id="caseLawyer" class="font-black text-slate-800">—</p>
+          </div>
+          <div class="rounded-[22px] bg-white p-5 shadow-card">
+            <p class="mb-1 text-[11px] font-bold text-slate-400">رقم العقد</p>
+            <p id="caseContract" class="font-black text-slate-800">—</p>
+          </div>
+          <div class="rounded-[22px] bg-white p-5 shadow-card">
+            <p class="mb-1 text-[11px] font-bold text-slate-400">مدة القضية</p>
+            <p id="caseDuration" class="font-black text-slate-800">—</p>
+          </div>
+          <div class="rounded-[22px] bg-white p-5 shadow-card">
+            <p class="mb-1 text-[11px] font-bold text-slate-400">التصنيف الرئيسي</p>
+            <p id="caseType" class="font-black text-slate-800">—</p>
+          </div>
+          <div class="rounded-[22px] bg-white p-5 shadow-card">
+            <p class="mb-1 text-[11px] font-bold text-slate-400">التصنيف الفرعي</p>
+            <p id="caseSubType" class="font-black text-slate-800">—</p>
+          </div>
+          <div class="rounded-[22px] bg-white p-5 shadow-card">
+            <p class="mb-1 text-[11px] font-bold text-slate-400">مرحلة الدعوى</p>
+            <p id="caseStage" class="font-black text-slate-800">—</p>
+          </div>
+          <div class="md:col-span-2 lg:col-span-3 rounded-[22px] bg-slate-50 p-5 shadow-card border border-slate-100">
+            <p class="mb-2 text-[11px] font-bold text-slate-400">الملاحظات والتعليمات</p>
+            <p id="caseNotes" class="leading-relaxed font-bold text-slate-700">—</p>
+          </div>
+        </div>
+
+        <!-- Case Stages Timeline -->
+        <div class="rounded-[28px] bg-white p-8 shadow-card">
+          <div class="mb-6 flex items-center justify-between">
+            <div>
+              <h2 class="text-lg font-black text-slate-900">مراحل القضية</h2>
+              <p class="mt-1 text-[12px] font-bold text-slate-400">تتبع تقدم القضية عبر مراحلها القانونية المختلفة.</p>
+            </div>
+            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-legalGreen/10 text-xl text-legalGreen">
+              <i class="fa-solid fa-timeline"></i>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="relative">
+            <!-- Vertical line -->
+            <div class="absolute right-6 top-0 bottom-0 w-0.5 bg-slate-100"></div>
+
+            <div class="space-y-6" id="stagesTimeline">
+
+              <!-- Stage 1 - Done -->
+              <div class="relative flex items-start gap-6">
+                <div class="relative z-10 grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-emerald-500 text-white shadow-md">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="flex-1 rounded-[20px] bg-emerald-50 border border-emerald-100 p-5">
+                  <div class="flex items-center justify-between gap-3 mb-2">
+                    <h3 class="font-black text-slate-900">مرحلة الإيداع والتسجيل</h3>
+                    <span class="rounded-full bg-emerald-100 px-3 py-1 text-[11px] font-black text-emerald-700">مكتملة</span>
+                  </div>
+                  <p class="text-[12px] font-bold text-slate-500">تم تسجيل القضية في المحكمة وإيداع المستندات الأساسية اللازمة.</p>
+                  <p class="mt-2 text-[11px] font-bold text-slate-400"><i class="fa-solid fa-calendar-check ml-1"></i>01 يناير 2026</p>
+                </div>
+              </div>
+
+              <!-- Stage 2 - Done -->
+              <div class="relative flex items-start gap-6">
+                <div class="relative z-10 grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-emerald-500 text-white shadow-md">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="flex-1 rounded-[20px] bg-emerald-50 border border-emerald-100 p-5">
+                  <div class="flex items-center justify-between gap-3 mb-2">
+                    <h3 class="font-black text-slate-900">إعداد مذكرة الدفاع</h3>
+                    <span class="rounded-full bg-emerald-100 px-3 py-1 text-[11px] font-black text-emerald-700">مكتملة</span>
+                  </div>
+                  <p class="text-[12px] font-bold text-slate-500">تم إعداد وتقديم مذكرة الدفاع للمحكمة مع جميع المرفقات.</p>
+                  <p class="mt-2 text-[11px] font-bold text-slate-400"><i class="fa-solid fa-calendar-check ml-1"></i>15 يناير 2026</p>
+                </div>
+              </div>
+
+              <!-- Stage 3 - Active -->
+              <div class="relative flex items-start gap-6">
+                <div class="relative z-10 grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-blue-500 text-white shadow-md animate-pulse">
+                  <i class="fa-solid fa-spinner fa-spin"></i>
+                </div>
+                <div class="flex-1 rounded-[20px] bg-blue-50 border border-blue-100 p-5">
+                  <div class="flex items-center justify-between gap-3 mb-2">
+                    <h3 class="font-black text-slate-900">جلسات الاستماع</h3>
+                    <span class="rounded-full bg-blue-100 px-3 py-1 text-[11px] font-black text-blue-700">جارية</span>
+                  </div>
+                  <p class="text-[12px] font-bold text-slate-500">بانتظار الجلسة القادمة المحددة أمام الدائرة المختصة.</p>
+                  <p class="mt-2 text-[11px] font-bold text-slate-400"><i class="fa-solid fa-calendar ml-1"></i>الجلسة القادمة: 20 مايو 2026</p>
+                </div>
+              </div>
+
+              <!-- Stage 4 - Pending -->
+              <div class="relative flex items-start gap-6">
+                <div class="relative z-10 grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-slate-200 text-slate-400 shadow-md">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="flex-1 rounded-[20px] bg-slate-50 border border-slate-100 p-5">
+                  <div class="flex items-center justify-between gap-3 mb-2">
+                    <h3 class="font-black text-slate-500">صدور الحكم الابتدائي</h3>
+                    <span class="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black text-slate-500">قادمة</span>
+                  </div>
+                  <p class="text-[12px] font-bold text-slate-400">في انتظار إصدار المحكمة للحكم الابتدائي في الدعوى.</p>
+                </div>
+              </div>
+
+              <!-- Stage 5 - Pending -->
+              <div class="relative flex items-start gap-6">
+                <div class="relative z-10 grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-slate-200 text-slate-400 shadow-md">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="flex-1 rounded-[20px] bg-slate-50 border border-slate-100 p-5">
+                  <div class="flex items-center justify-between gap-3 mb-2">
+                    <h3 class="font-black text-slate-500">الاستئناف والتنفيذ</h3>
+                    <span class="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black text-slate-500">قادمة</span>
+                  </div>
+                  <p class="text-[12px] font-bold text-slate-400">مرحلة الطعن بالاستئناف وتنفيذ الأحكام القضائية.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/sidebar.js"></script>
+  <script>
+    // ─── Load case data from URL params ───
+    const typeText = { commercial:'تجاري', labor:'عمالي', criminal:'جنائي', civil:'مدني' };
+    const stageText = { first:'ابتدائي', appeal:'استئناف', execution:'تنفيذ', cassation:'تمييز' };
+    const statusMap = {
+      active:  { text:'نشطة',           cls:'bg-emerald-100 text-emerald-700', dot:'bg-emerald-500' },
+      hearing: { text:'بانتظار جلسة',   cls:'bg-blue-100 text-blue-700',       dot:'bg-blue-500' },
+      closed:  { text:'مغلقة',          cls:'bg-slate-100 text-slate-700',     dot:'bg-slate-500' },
+      late:    { text:'متأخرة',         cls:'bg-red-100 text-red-700',         dot:'bg-red-500' }
+    };
+
+    // Demo cases (same as case-management.js)
+    const cases = [
+      { id:3001, fileNo:'LAW-2026-001', title:'مطالبة مالية تجارية',  lawyer:'أحمد السالمي',  contract:'CNT-2026-001', duration:'45 يوم',  type:'commercial', subType:'مطالبة مالية',   stage:'first',     status:'active',  notes:'ملف نشط وجاري إعداد المذكرات.' },
+      { id:3002, fileNo:'LAW-2026-002', title:'نزاع عمالي',           lawyer:'نورة العلي',    contract:'CNT-2026-003', duration:'21 يوم',  type:'labor',      subType:'مستحقات عمالية', stage:'appeal',    status:'hearing', notes:'تم تحديد جلسة الأسبوع القادم.' },
+      { id:3003, fileNo:'LAW-2025-110', title:'دعوى مدنية',           lawyer:'خالد منصور',   contract:'CNT-2025-110', duration:'120 يوم', type:'civil',      subType:'تعويضات',        stage:'execution', status:'late',    notes:'تحتاج متابعة عاجلة مع المحكمة.' },
+      { id:3004, fileNo:'LAW-2024-078', title:'قضية جنائية منتهية',  lawyer:'ريم خالد',     contract:'CNT-2024-078', duration:'300 يوم', type:'criminal',   subType:'دفاع جنائي',     stage:'cassation', status:'closed',  notes:'تم إغلاق الملف وأرشفة المستندات.' }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = Number(params.get('id'));
+      const item = cases.find(c => c.id === id);
+
+      if (!item) {
+        document.getElementById('caseTitle').textContent = 'القضية غير موجودة';
+        return;
+      }
+
+      const st = statusMap[item.status];
+
+      document.getElementById('caseTitle').textContent   = item.title;
+      document.getElementById('caseFileNo').textContent  = item.fileNo;
+      document.getElementById('caseLawyer').textContent  = item.lawyer;
+      document.getElementById('caseContract').textContent= item.contract;
+      document.getElementById('caseDuration').textContent= item.duration;
+      document.getElementById('caseType').textContent    = typeText[item.type];
+      document.getElementById('caseSubType').textContent = item.subType;
+      document.getElementById('caseStage').textContent   = stageText[item.stage];
+      document.getElementById('caseNotes').textContent   = item.notes;
+      document.getElementById('pageSubtitle').textContent= item.title;
+
+      const badge = document.getElementById('caseStatusBadge');
+      badge.className = `inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-black ${st.cls}`;
+      badge.innerHTML = `<span class="h-2.5 w-2.5 rounded-full ${st.dot}"></span><span>${st.text}</span>`;
+    });
+  </script>
+</body>
+</html>

@@ -146,7 +146,7 @@
           </div>
 
           <div class="flex flex-wrap gap-3">
-            <button id="openTaskModalBtn" class="inline-flex items-center gap-2 rounded-2xl bg-legalGreen px-5 py-3 text-sm font-black text-white shadow-card transition hover:bg-legalGreenDark">
+            <button id="openTaskModalBtn" onclick="openAddTaskModal()" class="inline-flex items-center gap-2 rounded-2xl bg-legalGreen px-5 py-3 text-sm font-black text-white shadow-card transition hover:bg-legalGreenDark">
               <i class="fa-solid fa-plus"></i>
               إضافة مهمة
             </button>
@@ -157,92 +157,9 @@
           </div>
         </div>
 
-        <!-- Form Card Same As Screenshot -->
-        <div class="mb-8 rounded-[26px] bg-white p-6 shadow-card">
-          <div class="mb-6 flex items-center justify-between">
-            <div>
-              <h2 class="text-lg font-black text-slate-900">إنشاء مهمة جديدة</h2>
-              <p class="mt-1 text-[12px] font-bold text-slate-400">أدخل بيانات المهمة الأساسية ثم اضغط إضافة.</p>
-            </div>
-            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-legalGold/15 text-xl text-legalGold">
-              <i class="fa-solid fa-clipboard-check"></i>
-            </div>
-          </div>
 
-          <form id="quickTaskForm" class="grid gap-5 md:grid-cols-2">
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">المسؤول / المهمة</label>
-              <input id="quickOwner" class="input-field" value="super admin" />
-            </div>
 
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">من المكلف</label>
-              <div class="custom-select-wrap">
-                <select id="quickAssignee" class="custom-select">
-                  <option value="">اختر واحد</option>
-                  <option>super admin</option>
-                  <option>المحامي أحمد</option>
-                  <option>الموظف خالد</option>
-                  <option>قسم المتابعة</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">نوع المهمة</label>
-              <input id="quickType" class="input-field" placeholder="مثال: قائمة إدارية" />
-            </div>
-
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">عنوان المهمة</label>
-              <input id="quickTitle" class="input-field" placeholder="عنوان المهمة" />
-            </div>
-
-            <div class="md:col-span-2">
-              <label class="mb-2 block text-[12px] font-black text-slate-600">تفاصيل المهمة المراد إنجازها</label>
-              <textarea id="quickDetails" rows="5" class="input-field resize-y" placeholder="اكتب التفاصيل هنا..."></textarea>
-            </div>
-
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">تاريخ البداية</label>
-              <input id="quickStart" type="date" class="input-field" />
-            </div>
-
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">تاريخ النهاية</label>
-              <input id="quickEnd" type="date" class="input-field" />
-            </div>
-
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">الحالة</label>
-              <div class="custom-select-wrap">
-                <select id="quickStatus" class="custom-select">
-                  <option value="new">جديدة</option>
-                  <option value="progress">قيد التنفيذ</option>
-                  <option value="done">منجزة</option>
-                  <option value="late">متأخرة</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="flex items-end justify-start">
-              <button class="rounded-2xl bg-blue-600 px-7 py-3 text-[12px] font-black text-white shadow-card transition hover:bg-blue-700" type="submit">
-                <i class="fa-solid fa-plus"></i>
-                إضافة
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Tabs -->
-        <div class="mb-7 rounded-[28px] bg-legalGreen p-2 shadow-card">
-          <div class="grid gap-2 md:grid-cols-3">
-            <button data-tab="tasks" class="tab-btn rounded-2xl bg-legalGold px-5 py-4 text-sm font-black text-legalGreenDark shadow-card">إضافة</button>
-            <button data-tab="list" class="tab-btn rounded-2xl px-5 py-4 text-sm font-black text-white transition hover:bg-white/10">قائمة المهام</button>
-            <button data-tab="assigned" class="tab-btn rounded-2xl px-5 py-4 text-sm font-black text-white transition hover:bg-white/10">مهامي</button>
-          </div>
-        </div>
-
+       
         <!-- Stats Cards -->
         <div class="mb-7 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           <article class="rounded-[28px] bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
@@ -455,8 +372,111 @@
     </div>
   </div>
 
+  <!-- Add Task Modal -->
+  <div id="addTaskModal" class="fixed inset-0 z-[10000] hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-5xl rounded-[30px] bg-white overflow-y-auto h-[90vh] shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 px-8 py-6">
+        <div class="flex items-center gap-4">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-legalGreen text-white text-xl">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-black text-slate-900">إنشاء مهمة جديدة</h3>
+            <p class="text-[11px] font-bold text-slate-400">أدخل بيانات المهمة ثم اضغط حفظ.</p>
+          </div>
+        </div>
+        <button onclick="closeAddTaskModal()" class="grid h-10 w-10 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-500 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-8">
+        <form id="quickTaskForm" class="grid gap-5 md:grid-cols-3">
+          <div>
+            <label class="mb-2 block text-[12px] font-black text-slate-600">المسؤول / المهمة</label>
+            <input id="quickOwner" class="input-field" value="super admin" />
+          </div>
+          <div>
+            <label class="mb-2 block text-[12px] font-black text-slate-600">من المكلف</label>
+            <div class="custom-select-wrap">
+              <select id="quickAssignee" class="custom-select">
+                <option value="">اختر واحد</option>
+                <option>super admin</option>
+                <option>المحامي أحمد</option>
+                <option>الموظف خالد</option>
+                <option>قسم المتابعة</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="mb-2 block text-[12px] font-black text-slate-600">نوع المهمة</label>
+            <input id="quickType" class="input-field" placeholder="مثال: قائمة إدارية" />
+          </div>
+          <div>
+            <label class="mb-2 block text-[12px] font-black text-slate-600">عنوان المهمة</label>
+            <input id="quickTitle" class="input-field" placeholder="عنوان المهمة" />
+          </div>
+          <div class="md:col-span-3">
+            <label class="mb-2 block text-[12px] font-black text-slate-600">تفاصيل المهمة المراد إنجازها</label>
+            <textarea id="quickDetails" rows="4" class="input-field resize-y" placeholder="اكتب التفاصيل هنا..."></textarea>
+          </div>
+          <div>
+            <label class="mb-2 block text-[12px] font-black text-slate-600">تاريخ البداية</label>
+            <input id="quickStart" type="date" class="input-field" />
+          </div>
+          <div>
+            <label class="mb-2 block text-[12px] font-black text-slate-600">تاريخ النهاية</label>
+            <input id="quickEnd" type="date" class="input-field" />
+          </div>
+          <div>
+            <label class="mb-2 block text-[12px] font-black text-slate-600">الحالة</label>
+            <div class="custom-select-wrap">
+              <select id="quickStatus" class="custom-select">
+                <option value="new">جديدة</option>
+                <option value="progress">قيد التنفيذ</option>
+                <option value="done">منجزة</option>
+                <option value="late">متأخرة</option>
+              </select>
+            </div>
+          </div>
+          <div class="md:col-span-3 flex items-center justify-end gap-3 mt-4 pt-4 border-t border-slate-100">
+            <button type="button" onclick="closeAddTaskModal()" class="rounded-2xl bg-slate-100 px-6 py-3 text-[12px] font-black text-slate-600 transition hover:bg-slate-200">إلغاء</button>
+            <button type="submit" class="inline-flex items-center gap-2 rounded-2xl bg-legalGreen px-7 py-3 text-[12px] font-black text-white shadow-card transition hover:bg-legalGreenDark">
+              <i class="fa-solid fa-plus"></i> حفظ المهمة
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script src="js/sidebar.js"></script>
   <script src="js/tasks-and-organization.js"></script>
   <script src="js/global-search.js"></script>
+  <script>
+    function openAddTaskModal() {
+      var m = document.getElementById('addTaskModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+    function closeAddTaskModal() {
+      var m = document.getElementById('addTaskModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var backdrop = document.getElementById('addTaskModal');
+      if (backdrop) {
+        backdrop.addEventListener('click', function(e) {
+          if (e.target === backdrop) closeAddTaskModal();
+        });
+      }
+      var form = document.getElementById('quickTaskForm');
+      if (form) {
+        form.addEventListener('submit', function() {
+          setTimeout(closeAddTaskModal, 300);
+        });
+      }
+    });
+  </script>
 </body>
 </html>

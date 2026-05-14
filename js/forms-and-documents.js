@@ -25,7 +25,7 @@ let editingId = null;
 let deletingId = null;
 
 const docsTable = document.getElementById('docsTable');
-const docsCards = document.getElementById('docsCards');
+
 const rowsCount = document.getElementById('rowsCount');
 const topSearch = document.getElementById('globalSearchInput');
 const tableSearch = document.getElementById('tableSearch');
@@ -45,7 +45,7 @@ function updateStats() {
 }
 
 function renderRows() {
-  if (!docsTable && !docsCards) return;
+  if (!docsTable) return;
 
   const term = ((tableSearch?.value || topSearch?.value || '')).toLowerCase().trim();
   const status = statusFilter?.value || 'all';
@@ -98,29 +98,7 @@ function renderRows() {
     }).join('');
   }
 
-  if (docsCards) {
-    docsCards.innerHTML = filtered.map(item => {
-      const st = statusMap[item.status];
-      return `
-        <article class="rounded-[34px] bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-soft">
-          <div class="grid gap-5 md:grid-cols-6 md:items-center">
-            <div class="font-black text-slate-900">#${item.id}</div>
-            <div class="md:col-span-2">
-              <p class="font-black text-slate-900">${item.title}</p>
-              <p class="mt-1 text-[11px] font-bold text-slate-400">${item.department} - ${item.version}</p>
-            </div>
-            <div class="font-bold text-slate-600">${typeText[item.type]}</div>
-            <div><span class="status-badge ${st.cls}">${st.text}</span></div>
-            <div class="flex gap-3 text-lg">
-              <button class="view-btn text-legalGreen transition hover:scale-110" data-id="${item.id}"><i class="fa-solid fa-eye"></i></button>
-              <button class="edit-btn text-legalGold transition hover:scale-110" data-id="${item.id}"><i class="fa-solid fa-pen"></i></button>
-              <button class="delete-btn text-red-600 transition hover:scale-110" data-id="${item.id}"><i class="fa-solid fa-trash"></i></button>
-            </div>
-          </div>
-        </article>
-      `;
-    }).join('');
-  }
+
 
   if (rowsCount) rowsCount.textContent = `عرض ${filtered.length} من ${docs.length} مستند`;
   updateStats();
@@ -207,26 +185,7 @@ if (docModal) {
 const openDocModalBtn = document.getElementById('openDocModalBtn');
 if (openDocModalBtn) openDocModalBtn.addEventListener('click', () => openDocModal());
 
-const quickDocForm = document.getElementById('quickDocForm');
-if (quickDocForm) {
-  quickDocForm.addEventListener('submit', (e) => {
-    e.preventDefault();
 
-    docs.unshift({
-      id: Date.now().toString().slice(-4),
-      title: document.getElementById('quickTitle').value.trim() || 'مستند جديد',
-      type: document.getElementById('quickType').value,
-      status: document.getElementById('quickStatus').value,
-      version: document.getElementById('quickVersion').value.trim() || 'v1.0',
-      department: document.getElementById('quickDepartment').value.trim() || 'الإدارة',
-      date: document.getElementById('quickDate').value || '2026-05-12',
-      notes: 'تمت إضافة المستند من نموذج الإضافة السريع.'
-    });
-
-    e.target.reset();
-    renderRows();
-  });
-}
 
 const viewModal = document.getElementById('viewModal');
 const closeViewModal = document.getElementById('closeViewModal');

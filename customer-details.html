@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تفاصيل العميل | Legal Technology</title>
+  <link rel="icon" type="image/png" href="logo_legal.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script src="js/auth.js"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    body{font-family:'Cairo',sans-serif}
+  </style>
+</head>
+
+<body class="min-h-screen overflow-x-hidden text-slate-900">
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed right-0 top-0 z-40 h-screen w-[320px] translate-x-full overflow-y-auto bg-legalGreen text-legalGold shadow-2xl transition-transform duration-300 lg:translate-x-0 scroll-hide">
+      <div class="relative h-48 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=900&auto=format&fit=crop')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-legalGreen via-legalGreen/50 to-transparent"></div>
+        <div class="relative z-10 flex h-full flex-col items-center justify-center gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white shadow-soft">
+            <img src="logo_legal.png" alt="Logo" class="h-12 w-12 object-contain">
+          </div>
+          <p class="text-lg font-extrabold text-white">super admin</p>
+        </div>
+      </div>
+
+      <nav class="p-4">
+        <a href="index.html" class="mb-2 flex items-center justify-between rounded-2xl px-5 py-4 font-bold transition hover:bg-white/10 hover:text-white">
+          <span>الرئيسية</span>
+          <i class="fa-solid fa-house text-xl"></i>
+        </a>
+
+       <div class="space-y-1 text-[15px] font-bold">
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="consultation-requests.html"><span>طلبات الإستشارة</span><i class="fa-solid fa-cube text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="reports-and-statistics.html"><span>التقارير والإحصائيات</span><i class="fa-solid fa-chart-line text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="case-management.html"><span>إدارة القضايا</span><i class="fa-solid fa-scale-balanced text-lg"></i></a>
+          
+          <div class="rounded-2xl bg-white/5">
+            <a class="flex items-center justify-between rounded-2xl bg-legalGold px-5 py-3 text-legalGreenDark shadow-card" href="customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
+          </div>
+
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="tasks-and-organization.html"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="forms-and-documents.html"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
+
+          <div class="rounded-2xl bg-transparent">
+            <button onclick="toggleHR()" class="flex w-full items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white">
+              <span>الموظفين والموارد البشرية</span>
+              <i class="fa-solid fa-users text-lg"></i>
+            </button>
+            <div id="hrSubmenu" class="hidden mt-1 space-y-1 pr-4">
+              <a class="flex items-center justify-between rounded-2xl px-5 py-2 text-sm text-legalGold transition hover:text-white" href="employees.html"><span>الموظفين</span></a>
+            </div>
+          </div>
+
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="general-settings.html"><span>الإعدادات العامة</span><i class="fa-solid fa-gear text-lg"></i></a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex flex-1 flex-col lg:pr-[320px]">
+
+      <!-- Topbar -->
+      <header class="sticky top-0 z-30 border-b border-black/5 bg-white/85 backdrop-blur-xl shadow-sm">
+        <div class="flex min-h-20 items-center justify-between gap-4 px-6">
+          <div class="flex items-center gap-3">
+            <button onclick="logout()" class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white">
+              <i class="fa-solid fa-power-off text-base"></i>
+            </button>
+            <a href="settings.html" class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white">
+              <i class="fa-solid fa-gear text-base"></i>
+            </a>
+            <span class="rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-white shadow">ONLINE</span>
+          </div>
+
+          <div class="hidden flex-1 items-center justify-center md:flex">
+            <div class="relative w-full max-w-xl">
+              <input id="globalSearchInput" type="search" placeholder="بحث في العملاء والعقود..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-5 pr-12 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-legalGold">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="hidden text-left sm:block">
+              <p class="text-sm font-extrabold text-slate-900">Legal Technology</p>
+              <p class="text-xs font-bold text-slate-400">العملاء والعقود</p>
+            </div>
+            <img src="logo_legal.png" alt="Logo" class="h-12 w-12 rounded-2xl object-contain shadow-card">
+            <button id="menuBtn" class="grid h-11 w-11 place-items-center rounded-xl text-2xl text-legalGold transition hover:bg-legalGold/15 lg:hidden">☰</button>
+          </div>
+        </div>
+
+        <div class="mx-5 mb-4 flex flex-col gap-3 rounded-[22px] bg-gradient-to-l from-legalGold to-legalGoldDark px-6 py-3 text-sm font-bold text-legalGreenDark shadow-card md:flex-row md:items-center md:justify-between">
+          <div class="flex items-center gap-3">
+            <span class="grid h-9 w-9 place-items-center rounded-xl bg-white/20 text-white">
+              <i class="fa-solid fa-house text-base"></i>
+            </span>
+            <div>
+              <p class="text-xs text-white/80">المسار الحالي</p>
+              <p>الرئيسية / العملاء والعقود / تفاصيل العميل</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <a href="customers-and-contracts.html" class="inline-flex items-center justify-center gap-2 rounded-xl bg-white/20 px-4 py-2 text-xs font-extrabold text-white transition hover:bg-white/30">
+              <i class="fa-solid fa-arrow-right"></i>
+              رجوع
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Body -->
+      <main class="flex-1 p-6 lg:p-8">
+
+    <div class="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div>
+       
+
+        <h1 class="text-3xl font-black md:text-4xl">تفاصيل العميل</h1>
+        <p class="mt-2 text-sm font-bold text-slate-500">عرض كامل لبيانات العميل والعقود المرتبطة به.</p>
+      </div>
+
+    </div>
+
+    <section class="overflow-hidden rounded-[34px] bg-white shadow-card">
+
+      <div class="relative bg-gradient-to-l from-legalGreen to-legalGreenDark p-7 text-white">
+        <div class="absolute inset-0 opacity-10">
+          <div class="h-full w-full bg-[url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center"></div>
+        </div>
+
+        <div class="relative z-10 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+          <div class="flex items-center gap-4">
+            <div class="grid h-20 w-20 place-items-center rounded-3xl bg-white/15 text-3xl shadow-lg">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+
+            <div>
+              <p class="text-sm font-bold text-legalGold">بيانات العميل</p>
+              <h2 id="clientName" class="mt-1 text-3xl font-black">---</h2>
+              <p id="clientEmail" class="mt-1 text-sm font-bold text-white/75">---</p>
+            </div>
+          </div>
+
+          <span id="clientStatusBadge" class="w-fit rounded-full bg-white/15 px-5 py-2 text-sm font-black text-white">
+            ---
+          </span>
+        </div>
+      </div>
+
+      <div class="grid gap-5 p-6 md:grid-cols-2 xl:grid-cols-4">
+        <div class="rounded-[26px] bg-slate-50 p-5">
+          <p class="text-xs font-black text-slate-400">رقم الهاتف</p>
+          <h3 id="clientPhone" class="mt-2 text-lg font-black">---</h3>
+        </div>
+
+        <div class="rounded-[26px] bg-slate-50 p-5">
+          <p class="text-xs font-black text-slate-400">رقم العقد</p>
+          <h3 id="clientContract" class="mt-2 text-lg font-black">---</h3>
+        </div>
+
+        <div class="rounded-[26px] bg-slate-50 p-5">
+          <p class="text-xs font-black text-slate-400">نوع العميل</p>
+          <h3 id="clientType" class="mt-2 text-lg font-black">---</h3>
+        </div>
+
+        <div class="rounded-[26px] bg-slate-50 p-5">
+          <p class="text-xs font-black text-slate-400">الهوية / الإقامة</p>
+          <h3 id="clientIdentity" class="mt-2 text-lg font-black">---</h3>
+        </div>
+      </div>
+
+      <div class="grid gap-6 border-t border-slate-100 p-6 lg:grid-cols-3">
+        <div class="lg:col-span-2 rounded-[28px] border border-slate-100 p-6">
+          <h3 class="mb-5 flex items-center gap-2 text-lg font-black">
+            <i class="fa-solid fa-circle-info text-legalGold"></i>
+            معلومات شخصية
+          </h3>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-2xl bg-slate-50 p-4">
+              <p class="text-xs font-black text-slate-400">الإسم الأول</p>
+              <p id="firstName" class="mt-2 font-black">---</p>
+            </div>
+
+            <div class="rounded-2xl bg-slate-50 p-4">
+              <p class="text-xs font-black text-slate-400">البريد الإلكتروني</p>
+              <p id="emailBox" class="mt-2 font-black">---</p>
+            </div>
+
+            <div class="rounded-2xl bg-slate-50 p-4">
+              <p class="text-xs font-black text-slate-400">رقم الجوال</p>
+              <p id="phoneBox" class="mt-2 font-black">---</p>
+            </div>
+
+            <div class="rounded-2xl bg-slate-50 p-4">
+              <p class="text-xs font-black text-slate-400">تاريخ التسجيل</p>
+              <p id="createdAt" class="mt-2 font-black">---</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-[28px] bg-legalGold/10 p-6">
+          <h3 class="mb-4 flex items-center gap-2 text-lg font-black text-legalGreen">
+            <i class="fa-solid fa-file-contract"></i>
+            ملخص العقد
+          </h3>
+
+          <div class="space-y-4 text-sm font-bold">
+            <div class="flex items-center justify-between rounded-2xl bg-white p-4">
+              <span class="text-slate-500">قيمة العقد</span>
+              <strong id="contractValue">---</strong>
+            </div>
+
+            <div class="flex items-center justify-between rounded-2xl bg-white p-4">
+              <span class="text-slate-500">طريقة الدفع</span>
+              <strong id="paymentMethod">---</strong>
+            </div>
+
+            <div class="flex items-center justify-between rounded-2xl bg-white p-4">
+              <span class="text-slate-500">مدة العقد</span>
+              <strong id="contractDuration">---</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-100 p-6">
+        <h3 class="mb-4 flex items-center gap-2 text-lg font-black">
+          <i class="fa-solid fa-note-sticky text-legalGold"></i>
+          ملاحظات العميل
+        </h3>
+
+        <div id="clientNotes" class="rounded-[24px] bg-slate-50 p-5 text-sm font-bold leading-8 text-slate-600">
+          لا توجد ملاحظات.
+        </div>
+      </div>
+
+    </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <script src="js/sidebar.js"></script>
+  <script src="js/customer-details.js"></script>
+</body>
+</html>

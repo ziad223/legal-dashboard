@@ -81,7 +81,7 @@ function renderRows() {
         </td>
         <td class="px-4 py-3">
           <div class="flex justify-center gap-2">
-            <button class="view-btn grid h-8 w-8 place-items-center rounded-xl bg-blue-100 text-blue-600 transition hover:bg-blue-600 hover:text-white" data-id="${item.id}"><i class="fa-solid fa-eye"></i></button>
+            <a href="customer-details.html?id=${item.id}" class="grid h-8 w-8 place-items-center rounded-xl bg-blue-100 text-blue-600 transition hover:bg-blue-600 hover:text-white" title="تفاصيل العميل"><i class="fa-solid fa-eye"></i></a>
             <button class="edit-btn grid h-8 w-8 place-items-center rounded-xl bg-legalGold/15 text-legalGold transition hover:bg-legalGold hover:text-white" data-id="${item.id}"><i class="fa-solid fa-pen"></i></button>
             <button class="delete-btn grid h-8 w-8 place-items-center rounded-xl bg-red-100 text-red-600 transition hover:bg-red-600 hover:text-white" data-id="${item.id}"><i class="fa-solid fa-trash"></i></button>
           </div>
@@ -96,9 +96,6 @@ function renderRows() {
 }
 
 function bindActionButtons() {
-  document.querySelectorAll('.view-btn').forEach(btn => {
-    btn.addEventListener('click', () => openViewModal(Number(btn.dataset.id)));
-  });
 
   document.querySelectorAll('.edit-btn').forEach(btn => {
     btn.addEventListener('click', () => openClientModal(Number(btn.dataset.id)));

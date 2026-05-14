@@ -157,71 +157,6 @@
           </div>
         </div>
 
-        <!-- Add Form -->
-        <div class="mb-8 rounded-[26px] bg-white p-6 shadow-card">
-          <div class="mb-6 flex items-center justify-between">
-            <div>
-              <h2 class="text-lg font-black text-slate-900">إضافة نموذج / مستند جديد</h2>
-              <p class="mt-1 text-[12px] font-bold text-slate-400">سجّل بيانات المستند وحدد نوعه وحالته.</p>
-            </div>
-            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-legalGold/15 text-xl text-legalGold">
-              <i class="fa-solid fa-file-circle-plus"></i>
-            </div>
-          </div>
-
-          <form id="quickDocForm" class="grid gap-5 md:grid-cols-4">
-            <div class="md:col-span-2">
-              <label class="mb-2 block text-[12px] font-black text-slate-600">عنوان المستند</label>
-              <input id="quickTitle" class="input-field" placeholder="مثال: نموذج عقد استشارة" />
-            </div>
-
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">نوع المستند</label>
-              <div class="custom-select-wrap">
-                <select id="quickType" class="custom-select">
-                  <option value="contract">عقد</option>
-                  <option value="form">نموذج</option>
-                  <option value="letter">خطاب</option>
-                  <option value="case">مستند قضية</option>
-                  <option value="admin">إداري</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">الحالة</label>
-              <div class="custom-select-wrap">
-                <select id="quickStatus" class="custom-select">
-                  <option value="active">ظاهر</option>
-                  <option value="draft">مسودة</option>
-                  <option value="archived">مؤرشف</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">رقم الإصدار</label>
-              <input id="quickVersion" class="input-field" placeholder="v1.0" />
-            </div>
-
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">القسم</label>
-              <input id="quickDepartment" class="input-field" placeholder="العقود / القضايا / الإدارة" />
-            </div>
-
-            <div>
-              <label class="mb-2 block text-[12px] font-black text-slate-600">تاريخ الإضافة</label>
-              <input id="quickDate" type="date" class="input-field" />
-            </div>
-
-            <div class="flex items-end justify-start">
-              <button class="rounded-2xl bg-blue-600 px-7 py-3 text-[12px] font-black text-white shadow-card transition hover:bg-blue-700" type="submit">
-                <i class="fa-solid fa-plus"></i>
-                إضافة
-              </button>
-            </div>
-          </form>
-        </div>
 
         <!-- Tabs -->
         <!-- <div class="mb-7 rounded-[28px] bg-legalGreen p-2 shadow-card">
@@ -362,8 +297,6 @@
           </div>
         </div>
 
-        <!-- Card Preview like screenshot rows -->
-        <div class="mt-8 space-y-4" id="docsCards"></div>
 
       </section>
     </main>

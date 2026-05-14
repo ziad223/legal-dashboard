@@ -98,9 +98,9 @@ function renderRows() {
         </td>
         <td class="px-4 py-3">
           <div class="flex justify-center gap-2">
-            <button class="view-btn grid h-8 w-8 place-items-center rounded-xl bg-blue-100 text-blue-600 transition hover:bg-blue-600 hover:text-white" data-id="${item.id}"><i class="fa-solid fa-eye"></i></button>
-            <button class="edit-btn grid h-8 w-8 place-items-center rounded-xl bg-legalGold/15 text-legalGold transition hover:bg-legalGold hover:text-white" data-id="${item.id}"><i class="fa-solid fa-pen"></i></button>
-            <button class="delete-btn grid h-8 w-8 place-items-center rounded-xl bg-red-100 text-red-600 transition hover:bg-red-600 hover:text-white" data-id="${item.id}"><i class="fa-solid fa-trash"></i></button>
+            <a href="case-details.html?id=${item.id}" class="grid h-8 w-8 place-items-center rounded-xl bg-blue-100 text-blue-600 transition hover:bg-blue-600 hover:text-white" title="تفاصيل القضية"><i class="fa-solid fa-eye"></i></a>
+            <button class="edit-btn grid h-8 w-8 place-items-center rounded-xl bg-legalGold/15 text-legalGold transition hover:bg-legalGold hover:text-white" data-id="${item.id}" title="تعديل"><i class="fa-solid fa-pen"></i></button>
+            <button class="delete-btn grid h-8 w-8 place-items-center rounded-xl bg-red-100 text-red-600 transition hover:bg-red-600 hover:text-white" data-id="${item.id}" title="حذف"><i class="fa-solid fa-trash"></i></button>
           </div>
         </td>
       </tr>
@@ -217,16 +217,18 @@ function openViewModal(id) {
   if (!item || !viewModalContent) return;
 
   viewModalContent.innerHTML = `
-    <div class="rounded-2xl bg-slate-50 p-4"><b>رقم الملف:</b> ${item.fileNo}</div>
-    <div class="rounded-2xl bg-slate-50 p-4"><b>عنوان القضية:</b> ${item.title}</div>
-    <div class="rounded-2xl bg-slate-50 p-4"><b>المحامي:</b> ${item.lawyer}</div>
-    <div class="rounded-2xl bg-slate-50 p-4"><b>رقم العقد:</b> ${item.contract}</div>
-    <div class="rounded-2xl bg-slate-50 p-4"><b>مدة القضية:</b> ${item.duration}</div>
-    <div class="rounded-2xl bg-slate-50 p-4"><b>التصنيف الرئيسي:</b> ${typeText[item.type]}</div>
-    <div class="rounded-2xl bg-slate-50 p-4"><b>التصنيف الفرعي:</b> ${item.subType}</div>
-    <div class="rounded-2xl bg-slate-50 p-4"><b>مرحلة الدعوى:</b> ${stageText[item.stage]}</div>
-    <div class="rounded-2xl bg-slate-50 p-4"><b>حالة الدعوى:</b> ${statusMap[item.status].text}</div>
-    <div class="rounded-2xl bg-slate-50 p-4"><b>الملاحظات:</b> ${item.notes}</div>
+    <div class="modal-grid-3">
+      <div class="rounded-2xl bg-slate-50 p-4 border border-slate-100"><p class="text-slate-400 text-[10px] mb-1">رقم الملف</p><p>${item.fileNo}</p></div>
+      <div class="rounded-2xl bg-slate-50 p-4 border border-slate-100"><p class="text-slate-400 text-[10px] mb-1">عنوان القضية</p><p>${item.title}</p></div>
+      <div class="rounded-2xl bg-slate-50 p-4 border border-slate-100"><p class="text-slate-400 text-[10px] mb-1">المحامي المسجل</p><p>${item.lawyer}</p></div>
+      <div class="rounded-2xl bg-slate-50 p-4 border border-slate-100"><p class="text-slate-400 text-[10px] mb-1">رقم العقد</p><p>${item.contract}</p></div>
+      <div class="rounded-2xl bg-slate-50 p-4 border border-slate-100"><p class="text-slate-400 text-[10px] mb-1">مدة القضية</p><p>${item.duration}</p></div>
+      <div class="rounded-2xl bg-slate-50 p-4 border border-slate-100"><p class="text-slate-400 text-[10px] mb-1">التصنيف الرئيسي</p><p>${typeText[item.type]}</p></div>
+      <div class="rounded-2xl bg-slate-50 p-4 border border-slate-100"><p class="text-slate-400 text-[10px] mb-1">التصنيف الفرعي</p><p>${item.subType}</p></div>
+      <div class="rounded-2xl bg-slate-50 p-4 border border-slate-100"><p class="text-slate-400 text-[10px] mb-1">مرحلة الدعوى</p><p>${stageText[item.stage]}</p></div>
+      <div class="rounded-2xl bg-slate-50 p-4 border border-slate-100"><p class="text-slate-400 text-[10px] mb-1">حالة الدعوى</p><p>${statusMap[item.status].text}</p></div>
+      <div class="md:col-span-2 lg:col-span-3 rounded-2xl bg-slate-50 p-4 border border-slate-100"><p class="text-slate-400 text-[10px] mb-1">الملاحظات والتعليمات</p><p class="leading-relaxed">${item.notes}</p></div>
+    </div>
   `;
 
   viewModal.classList.remove('hidden');
