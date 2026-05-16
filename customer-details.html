@@ -184,58 +184,64 @@
         </div>
       </div>
 
-      <div class="grid gap-6 border-t border-slate-100 p-6 lg:grid-cols-3">
-        <div class="lg:col-span-2 rounded-[28px] border border-slate-100 p-6">
-          <h3 class="mb-5 flex items-center gap-2 text-lg font-black">
-            <i class="fa-solid fa-circle-info text-legalGold"></i>
-            معلومات شخصية
-          </h3>
+      <div class="border-t border-slate-100 p-6">
+        <h3 class="mb-5 flex items-center gap-2 text-lg font-black">
+          <i class="fa-solid fa-circle-info text-legalGold"></i>
+          معلومات شخصية
+        </h3>
 
-          <div class="grid gap-4 md:grid-cols-2">
-            <div class="rounded-2xl bg-slate-50 p-4">
-              <p class="text-xs font-black text-slate-400">الإسم الأول</p>
-              <p id="firstName" class="mt-2 font-black">---</p>
-            </div>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <p class="text-xs font-black text-slate-400">الإسم الأول</p>
+            <p id="firstName" class="mt-2 font-black">---</p>
+          </div>
 
-            <div class="rounded-2xl bg-slate-50 p-4">
-              <p class="text-xs font-black text-slate-400">البريد الإلكتروني</p>
-              <p id="emailBox" class="mt-2 font-black">---</p>
-            </div>
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <p class="text-xs font-black text-slate-400">البريد الإلكتروني</p>
+            <p id="emailBox" class="mt-2 font-black">---</p>
+          </div>
 
-            <div class="rounded-2xl bg-slate-50 p-4">
-              <p class="text-xs font-black text-slate-400">رقم الجوال</p>
-              <p id="phoneBox" class="mt-2 font-black">---</p>
-            </div>
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <p class="text-xs font-black text-slate-400">رقم الجوال</p>
+            <p id="phoneBox" class="mt-2 font-black">---</p>
+          </div>
 
-            <div class="rounded-2xl bg-slate-50 p-4">
-              <p class="text-xs font-black text-slate-400">تاريخ التسجيل</p>
-              <p id="createdAt" class="mt-2 font-black">---</p>
-            </div>
+          <div class="rounded-2xl bg-slate-50 p-4">
+            <p class="text-xs font-black text-slate-400">تاريخ التسجيل</p>
+            <p id="createdAt" class="mt-2 font-black">---</p>
           </div>
         </div>
+      </div>
 
-        <div class="rounded-[28px] bg-legalGold/10 p-6">
-          <h3 class="mb-4 flex items-center gap-2 text-lg font-black text-legalGreen">
-            <i class="fa-solid fa-file-contract"></i>
-            ملخص العقد
+      <div class="border-t border-slate-100 p-6">
+        <div class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <h3 class="flex items-center gap-2 text-lg font-black text-legalGreen">
+            <i class="fa-solid fa-file-signature text-legalGold"></i>
+            سجل العقود
           </h3>
+          <button id="addContractBtn" class="flex items-center justify-center gap-2 rounded-xl bg-legalGold px-5 py-2.5 text-sm font-bold text-white transition hover:bg-legalGoldDark shadow-md">
+            <i class="fa-solid fa-plus"></i>
+            إضافة عقد جديد
+          </button>
+        </div>
 
-          <div class="space-y-4 text-sm font-bold">
-            <div class="flex items-center justify-between rounded-2xl bg-white p-4">
-              <span class="text-slate-500">قيمة العقد</span>
-              <strong id="contractValue">---</strong>
-            </div>
-
-            <div class="flex items-center justify-between rounded-2xl bg-white p-4">
-              <span class="text-slate-500">طريقة الدفع</span>
-              <strong id="paymentMethod">---</strong>
-            </div>
-
-            <div class="flex items-center justify-between rounded-2xl bg-white p-4">
-              <span class="text-slate-500">مدة العقد</span>
-              <strong id="contractDuration">---</strong>
-            </div>
-          </div>
+        <div class="overflow-x-auto rounded-[24px] border border-slate-100 bg-white">
+          <table class="w-full whitespace-nowrap text-right text-sm">
+            <thead class="bg-slate-50 text-slate-500">
+              <tr>
+                <th class="px-6 py-4 font-bold">رقم العقد</th>
+                <th class="px-6 py-4 font-bold">نوع العقد</th>
+                <th class="px-6 py-4 font-bold">تاريخ البداية</th>
+                <th class="px-6 py-4 font-bold">تاريخ النهاية</th>
+                <th class="px-6 py-4 font-bold">القيمة</th>
+                <th class="px-6 py-4 font-bold">الحالة</th>
+                <th class="px-6 py-4 font-bold text-center">الإجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="contractsTableBody" class="divide-y divide-slate-100 text-slate-700 font-semibold">
+              <!-- Contracts will be rendered here -->
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -256,6 +262,69 @@
   </div>
 
   <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- Contract Modals -->
+  <div id="contractModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-2xl rounded-[30px] bg-white p-6 shadow-2xl">
+      <div class="mb-5 flex items-center justify-between">
+        <div>
+          <h3 id="contractModalTitle" class="text-lg font-black text-slate-900">إضافة عقد جديد</h3>
+          <p class="mt-1 text-[11px] font-bold text-slate-400">أدخل بيانات العقد المرتبط بهذا العميل</p>
+        </div>
+        <button id="closeContractModal" class="grid h-11 w-11 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-500 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        <input id="contractFormId" type="text" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="رقم العقد (يولد تلقائياً)" disabled>
+        <input id="contractFormType" type="text" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="نوع العقد">
+        <input id="contractFormStart" type="date" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" title="تاريخ البداية">
+        <input id="contractFormEnd" type="date" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" title="تاريخ النهاية">
+        <input id="contractFormValue" type="text" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="قيمة العقد">
+        
+        <div class="custom-select-wrap">
+          <select id="contractFormStatus" class="custom-select">
+            <option value="active">ساري</option>
+            <option value="pending">قيد المراجعة</option>
+            <option value="expired">منتهي</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-end gap-3">
+        <button id="cancelContractModal" class="rounded-2xl bg-slate-100 px-5 py-3 text-[12px] font-black text-slate-600 transition hover:bg-slate-200">إلغاء</button>
+        <button id="saveContractBtn" class="rounded-2xl bg-legalGreen px-6 py-3 text-[12px] font-black text-white shadow-card transition hover:bg-legalGreenDark">حفظ العقد</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="viewContractModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-xl rounded-[30px] bg-white p-6 shadow-2xl">
+      <div class="mb-5 flex items-center justify-between">
+        <h3 class="text-lg font-black text-slate-900">تفاصيل العقد</h3>
+        <button id="closeViewContractModal" class="grid h-11 w-11 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-500 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div id="viewContractContent" class="space-y-3 text-[12px] font-bold text-slate-600"></div>
+    </div>
+  </div>
+
+  <div id="deleteContractModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-md rounded-[30px] bg-white p-6 text-center shadow-2xl">
+      <div class="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-3xl bg-red-100 text-2xl text-red-600">
+        <i class="fa-solid fa-trash"></i>
+      </div>
+      <h3 class="text-lg font-black text-slate-900">حذف العقد</h3>
+      <p class="mt-2 text-[12px] font-bold text-slate-500">هل أنت متأكد أنك تريد حذف هذا العقد؟</p>
+      <div class="mt-6 flex justify-center gap-3">
+        <button id="cancelDeleteContractBtn" class="rounded-2xl bg-slate-100 px-5 py-3 text-[12px] font-black text-slate-600">إلغاء</button>
+        <button id="confirmDeleteContractBtn" class="rounded-2xl bg-red-600 px-5 py-3 text-[12px] font-black text-white">حذف</button>
+      </div>
+    </div>
+  </div>
+
 
   <script src="js/sidebar.js"></script>
   <script src="js/customer-details.js"></script>

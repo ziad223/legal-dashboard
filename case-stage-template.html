@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تفاصيل المرحلة | Legal Technology</title>
+  <link rel="icon" type="image/png" href="logo_legal.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="js/auth.js"></script>
+  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="min-h-screen overflow-x-hidden text-slate-900">
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed right-0 top-0 z-40 h-screen w-[320px] translate-x-full overflow-y-auto bg-legalGreen text-legalGold shadow-2xl transition-transform duration-300 lg:translate-x-0 scroll-hide">
+      <div class="relative h-48 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=900&auto=format&fit=crop')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-legalGreen via-legalGreen/50 to-transparent"></div>
+        <div class="relative z-10 flex h-full flex-col items-center justify-center gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-2xl bg-white shadow-soft">
+            <img src="logo_legal.png" alt="Logo" class="h-12 w-12 object-contain">
+          </div>
+          <p class="text-lg font-extrabold text-white">super admin</p>
+        </div>
+      </div>
+
+      <nav class="p-4">
+        <a href="index.html" class="mb-2 flex items-center justify-between rounded-2xl px-5 py-4 font-bold transition hover:bg-white/10 hover:text-white" href="#">
+          <span>الرئيسية</span>
+          <i class="fa-solid fa-house text-xl"></i>
+        </a>
+
+       <div class="space-y-1 text-[15px] font-bold">
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="consultation-requests.html"><span>طلبات الإستشارة</span><i class="fa-solid fa-cube text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="reports-and-statistics.html"><span>التقارير والإحصائيات</span><i class="fa-solid fa-chart-line text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl bg-legalGold px-5 py-3 text-legalGreenDark shadow-card" href="case-management.html"><span>إدارة القضايا</span><i class="fa-solid fa-scale-balanced text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="tasks-and-organization.html"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="forms-and-documents.html"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
+
+          <div class="rounded-2xl">
+            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right transition hover:bg-white/10 hover:text-white" type="button">
+              <span class="flex items-center gap-3"><span>الموظفين والموارد البشرية</span></span>
+              <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
+            </button>
+            <div class="accordion-content hidden pb-2 pr-5">
+              <a href="permissions.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">الصلاحيات</a>
+              <a href="employees.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">الموظفين</a>
+            </div>
+          </div>
+
+          <div class="rounded-2xl">
+            <button class="accordion-btn text-sm flex w-full items-center justify-between rounded-2xl px-5 py-3 text-right transition hover:bg-white/10 hover:text-white" type="button">
+              <span class="flex items-center gap-3"><span>تعديل وإضافة القوائم المنسدلة</span></span>
+              <span class="chevron transition-transform duration-300"><i class="fa-solid fa-chevron-left"></i></span>
+            </button>
+            <div class="accordion-content hidden pb-2 pr-5">
+              <a href="./dropdownListsPages/case-status.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">حالة القضية </a>
+              <a href="./dropdownListsPages/case-classification.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">تصنيف القضية </a>
+              <a href="./dropdownListsPages/sub-classification.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> التصنيف الفرعي للقضية </a>
+              <a href="./dropdownListsPages/case-stages.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">مراحل القضية  </a>
+              <a href="./dropdownListsPages/notes-types.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> أنواع المذكرات  </a>
+              <a href="./dropdownListsPages/court-fees.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> التكاليف القضائية   </a>
+
+            </div>
+          </div>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="settings.html"><span>الإعدادات العامة</span><i class="fa-solid fa-gear text-lg"></i></a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="w-full pr-0 transition-all duration-300 lg:pr-[320px]">
+      <!-- Topbar -->
+      <header class="sticky top-0 z-30 border-b border-black/5 bg-white/85 backdrop-blur-xl shadow-sm">
+        <div class="flex min-h-20 items-center justify-between gap-4 px-6">
+          <div class="flex items-center gap-3">
+            <button onclick="logout()" class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white">
+              <i class="fa-solid fa-power-off text-base"></i>
+            </button>
+            <a href="settings.html" class="grid h-11 w-11 place-items-center rounded-2xl bg-legalGold/10 text-xl text-legalGold transition hover:bg-legalGold hover:text-white">
+              <i class="fa-solid fa-gear text-base"></i>
+            </a>
+            <span class="rounded-full bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-white shadow">ONLINE</span>
+          </div>
+
+          <div class="hidden flex-1 items-center justify-center md:flex">
+            <div class="relative w-full max-w-xl">
+              <input id="globalSearchInput" type="search" placeholder="بحث في المرحلة..." class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-5 pr-12 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-legalGold">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="hidden text-left sm:block">
+              <p class="text-sm font-extrabold text-slate-900">Legal Technology</p>
+              <p class="text-xs font-bold text-slate-400">إدارة القضايا</p>
+            </div>
+            <img src="logo_legal.png" alt="Logo" class="h-12 w-12 rounded-2xl object-contain shadow-card">
+            <button id="menuBtn" class="grid h-11 w-11 place-items-center rounded-xl text-2xl text-legalGold transition hover:bg-legalGold/15 lg:hidden">☰</button>
+          </div>
+        </div>
+
+        <div class="mx-5 mb-4 flex flex-col gap-3 rounded-[22px] bg-gradient-to-l from-legalGold to-legalGoldDark px-6 py-3 text-sm font-bold text-legalGreenDark shadow-card md:flex-row md:items-center md:justify-between">
+          <div class="flex items-center gap-3">
+            <span class="grid h-9 w-9 place-items-center rounded-xl bg-white/20 text-white">
+              <i class="fa-solid fa-house text-base"></i>
+            </span>
+            <div>
+              <p class="text-xs text-white/80">المسار الحالي</p>
+              <p>الرئيسية / إدارة القضايا / تفاصيل القضية / <span id="breadcrumbStageName">المرحلة الحالية</span></p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button onclick="history.back()" class="inline-flex items-center justify-center gap-2 rounded-xl bg-white/20 px-4 py-2 text-xs font-extrabold text-white transition hover:bg-white/30">
+              <i class="fa-solid fa-arrow-right"></i>
+              رجوع
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-5 md:p-8">
+        <!-- Premium Hero Section -->
+        <div class="relative overflow-hidden rounded-[40px] bg-gradient-to-r from-legalGreen via-legalGreenDark to-slate-900 p-8 text-white shadow-2xl mb-8">
+          <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+          <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-legalGold/20 blur-3xl"></div>
+          <div class="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-emerald-500/20 blur-3xl"></div>
+          
+          <div class="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div class="flex items-start gap-6">
+              <div class=" h-24 w-24 shrink-0 place-items-center hidden md:grid rounded-3xl bg-white/10 text-4xl shadow-inner backdrop-blur-md border border-white/20 transition-transform duration-500 hover:rotate-6 hover:scale-105">
+                <i class="fa-solid fa-scale-unbalanced text-legalGold drop-shadow-md "></i>
+              </div>
+              <div>
+                <span class="mb-2 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1 text-xs font-black text-legalGold backdrop-blur-md border border-white/10 shadow-inner">
+                  <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  قضية نشطة
+                </span>
+                <h1 class="text-3xl font-black md:text-5xl drop-shadow-sm tracking-tight" id="stageTitle">مرحلة الاستئناف</h1>
+                <p class="mt-2 text-sm font-bold text-slate-300 opacity-90 max-w-xl leading-relaxed">
+                  إدارة الإجراءات والجلسات والمستندات الخاصة بهذه المرحلة بشكل احترافي ومنظم.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-3 shrink-0">
+              <button id="openStageModalBtn" class="group relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-legalGold to-amber-500 px-6 py-4 text-sm font-black text-white shadow-lg transition-all hover:scale-105 hover:shadow-amber-500/30">
+                <span class="absolute inset-0 bg-white/20 transition-transform translate-y-full group-hover:translate-y-0 duration-300"></span>
+                <i class="fa-solid fa-plus relative z-10 group-hover:rotate-90 transition-transform duration-300"></i>
+                <span class="relative z-10">إضافة إجراء/جلسة</span>
+              </button>
+              <button id="exportStageBtn" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-4 text-sm font-black text-white shadow-sm transition hover:bg-white/20 hover:scale-105">
+                <i class="fa-solid fa-cloud-arrow-down"></i>
+                تحميل التقرير
+              </button>
+            </div>
+          </div>
+          
+          <!-- Case Progress/Timeline Indicator -->
+          <div class="mt-10 border-t border-white/10 pt-6">
+             <div class="flex items-center justify-between text-xs font-bold text-white/60 mb-2">
+                <span>الابتدائي</span>
+                <span class="text-legalGold drop-shadow-md text-sm">الاستئناف</span>
+                <span>التمييز</span>
+                <span>التنفيذ</span>
+             </div>
+             <div class="relative h-2 w-full rounded-full bg-white/10 overflow-hidden shadow-inner">
+                <div class="absolute top-0 right-0 h-full w-1/2 bg-gradient-to-l from-legalGold to-emerald-400 rounded-full"></div>
+             </div>
+          </div>
+        </div>
+
+        <!-- Premium Stats Cards -->
+        <div class="mb-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <div class="group rounded-[32px] bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-transparent hover:border-legalGold/20 relative overflow-hidden">
+            <div class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-legalGold/5 group-hover:bg-legalGold/10 transition-colors duration-500"></div>
+            <div class="flex items-center justify-between relative z-10">
+              <div>
+                <p class="text-xs font-black text-slate-400 uppercase tracking-wider">إجمالي الإجراءات</p>
+                <h3 class="mt-2 text-4xl font-black text-slate-900 group-hover:text-legalGold transition-colors" id="statTotal">0</h3>
+              </div>
+              <div class="grid h-16 w-16 place-items-center rounded-3xl bg-slate-50 text-2xl text-slate-400 group-hover:bg-legalGold group-hover:text-white transition-all duration-300 shadow-sm">
+                <i class="fa-solid fa-list-check"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="group rounded-[32px] bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-transparent hover:border-emerald-500/20 relative overflow-hidden">
+            <div class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-emerald-500/5 group-hover:bg-emerald-500/10 transition-colors duration-500"></div>
+            <div class="flex items-center justify-between relative z-10">
+              <div>
+                <p class="text-xs font-black text-slate-400 uppercase tracking-wider">إجراءات مكتملة</p>
+                <h3 class="mt-2 text-4xl font-black text-emerald-600" id="statCompleted">0</h3>
+              </div>
+              <div class="grid h-16 w-16 place-items-center rounded-3xl bg-emerald-50 text-2xl text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                <i class="fa-solid fa-check-double"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="group rounded-[32px] bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-transparent hover:border-amber-500/20 relative overflow-hidden">
+             <div class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-amber-500/5 group-hover:bg-amber-500/10 transition-colors duration-500"></div>
+             <div class="flex items-center justify-between relative z-10">
+              <div>
+                <p class="text-xs font-black text-slate-400 uppercase tracking-wider">قيد الانتظار</p>
+                <h3 class="mt-2 text-4xl font-black text-amber-500" id="statPending">0</h3>
+              </div>
+              <div class="grid h-16 w-16 place-items-center rounded-3xl bg-amber-50 text-2xl text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                <i class="fa-solid fa-hourglass-half"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="group rounded-[32px] bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-transparent hover:border-blue-500/20 relative overflow-hidden">
+             <div class="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-blue-500/5 group-hover:bg-blue-500/10 transition-colors duration-500"></div>
+             <div class="flex items-center justify-between relative z-10">
+              <div>
+                <p class="text-xs font-black text-slate-400 uppercase tracking-wider">الجلسات القادمة</p>
+                <h3 class="mt-2 text-4xl font-black text-blue-600" id="statSessions">0</h3>
+              </div>
+              <div class="grid h-16 w-16 place-items-center rounded-3xl bg-blue-50 text-2xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
+                <i class="fa-solid fa-gavel"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Premium Table Section -->
+        <div class="overflow-hidden rounded-[36px] bg-white shadow-card border border-slate-100">
+          <div class="flex flex-col gap-4 border-b border-slate-100 bg-slate-50/50 p-6 md:flex-row md:items-center md:justify-between">
+            <div class="flex items-center gap-4">
+               <div class="grid h-12 w-12 place-items-center rounded-2xl bg-legalGreen/10 text-legalGreen shadow-sm">
+                 <i class="fa-solid fa-table-list"></i>
+               </div>
+               <div>
+                 <h2 class="text-xl font-black text-slate-900 tracking-tight">سجل المرحلة</h2>
+                 <p class="mt-1 text-xs font-bold text-slate-500">قائمة مفصلة بجميع الإجراءات مع إمكانية البحث والفلترة السريعة</p>
+               </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+              <div class="relative">
+                <input id="tableSearch" type="search" placeholder="بحث سريع..." class="w-full sm:w-64 rounded-2xl border border-slate-200 bg-white px-5 py-3 pr-12 text-xs font-bold outline-none transition focus:border-legalGold focus:ring-4 focus:ring-legalGold/15 shadow-sm">
+                <i class="fa-solid fa-search absolute right-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              </div>
+              <button class="rounded-2xl bg-white border border-slate-200 px-5 py-3 text-xs font-black text-slate-600 transition hover:bg-slate-50 hover:text-legalGold shadow-sm flex items-center gap-2">
+                <i class="fa-solid fa-sliders"></i>
+                فلترة
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto p-4 bg-slate-50/30">
+            <table class="w-full min-w-[1000px] text-right border-separate border-spacing-y-3">
+              <thead>
+                <tr class="text-slate-400 text-xs uppercase tracking-wider font-black">
+                  <th class="px-5 py-2">#</th>
+                  <th class="px-5 py-2">العنوان والتفاصيل</th>
+                  <th class="px-5 py-2">النوع</th>
+                  <th class="px-5 py-2">التاريخ</th>
+                  <th class="px-5 py-2">المسؤول</th>
+                  <th class="px-5 py-2">الحالة</th>
+                  <th class="px-5 py-2 text-center">الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="stageTableBody" class="font-semibold text-slate-700">
+                <!-- Data will be populated here by JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="flex flex-col gap-3 border-t border-slate-100 bg-slate-50/50 p-5 md:flex-row md:items-center md:justify-between">
+            <p id="rowsCount" class="text-xs font-bold text-slate-500">عرض 0 من 0 سجل</p>
+            <div class="flex items-center gap-2">
+              <button class="rounded-xl bg-white border border-slate-200 px-4 py-2 text-xs font-black text-slate-500 hover:bg-slate-50 transition shadow-sm">السابق</button>
+              <button class="rounded-xl bg-legalGold px-4 py-2 text-xs font-black text-white shadow-md">1</button>
+              <button class="rounded-xl bg-white border border-slate-200 px-4 py-2 text-xs font-black text-slate-500 hover:bg-slate-50 transition shadow-sm">التالي</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- Add/Edit Stage Entry Modal -->
+  <div id="stageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-2xl rounded-[30px] bg-white p-6 shadow-2xl">
+      <div class="mb-5 flex items-center justify-between">
+        <div>
+          <h3 id="stageModalTitle" class="text-lg font-black text-slate-900">إضافة جديد</h3>
+          <p class="mt-1 text-[11px] font-bold text-slate-400">إضافة إجراء، جلسة، أو مستند لهذه المرحلة</p>
+        </div>
+        <button id="closeStageModal" class="grid h-11 w-11 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-500 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        <input id="formEntryTitle" type="text" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="العنوان (مثال: جلسة استماع)">
+        
+        <div class="custom-select-wrap">
+          <select id="formEntryType" class="custom-select">
+            <option value="session">جلسة</option>
+            <option value="document">مستند</option>
+            <option value="action">إجراء قانوني</option>
+          </select>
+        </div>
+
+        <input id="formEntryDate" type="date" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" title="التاريخ">
+        <input id="formEntryAssignee" type="text" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="المسؤول">
+
+        <div class="custom-select-wrap md:col-span-2">
+          <select id="formEntryStatus" class="custom-select">
+            <option value="pending">قيد الانتظار</option>
+            <option value="completed">مكتمل</option>
+            <option value="delayed">متأخر</option>
+          </select>
+        </div>
+
+        <textarea id="formEntryNotes" rows="4" class="md:col-span-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] font-bold outline-none focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="تفاصيل وملاحظات إضافية"></textarea>
+      </div>
+
+      <div class="mt-6 flex items-center justify-end gap-3">
+        <button id="cancelStageModal" class="rounded-2xl bg-slate-100 px-5 py-3 text-[12px] font-black text-slate-600 transition hover:bg-slate-200">إلغاء</button>
+        <button id="saveStageBtn" class="rounded-2xl bg-legalGreen px-6 py-3 text-[12px] font-black text-white shadow-card transition hover:bg-legalGreenDark">حفظ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div id="deleteStageModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="modal-box w-full max-w-md rounded-[30px] bg-white p-6 text-center shadow-2xl">
+      <div class="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-3xl bg-red-100 text-2xl text-red-600">
+        <i class="fa-solid fa-trash"></i>
+      </div>
+      <h3 class="text-lg font-black text-slate-900">حذف السجل</h3>
+      <p class="mt-2 text-[12px] font-bold text-slate-500">هل أنت متأكد أنك تريد حذف هذا السجل؟</p>
+      <div class="mt-6 flex justify-center gap-3">
+        <button id="cancelDeleteStageBtn" class="rounded-2xl bg-slate-100 px-5 py-3 text-[12px] font-black text-slate-600">إلغاء</button>
+        <button id="confirmDeleteStageBtn" class="rounded-2xl bg-red-600 px-5 py-3 text-[12px] font-black text-white">حذف</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/sidebar.js"></script>
+  <script src="js/case-stage-template.js"></script>
+</body>
+</html>
