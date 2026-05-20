@@ -42,6 +42,7 @@
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="consultation-requests.html"><span>طلبات الإستشارة</span><i class="fa-solid fa-cube text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="reports-and-statistics.html"><span>التقارير والإحصائيات</span><i class="fa-solid fa-chart-line text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl bg-legalGold px-5 py-3 text-legalGreenDark shadow-card" href="case-management.html"><span>إدارة القضايا</span><i class="fa-solid fa-scale-balanced text-lg"></i></a>
+          <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="stages-of-the-case.html"><span>مراحل القضية</span><i class="fa-solid fa-layer-group text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="tasks-and-organization.html"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="forms-and-documents.html"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
@@ -146,100 +147,7 @@
         </div>
 
         <!-- Case Stages Timeline -->
-        <div class="rounded-[28px] bg-white p-8 shadow-card">
-          <div class="mb-6 flex items-center justify-between">
-            <div>
-              <h2 class="text-lg font-black text-slate-900">مراحل القضية</h2>
-              <p class="mt-1 text-[12px] font-bold text-slate-400">تتبع تقدم القضية عبر مراحلها القانونية المختلفة.</p>
-            </div>
-            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-legalGreen/10 text-xl text-legalGreen">
-              <i class="fa-solid fa-timeline"></i>
-            </div>
-          </div>
-
-          <!-- Timeline -->
-          <div class="relative">
-            <!-- Vertical line -->
-            <div class="absolute right-6 top-0 bottom-0 w-0.5 bg-slate-100"></div>
-
-            <div class="space-y-6" id="stagesTimeline">
-
-              <!-- Stage 1 - Done -->
-              <a href="case-stage-template.html" class="group relative flex items-start gap-6 cursor-pointer block w-full text-right transition-all duration-300 hover:-translate-y-1 hover:drop-shadow-lg">
-                <div class="relative z-10 grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-emerald-500 text-white shadow-md group-hover:scale-110 transition-transform">
-                  <i class="fa-solid fa-check"></i>
-                </div>
-                <div class="flex-1 rounded-[20px] bg-emerald-50 border border-emerald-100 p-5 group-hover:bg-emerald-100/50 transition-colors">
-                  <div class="flex items-center justify-between gap-3 mb-2">
-                    <h3 class="font-black text-slate-900">مرحلة الإيداع والتسجيل</h3>
-                    <span class="rounded-full bg-emerald-100 px-3 py-1 text-[11px] font-black text-emerald-700">مكتملة</span>
-                  </div>
-                  <p class="text-[12px] font-bold text-slate-500">تم تسجيل القضية في المحكمة وإيداع المستندات الأساسية اللازمة.</p>
-                  <p class="mt-2 text-[11px] font-bold text-slate-400"><i class="fa-solid fa-calendar-check ml-1"></i>01 يناير 2026</p>
-                </div>
-              </a>
-
-              <!-- Stage 2 - Done -->
-              <a href="case-stage-template.html" class="group relative flex items-start gap-6 cursor-pointer block w-full text-right transition-all duration-300 hover:-translate-y-1 hover:drop-shadow-lg">
-                <div class="relative z-10 grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-emerald-500 text-white shadow-md group-hover:scale-110 transition-transform">
-                  <i class="fa-solid fa-check"></i>
-                </div>
-                <div class="flex-1 rounded-[20px] bg-emerald-50 border border-emerald-100 p-5 group-hover:bg-emerald-100/50 transition-colors">
-                  <div class="flex items-center justify-between gap-3 mb-2">
-                    <h3 class="font-black text-slate-900">إعداد مذكرة الدفاع</h3>
-                    <span class="rounded-full bg-emerald-100 px-3 py-1 text-[11px] font-black text-emerald-700">مكتملة</span>
-                  </div>
-                  <p class="text-[12px] font-bold text-slate-500">تم إعداد وتقديم مذكرة الدفاع للمحكمة مع جميع المرفقات.</p>
-                  <p class="mt-2 text-[11px] font-bold text-slate-400"><i class="fa-solid fa-calendar-check ml-1"></i>15 يناير 2026</p>
-                </div>
-              </a>
-
-              <!-- Stage 3 - Active -->
-              <a href="case-stage-template.html" class="group relative flex items-start gap-6 cursor-pointer block w-full text-right transition-all duration-300 hover:-translate-y-1 hover:drop-shadow-lg">
-                <div class="relative z-10 grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-blue-500 text-white shadow-md animate-pulse group-hover:scale-110 transition-transform">
-                  <i class="fa-solid fa-spinner fa-spin"></i>
-                </div>
-                <div class="flex-1 rounded-[20px] bg-blue-50 border border-blue-100 p-5 group-hover:bg-blue-100/50 transition-colors">
-                  <div class="flex items-center justify-between gap-3 mb-2">
-                    <h3 class="font-black text-slate-900">جلسات الاستماع</h3>
-                    <span class="rounded-full bg-blue-100 px-3 py-1 text-[11px] font-black text-blue-700">جارية</span>
-                  </div>
-                  <p class="text-[12px] font-bold text-slate-500">بانتظار الجلسة القادمة المحددة أمام الدائرة المختصة.</p>
-                  <p class="mt-2 text-[11px] font-bold text-slate-400"><i class="fa-solid fa-calendar ml-1"></i>الجلسة القادمة: 20 مايو 2026</p>
-                </div>
-              </a>
-
-              <!-- Stage 4 - Pending -->
-              <a href="case-stage-template.html" class="group relative flex items-start gap-6 cursor-pointer block w-full text-right transition-all duration-300 hover:-translate-y-1 hover:drop-shadow-lg">
-                <div class="relative z-10 grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-slate-200 text-slate-400 shadow-md group-hover:scale-110 transition-transform">
-                  <i class="fa-solid fa-clock"></i>
-                </div>
-                <div class="flex-1 rounded-[20px] bg-slate-50 border border-slate-100 p-5 group-hover:bg-slate-100/50 transition-colors">
-                  <div class="flex items-center justify-between gap-3 mb-2">
-                    <h3 class="font-black text-slate-500">صدور الحكم الابتدائي</h3>
-                    <span class="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black text-slate-500">قادمة</span>
-                  </div>
-                  <p class="text-[12px] font-bold text-slate-400">في انتظار إصدار المحكمة للحكم الابتدائي في الدعوى.</p>
-                </div>
-              </a>
-
-              <!-- Stage 5 - Pending -->
-              <a href="case-stage-template.html" class="group relative flex items-start gap-6 cursor-pointer block w-full text-right transition-all duration-300 hover:-translate-y-1 hover:drop-shadow-lg">
-                <div class="relative z-10 grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-slate-200 text-slate-400 shadow-md group-hover:scale-110 transition-transform">
-                  <i class="fa-solid fa-clock"></i>
-                </div>
-                <div class="flex-1 rounded-[20px] bg-slate-50 border border-slate-100 p-5 group-hover:bg-slate-100/50 transition-colors">
-                  <div class="flex items-center justify-between gap-3 mb-2">
-                    <h3 class="font-black text-slate-500">الاستئناف والتنفيذ</h3>
-                    <span class="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black text-slate-500">قادمة</span>
-                  </div>
-                  <p class="text-[12px] font-bold text-slate-400">مرحلة الطعن بالاستئناف وتنفيذ الأحكام القضائية.</p>
-                </div>
-              </a>
-
-            </div>
-          </div>
-        </div>
+      
 
       </main>
     </div>
