@@ -16,69 +16,15 @@
   <link rel="stylesheet" href="css/main.css">
   
   <style>
-    body{
-      font-family:'Cairo',sans-serif;
-      background:#f5f5f3;
-    }
-
-    .timeline-line{
-      position:absolute;
-      left:50%;
-      top:0;
-      transform:translateX(-50%);
-      width:3px;
-      height:100%;
-      background:#c5a13f;
-    }
-
-    .stage-card{
-      background:#fff;
-      border-radius:24px;
-      box-shadow:0 15px 40px rgba(0,0,0,.08);
-      transition:.3s;
-      border:1px solid rgba(0,0,0,.03);
-    }
-
-    .stage-card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 20px 50px rgba(0,0,0,.12);
-    }
-
-    .stage-number{
-      width:46px;
-      height:46px;
-      background:#c5a13f;
-      color:#fff;
-      border-radius:999px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:900;
-      position:absolute;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      z-index:20;
-      box-shadow:0 0 0 8px #f5f5f3;
-    }
-
-    @media(max-width:768px){
-
-      .timeline-line{
-        right:auto;
-        left:22px;
-      }
-
-      .stage-number{
-        left:22px;
-      }
-
-      .mobile-space{
-        padding-right:0;
-        padding-left:65px;
-      }
-
-    }
+    body{font-family:'Cairo',sans-serif;background:#f5f5f3}
+    .timeline-line{position:absolute;left:50%;top:0;transform:translateX(-50%);width:3px;height:100%;background:#c5a13f}
+    .stage-card{background:#fff;border-radius:24px;box-shadow:0 15px 40px rgba(0,0,0,.08);transition:.3s;border:1px solid rgba(0,0,0,.03)}
+    .stage-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.12)}
+    .stage-number{width:46px;height:46px;background:#c5a13f;color:#fff;border-radius:999px;display:flex;align-items:center;justify-content:center;font-weight:900;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;box-shadow:0 0 0 8px #f5f5f3}
+    .permission-row{display:grid;grid-template-columns:1fr 90px 110px;align-items:center;gap:12px;background:#fff;border-radius:999px;padding:10px 18px;box-shadow:0 8px 20px rgba(0,0,0,.08);font-size:13px;font-weight:800;text-align:center}
+    .reject-btn{background:#ff0000;color:#fff;border-radius:8px;padding:7px 18px;font-size:12px;font-weight:900}
+    .accept-btn{background:#009b18;color:#fff;border-radius:8px;padding:7px 18px;font-size:12px;font-weight:900}
+    @media(max-width:768px){.timeline-line{right:auto;left:22px}.stage-number{left:22px}.mobile-space{padding-right:0;padding-left:65px}.permission-row{grid-template-columns:1fr 55px 80px;font-size:11px;padding:9px 12px}}
   </style>
 </head>
 
@@ -99,7 +45,7 @@
       </div>
 
       <nav class="p-4">
-        <a href="index.html" class="mb-2 flex items-center justify-between rounded-2xl px-5 py-4 font-bold transition hover:bg-white/10 hover:text-white" href="#">
+        <a href="index.html" class="mb-2 flex items-center justify-between rounded-2xl px-5 py-4 font-bold transition hover:bg-white/10 hover:text-white">
           <span>الرئيسية</span>
           <i class="fa-solid fa-house text-xl"></i>
         </a>
@@ -108,7 +54,6 @@
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="consultation-requests.html"><span>طلبات الإستشارة</span><i class="fa-solid fa-cube text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="reports-and-statistics.html"><span>التقارير والإحصائيات</span><i class="fa-solid fa-chart-line text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="case-management.html"><span>إدارة القضايا</span><i class="fa-solid fa-scale-balanced text-lg"></i></a>
-          <a class="flex items-center justify-between rounded-2xl bg-legalGold px-5 py-3 text-legalGreenDark shadow-card" href="stages-of-the-case.html"><span>مراحل القضية</span><i class="fa-solid fa-layer-group text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="customers-and-contracts.html"><span>العملاء والعقود</span><i class="fa-solid fa-handshake text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="tasks-and-organization.html"><span>المهام والتنظيم</span><i class="fa-solid fa-rectangle-list text-lg"></i></a>
           <a class="flex items-center justify-between rounded-2xl px-5 py-3 transition hover:bg-white/10 hover:text-white" href="forms-and-documents.html"><span>النماذج والمستندات</span><i class="fa-solid fa-layer-group text-lg"></i></a>
@@ -133,7 +78,6 @@
               <a href="./dropdownListsPages/case-status.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">حالة القضية </a>
               <a href="./dropdownListsPages/case-classification.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">تصنيف القضية </a>
               <a href="./dropdownListsPages/sub-classification.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> التصنيف الفرعي للقضية </a>
-              <a href="./dropdownListsPages/case-stages.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white">مراحل القضية  </a>
               <a href="./dropdownListsPages/notes-types.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> أنواع المذكرات  </a>
               <a href="./dropdownListsPages/court-fees.html" class="block rounded-xl px-5 py-3 text-sm text-legalGold transition hover:bg-white/10 hover:text-white"> التكاليف القضائية   </a>
             </div>
@@ -177,7 +121,7 @@
           </div>
         </div>
 
-        <div class="mx-5 mb-4 flex flex-col gap-3 rounded-[22px] bg-gradient-to-l from-legalGold to-legalGoldDark px-6 py-3 text-sm font-bold text-legalGreenDark shadow-card md:flex-row md:items-center md:justify-between">
+        <div class="mx-5 mb-4 flex flex-col gap-4 rounded-[22px] bg-gradient-to-l from-legalGold to-legalGoldDark px-6 py-4 text-sm font-bold text-legalGreenDark shadow-card xl:flex-row xl:items-center xl:justify-between">
           <div class="flex items-center gap-3">
             <span class="grid h-9 w-9 place-items-center rounded-xl bg-white/20 text-white">
               <i class="fa-solid fa-house text-base"></i>
@@ -187,32 +131,125 @@
               <p>الرئيسية / مراحل القضية</p>
             </div>
           </div>
+
+          <div class="flex flex-wrap items-center gap-3 xl:justify-end">
+            <button data-open-modal="lawyerStagesModal" class="inline-flex items-center gap-2 rounded-full border border-white bg-white/10 px-4 py-2 text-xs font-black text-white transition hover:bg-white hover:text-legalGold">
+              <i class="fa-solid fa-plus"></i>
+              صلاحيات المراحل للمحامين
+            </button>
+
+            <button data-open-modal="clientStagesModal" class="inline-flex items-center gap-2 rounded-full border border-white bg-white/10 px-4 py-2 text-xs font-black text-white transition hover:bg-white hover:text-legalGold">
+              <i class="fa-solid fa-plus"></i>
+              صلاحيات المراحل للعملاء
+            </button>
+
+            <button data-open-modal="progressReportsModal" class="inline-flex items-center gap-2 rounded-full border border-white bg-white/10 px-4 py-2 text-xs font-black text-white transition hover:bg-white hover:text-legalGold">
+              <i class="fa-solid fa-list"></i>
+              تقارير تقدم الأعمال
+            </button>
+          </div>
         </div>
       </header>
 
       <section class="py-16 px-4 md:px-10">
+        <div class="max-w-7xl mx-auto">
 
-        <div class="max-w-7xl mx-auto relative">
 
-          <!-- center line -->
-          <div class="timeline-line hidden md:block"></div>
-
-          <!-- mobile line -->
-          <div class="absolute top-0 bottom-0 left-[22px] w-[3px] bg-legalGold md:hidden"></div>
-
-          <div id="timelineWrapper" class="space-y-14"></div>
+          <div class="relative">
+            <div class="timeline-line hidden md:block"></div>
+            <div class="absolute top-0 bottom-0 left-[22px] w-[3px] bg-legalGold md:hidden"></div>
+            <div id="timelineWrapper" class="space-y-14"></div>
+          </div>
 
         </div>
-
       </section>
-
     </main>
   </div>
 
   <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
 
-<script>
+  <!-- Lawyer Permissions Modal -->
+  <div id="lawyerStagesModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="w-full max-w-[640px] h-[95%] overflow-y-auto rounded-[28px] bg-white p-8 shadow-2xl">
+      <h3 class="mb-5 text-center text-xl font-black text-slate-900">قائمة صلاحيات مراحل القضية للمحامين</h3>
 
+      <div class="overflow-hidden rounded-[24px]">
+        <div class="grid grid-cols-3 bg-[#2f3f2d] px-5 py-3 text-center text-xs font-black text-white">
+          <span>اسم المرحلة</span>
+          <span>حالتها</span>
+          <span>خيارات</span>
+        </div>
+
+        <div class="space-y-3 py-5">
+          <div class="permission-row">التعاقد مع العميل <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">الدراسة المبدئية <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">جمع الأدلة والمستندات <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">كتابة استراتيجية الدعوى <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">تحرير الدعوى <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">إخطار المدعى عليه <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">رفع الدعوى <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">الجلسات <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">مذكرات <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">إجراءات ومراجعات <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">الحكم <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client Permissions Modal -->
+  <div id="clientStagesModal" class="fixed inset-0 z-50 hidden  items-center justify-center bg-black/50 p-4">
+    <div class="w-full max-w-[640px] h-[95%] overflow-y-auto rounded-[28px] bg-white p-8 shadow-2xl">
+      <h3 class="mb-5 text-center text-xl font-black text-slate-900">قائمة صلاحيات مراحل القضية للعملاء</h3>
+
+      <div class="overflow-hidden rounded-[24px]">
+        <div class="grid grid-cols-3 bg-[#2f3f2d] px-5 py-3 text-center text-xs font-black text-white">
+          <span>اسم المرحلة</span>
+          <span>حالتها</span>
+          <span>خيارات</span>
+        </div>
+
+        <div class="space-y-3 py-5">
+          <div class="permission-row">التعاقد مع العميل <i class="fa-solid fa-eye-slash text-red-500"></i><button class="accept-btn">عرض</button></div>
+          <div class="permission-row">الدراسة المبدئية <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">جمع الأدلة والمستندات <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">كتابة استراتيجية الدعوى <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">تحرير الدعوى <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">إخطار المدعى عليه <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">رفع الدعوى <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">الجلسات <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">مذكرات <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">إجراءات ومراجعات <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+          <div class="permission-row">الحكم <i class="fa-solid fa-eye text-green-600"></i><button class="reject-btn">رفض</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Reports Modal -->
+  <div id="progressReportsModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="w-full max-w-[640px] h-[95%] overflow-x-hidden rounded-[28px] bg-white p-8 shadow-2xl">
+      <h3 class="mb-5 text-center text-xl font-black text-slate-900">تقارير تقدم الأعمال لهذه الدعوى</h3>
+
+      <div class="overflow-hidden rounded-[24px]">
+        <div class="grid grid-cols-4 bg-[#2f3f2d] px-5 py-3 text-center text-xs font-black text-white">
+          <span>م</span>
+          <span>اسم المرحلة</span>
+          <span>الحالة</span>
+          <span>خيارات</span>
+        </div>
+
+        <div class="mt-6 grid grid-cols-4 items-center rounded-[24px] bg-white px-5 py-5 text-center text-sm font-bold shadow-xl">
+          <span>145</span>
+          <span>تحرير الدعوى</span>
+          <span class="mx-auto rounded bg-orange-500 px-5 py-2 text-xs font-black text-white">في انتظار الرد من قبل المشرف</span>
+          <span><i class="fa-solid fa-eye text-orange-500"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
 const stages = [
   "التعاقد مع العميل",
   "الدراسة المبدئية",
@@ -233,58 +270,50 @@ const stages = [
 const wrapper = document.getElementById("timelineWrapper");
 
 wrapper.innerHTML = stages.map((stage,index)=>{
-
   const number = index + 1;
   const right = index % 2 === 0;
 
   return `
+    <div class="relative grid md:grid-cols-2 md:gap-24 items-center">
+      <div class="stage-number">${number}</div>
 
-  <div class="relative grid md:grid-cols-2 md:gap-24 items-center">
-
-      <!-- number -->
-      <div class="stage-number">
-        ${number}
-      </div>
-
-      <!-- card -->
       <div class="${right ? 'md:col-start-2' : 'md:col-start-1'} mobile-space">
+        <div class="stage-card px-6 py-5">
+          <div class="flex items-center justify-between gap-4">
+            <div class="text-right">
+              <h3 class="text-[22px] font-black text-slate-900 leading-tight">${stage}</h3>
+              <p class="text-[12px] text-slate-500 mt-2 font-bold">قضية جاري العمل عليها</p>
+            </div>
 
-          <div class="stage-card px-6 py-5">
-
-              <div class="flex items-center justify-between gap-4">
-
-                  <div class="text-right">
-                      <h3 class="text-[22px] font-black text-slate-900 leading-tight">
-                        ${stage}
-                      </h3>
-
-                      <p class="text-[12px] text-slate-500 mt-2 font-bold">
-                        قضية جاري العمل عليها
-                      </p>
-                  </div>
-
-                  <a
-                    href="show-contract-cases.html"
-                    class="border border-legalGold text-[12px] font-black px-5 py-2 rounded-2xl hover:bg-legalGold hover:text-white transition"
-                  >
-                    التفاصيل
-                  </a>
-
-              </div>
-
+            <a href="show-contract-cases.html" class="border border-legalGold text-[12px] font-black px-5 py-2 rounded-2xl hover:bg-legalGold hover:text-white transition">
+              التفاصيل
+            </a>
           </div>
-
+        </div>
       </div>
 
-      <!-- empty side -->
-      <div class="${right ? 'md:block' : 'md:block'} hidden"></div>
-
-  </div>
-
+      <div class="hidden md:block"></div>
+    </div>
   `;
-
 }).join('');
 
+document.querySelectorAll('[data-open-modal]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const modal = document.getElementById(btn.dataset.openModal);
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  });
+});
+
+document.querySelectorAll('#lawyerStagesModal, #clientStagesModal, #progressReportsModal').forEach(modal => {
+  modal.addEventListener('click', e => {
+    if (e.target === modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  });
+});
 </script>
 
   <script src="js/sidebar.js"></script>
