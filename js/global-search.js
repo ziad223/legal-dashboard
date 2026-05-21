@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: 'إدارة القضايا', link: pathPrefix + 'case-management.html', icon: 'fa-scale-balanced', category: 'قضايا' },
         { title: 'العملاء والعقود', link: pathPrefix + 'customers-and-contracts.html', icon: 'fa-handshake', category: 'عملاء' },
         { title: 'المهام والتنظيم', link: pathPrefix + 'tasks-and-organization.html', icon: 'fa-rectangle-list', category: 'إدارة' },
-        { title: 'النماذج والمستندات', link: pathPrefix + 'forms-and-documents.html', icon: 'fa-layer-group', category: 'مستندات' },
+        { title: 'مكتبة الجودة', link: pathPrefix + 'forms-and-documents.html', icon: 'fa-layer-group', category: 'مستندات' },
         { title: 'الصلاحيات', link: pathPrefix + 'permissions.html', icon: 'fa-shield-halved', category: 'موظفين' },
         { title: 'الموظفين', link: pathPrefix + 'employees.html', icon: 'fa-users', category: 'موظفين' },
         { title: 'الإعدادات العامة', link: pathPrefix + 'settings.html', icon: 'fa-gear', category: 'إعدادات' },
