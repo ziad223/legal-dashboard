@@ -583,6 +583,75 @@
       document.getElementById('successModal').classList.add('hidden');
       document.getElementById('successModal').classList.remove('flex');
     });
+
+    // Image preview & file name update for all file inputs
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+      input.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        // Update file name text
+        let textElement = input.parentElement.querySelector('.file-text');
+        if (!textElement) {
+          const spans = input.parentElement.querySelectorAll('span');
+          if (spans.length > 0) textElement = spans[0];
+        }
+        
+        if (textElement) {
+          // Truncate file name if too long
+          let fileName = file.name;
+          if (fileName.length > 30) {
+            fileName = fileName.substring(0, 27) + '...';
+          }
+          textElement.textContent = fileName;
+        }
+
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const imgSrc = event.target.result;
+
+            if (input.id === 'signatureInput') {
+              document.getElementById('signaturePreview').src = imgSrc;
+            } else if (input.id === 'avatarInput') {
+              document.getElementById('avatarPreview').src = imgSrc;
+            } else {
+              // Modals generic preview
+              let parentDiv = input.closest('div');
+              let previewContainer = parentDiv.querySelector('.preview-container');
+              
+              if (!previewContainer) {
+                previewContainer = document.createElement('div');
+                previewContainer.className = 'mt-4 preview-container flex justify-center';
+                previewContainer.innerHTML = `<img src="${imgSrc}" class="max-h-36 rounded-xl object-contain border border-slate-200 p-1 shadow-sm bg-slate-50">`;
+                parentDiv.appendChild(previewContainer);
+              } else {
+                previewContainer.classList.remove('hidden');
+                previewContainer.querySelector('img').src = imgSrc;
+              }
+            }
+          }
+          reader.readAsDataURL(file);
+        } else {
+          // If not an image, hide generic preview if exists
+          let previewContainer = input.closest('div').querySelector('.preview-container');
+          if (previewContainer) {
+            previewContainer.classList.add('hidden');
+          }
+        }
+      });
+    });
+
+    // Remove Avatar Logic
+    const removeAvatarBtn = document.getElementById('removeAvatar');
+    if (removeAvatarBtn) {
+      removeAvatarBtn.addEventListener('click', function() {
+        document.getElementById('avatarPreview').src = 'logo_legal.png';
+        document.getElementById('avatarInput').value = '';
+        const textElement = document.getElementById('avatarInput').parentElement.querySelector('.file-text');
+        if (textElement) textElement.textContent = 'اختر صورة أو ملف';
+      });
+    }
   </script>
 </body>
 </html>
