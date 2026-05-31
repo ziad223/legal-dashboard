@@ -115,117 +115,411 @@
         </div>
       </header>
 
-      <section class="p-5 md:p-8">
-        <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <span class="inline-flex items-center gap-2 rounded-full bg-legalGold/15 px-4 py-2 text-xs font-black text-legalGoldDark"><i class="fa-solid fa-user-pen"></i> إدارة الحساب</span>
-            <h1 class="mt-3 text-3xl font-black text-slate-900 md:text-4xl">تعديل الملف الشخصي</h1>
-          </div>
-          <div class="flex flex-wrap gap-3">
-            <button type="submit" form="profileForm" class="inline-flex items-center gap-2 rounded-2xl bg-legalGreen px-6 py-3 text-sm font-black text-white shadow-card transition hover:bg-legalGreenDark"><i class="fa-solid fa-check"></i> حفظ التعديلات</button>
-          </div>
-        </div>
+      <section class="p-4 md:p-6 lg:p-8">
+        <form id="profileForm" class="profile-edit-wrap space-y-7">
 
-        <form id="profileForm" class="space-y-7">
-          <div class="section-card bg-white rounded-3xl p-6 shadow-soft border border-slate-100">
-            <div class="section-head mb-6 flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4">
-              <div class="flex items-center gap-4">
-                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-legalGold/15 text-xl text-legalGold"><i class="fa-solid fa-user"></i></div>
-                <div><h2 class="text-lg font-black">المعلومات الشخصية</h2><p class="text-xs font-bold text-slate-400">تحديث بيانات حسابك الشخصي والصورة الرمزية.</p></div>
+          <!-- التوقيع -->
+          <div class="profile-card">
+            <div class="profile-card-title">
+              <span class="title-dot"></span>
+              <h2>التوقيع</h2>
+            </div>
+
+            <div class="signature-preview">
+              <div class="signature-box">
+                <img id="signaturePreview" src="logo_legal.png" alt="التوقيع" class="max-h-16 object-contain opacity-70">
               </div>
             </div>
 
-            <div class="section-body flex flex-col lg:flex-row gap-8">
-              <!-- Profile Picture -->
-              <div class="flex flex-col items-center gap-4 lg:w-1/3">
-                <div class="relative group cursor-pointer">
-                  <div class="h-40 w-40 overflow-hidden rounded-full border-4 border-white shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=900&auto=format&fit=crop" alt="Profile" class="h-full w-full object-cover">
+            <div class="grid gap-4">
+              <label class="file-pill">
+                <input id="signatureInput" type="file" accept="image/*">
+                <span class="file-text">اختر ملف التوقيع</span>
+                <span class="file-action"><i class="fa-solid fa-upload"></i> استعراض</span>
+              </label>
+
+              <button type="button" class="gold-action-btn w-full max-w-xl">
+                <i class="fa-solid fa-plus"></i>
+                حفظ
+              </button>
+            </div>
+          </div>
+
+          <!-- معلومات شخصية -->
+          <div class="profile-card">
+            <div class="profile-card-title">
+              <span class="title-dot"></span>
+              <h2>معلومات شخصية</h2>
+            </div>
+
+            <div class="profile-grid">
+              <div class="form-control">
+                <label>الاسم بالكامل <span>*</span></label>
+                <input type="text" value="مشرف الموقع">
+              </div>
+
+              <div class="form-control">
+                <label>الهوية الوطنية/الإقامة <span>*</span></label>
+                <input type="text" value="1234567888">
+              </div>
+
+              <div class="form-control">
+                <label>تاريخ الميلاد</label>
+                <input type="date">
+              </div>
+
+              <div class="form-control">
+                <label>رقم الهاتف <span>*</span></label>
+                <input type="tel" value="2047483647">
+              </div>
+            </div>
+          </div>
+
+          <!-- العنوان الوطني -->
+          <div class="profile-card">
+            <div class="profile-card-title">
+              <span class="title-dot"></span>
+              <h2>معلومات عن العنوان الوطني</h2>
+            </div>
+
+            <div class="profile-grid">
+              <div class="form-control">
+                <label>المدينة</label>
+                <input type="text" value="الرياض">
+              </div>
+
+              <div class="form-control">
+                <label>الحي</label>
+                <input type="text">
+              </div>
+
+              <div class="form-control">
+                <label>الشارع</label>
+                <input type="text">
+              </div>
+
+              <div class="form-control">
+                <label>الرمز البريدي</label>
+                <input type="text" value="12453">
+              </div>
+
+              <div class="form-control">
+                <label>رقم المبنى</label>
+                <input type="text">
+              </div>
+
+              <div class="form-control">
+                <label>الرقم الإضافي</label>
+                <input type="text">
+              </div>
+            </div>
+          </div>
+
+          <!-- معلومات الحساب -->
+          <div class="profile-card">
+            <div class="profile-card-title">
+              <span class="title-dot"></span>
+              <h2>معلومات عن الحساب</h2>
+            </div>
+
+            <div class="profile-grid account-grid">
+              <div class="form-control">
+                <label>البريد الإلكتروني</label>
+                <input type="email" value="admin@site.com">
+              </div>
+
+              <div class="form-control">
+                <label>كلمة المرور</label>
+                <div class="password-holder">
+                  <input type="password" value="12345678">
+                  <button type="button" class="password-toggle" aria-label="إظهار كلمة المرور"><i class="fa-solid fa-eye-slash"></i></button>
+                </div>
+              </div>
+
+              <div class="form-control">
+                <label>صورة</label>
+                <div class="avatar-upload">
+                  <div class="avatar-preview">
+                    <img id="avatarPreview" src="logo_legal.png" alt="صورة المستخدم">
+                    <button type="button" id="removeAvatar">حذف</button>
                   </div>
-                  <div class="absolute inset-0 flex items-center justify-center rounded-full bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <span class="text-white text-sm font-bold flex flex-col items-center gap-2"><i class="fa-solid fa-camera text-2xl"></i> تغيير الصورة</span>
-                  </div>
-                  <input type="file" class="absolute inset-0 cursor-pointer opacity-0 z-10" accept="image/*">
-                </div>
-                <div class="text-center">
-                  <h3 class="text-lg font-bold text-slate-800">مشرف الفريق</h3>
-                  <p class="text-sm font-semibold text-slate-500">مشرف الفريق</p>
-                </div>
-              </div>
-
-              <!-- Personal Info Fields -->
-              <div class="grid flex-1 gap-5 md:grid-cols-2">
-                <div>
-                  <label class="mb-2 block text-xs font-black text-slate-600">الاسم الأول <span class="text-red-500">*</span></label>
-                  <input class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 px-4 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" value="مشرف" />
-                </div>
-                <div>
-                  <label class="mb-2 block text-xs font-black text-slate-600">الاسم الأخير <span class="text-red-500">*</span></label>
-                  <input class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 px-4 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" value="الفريق" />
-                </div>
-                <div>
-                  <label class="mb-2 block text-xs font-black text-slate-600">البريد الإلكتروني <span class="text-red-500">*</span></label>
-                  <input type="email" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 px-4 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" value="supervisor@legaltech.com" />
-                </div>
-                <div>
-                  <label class="mb-2 block text-xs font-black text-slate-600">رقم الجوال <span class="text-red-500">*</span></label>
-                  <input type="tel" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 px-4 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" placeholder="05xxxxxxxx" value="0500000000" />
-                </div>
-                <div class="md:col-span-2">
-                  <label class="mb-2 block text-xs font-black text-slate-600">نبذة تعريفية</label>
-                  <textarea rows="3" class="input-field resize-y w-full rounded-xl border border-slate-200 bg-slate-50 py-3 px-4 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" placeholder="اكتب نبذة قصيرة عنك..."></textarea>
+                  <label class="file-pill compact">
+                    <input id="avatarInput" type="file" accept=".png,.jpg,.jpeg,.pdf,image/*">
+                    <span class="file-text">اختر صورة أو ملف</span>
+                    <span class="file-action">Choose File</span>
+                  </label>
+                  <p class="allowed-types">الأنواع المسموحة: .png, .jpg, .jpeg, .PDF <i class="fa-regular fa-circle-question"></i></p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="section-card bg-white rounded-3xl p-6 shadow-soft border border-slate-100">
-            <div class="section-head mb-6 flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4">
-              <div class="flex items-center gap-4">
-                <div class="grid h-12 w-12 place-items-center rounded-2xl bg-red-100 text-xl text-red-600"><i class="fa-solid fa-lock"></i></div>
-                <div><h2 class="text-lg font-black">تغيير كلمة المرور</h2><p class="text-xs font-bold text-slate-400">تحديث كلمة المرور الخاصة بحسابك لزيادة الأمان.</p></div>
+          <!-- المعلومات الوظيفية -->
+          <div class="profile-card">
+            <div class="profile-card-title">
+              <span class="title-dot"></span>
+              <h2>المعلومات الوظيفية</h2>
+            </div>
+
+            <div class="profile-grid">
+              <div class="form-control">
+                <label>الراتب</label>
+                <input type="text" placeholder="........">
+              </div>
+
+              <div class="form-control">
+                <label>المسمى الوظيفي</label>
+                <input type="text" placeholder="........">
+              </div>
+
+              <div class="form-control">
+                <label>نوع الصلاحيات</label>
+                <select>
+                  <option>مشرف الموقع</option>
+                  <option>مدير النظام</option>
+                  <option>موظف</option>
+                </select>
+              </div>
+
+              <div class="form-control">
+                <label>المشرف المباشر</label>
+                <select>
+                  <option>-- حدد المشرف المباشر عن هذا الموظف --</option>
+                  <option>مشرف الموقع</option>
+                </select>
+              </div>
+
+              <div class="status-control md:col-span-2">
+                <label>الحالة</label>
+                <div class="status-options">
+                  <label><input type="radio" name="status" checked> <span>مفعل</span></label>
+                  <label><input type="radio" name="status"> <span>غير مفعل</span></label>
+                </div>
               </div>
             </div>
-            <div class="section-body grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              <div>
-                <label class="mb-2 block text-xs font-black text-slate-600">كلمة المرور الحالية</label>
-                <div class="relative">
-                  <input type="password" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 px-4 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" placeholder="••••••••" />
-                  <span class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer text-slate-400 hover:text-legalGold"><i class="fa-solid fa-eye-slash"></i></span>
-                </div>
+
+            <div class="form-actions">
+              <button type="submit" class="save-main"><i class="fa-solid fa-arrow-left"></i> حفظ التعديل</button>
+              <button type="reset" class="cancel-main"><i class="fa-solid fa-xmark"></i> رفض</button>
+            </div>
+          </div>
+
+          <!-- الجداول -->
+          <div class="tables-card">
+            <div class="mini-table-block">
+              <div class="table-top">
+                <h3>الإنجازات</h3>
+                <button type="button" onclick="openModal('achievementsModal')"><i class="fa-solid fa-plus"></i> إضافة جديد</button>
               </div>
-              <div>
-                <label class="mb-2 block text-xs font-black text-slate-600">كلمة المرور الجديدة</label>
-                <div class="relative">
-                  <input type="password" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 px-4 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" placeholder="••••••••" />
-                  <span class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer text-slate-400 hover:text-legalGold"><i class="fa-solid fa-eye-slash"></i></span>
-                </div>
+              <div class="table-shell">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>العنوان</th>
+                      <th>المستند / الملف</th>
+                      <th>خيارات</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td colspan="4">لا توجد بيانات مضافة حتى الآن</td></tr>
+                  </tbody>
+                </table>
               </div>
-              <div>
-                <label class="mb-2 block text-xs font-black text-slate-600">تأكيد كلمة المرور الجديدة</label>
-                <div class="relative">
-                  <input type="password" class="input-field w-full rounded-xl border border-slate-200 bg-slate-50 py-3 px-4 text-sm font-semibold outline-none transition focus:border-legalGold focus:bg-white focus:ring-4 focus:ring-legalGold/15" placeholder="••••••••" />
-                  <span class="absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer text-slate-400 hover:text-legalGold"><i class="fa-solid fa-eye-slash"></i></span>
-                </div>
+            </div>
+
+            <div class="mini-table-block">
+              <div class="table-top">
+                <h3>التقييم السنوي</h3>
+                <button type="button" onclick="openModal('evaluationModal')"><i class="fa-solid fa-plus"></i> إضافة جديد</button>
+              </div>
+              <div class="table-shell">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>العنوان</th>
+                      <th>المستند / الملف</th>
+                      <th>خيارات</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td colspan="4">لا توجد بيانات مضافة حتى الآن</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="mini-table-block">
+              <div class="table-top">
+                <h3>المؤهلات والتراخيص</h3>
+                <button type="button" onclick="openModal('qualificationsModal')"><i class="fa-solid fa-plus"></i> إضافة جديد</button>
+              </div>
+              <div class="table-shell">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>العنوان</th>
+                      <th>المستند / الملف</th>
+                      <th>خيارات</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td colspan="4">لا توجد بيانات مضافة حتى الآن</td></tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
 
-          <div class="bottom-5 z-20 rounded-[26px] bg-white/90 p-4 shadow-soft backdrop-blur-xl border border-slate-100">
-            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p class="text-xs font-bold text-slate-500">راجع البيانات قبل الحفظ، الحقول المميزة بالنجمة مطلوبة.</p>
-              <div class="flex gap-3">
-                <button type="reset" class="rounded-2xl bg-slate-100 px-6 py-3 text-xs font-black text-slate-600 hover:bg-slate-200 transition"><i class="fa-solid fa-rotate-right ml-1"></i> تراجع</button>
-                <button type="submit" class="rounded-2xl bg-blue-600 px-7 py-3 text-xs font-black text-white shadow-card hover:bg-blue-700 transition"><i class="fa-solid fa-floppy-disk ml-1"></i> حفظ التعديلات</button>
-              </div>
-            </div>
-          </div>
+          <style>
+            .profile-edit-wrap{font-family:'Cairo',sans-serif}
+            .profile-card,.tables-card{position:relative;border:1px solid rgba(15,23,42,.14);background:rgba(255,255,255,.96);border-radius:0 28px 28px 28px;padding:34px 22px 30px;box-shadow:0 20px 55px rgba(15,23,42,.07)}
+            .profile-card::before,.tables-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,#c5a443,#e3ca70,#c5a443);border-radius:28px 28px 0 0;opacity:.75}
+            .profile-card-title{position:absolute;right:20px;top:16px;display:flex;align-items:center;gap:8px}
+            .profile-card-title h2{font-size:18px;font-weight:900;color:#0f172a;letter-spacing:-.02em}
+            .title-dot{width:7px;height:7px;border-radius:50%;background:#111827;display:inline-block;box-shadow:0 0 0 5px rgba(197,164,67,.13)}
+            .signature-preview{display:flex;justify-content:flex-end;margin:12px 0 22px}
+            .signature-box{width:130px;height:78px;display:grid;place-items:center;border-radius:18px;background:#f7f7f5;border:1px dashed rgba(197,164,67,.55)}
+            .file-pill{height:43px;border:1.5px solid #c5a443;border-radius:999px;background:#fff;display:flex;align-items:center;justify-content:space-between;overflow:hidden;cursor:pointer;max-width:100%;transition:.25s}
+            .file-pill:hover{box-shadow:0 0 0 5px rgba(197,164,67,.13)}
+            .file-pill input{display:none}
+            .file-text{padding:0 18px;color:#64748b;font-weight:800;font-size:13px}
+            .file-action{align-self:stretch;display:inline-flex;align-items:center;gap:8px;padding:0 18px;background:#f8fafc;color:#111827;border-right:1px solid rgba(197,164,67,.35);font-weight:900;font-size:13px}
+            .file-pill.compact{max-width:315px;height:42px}
+            .gold-action-btn{height:38px;border-radius:14px;background:linear-gradient(90deg,#b8983b,#c7a64a);color:white;font-weight:900;font-size:13px;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:.25s}
+            .gold-action-btn:hover,.save-main:hover,.table-top button:hover{transform:translateY(-1px);filter:brightness(1.04)}
+            .profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 34px;margin-top:30px}
+            .form-control{display:grid;grid-template-columns:minmax(145px,180px) minmax(0,1fr);align-items:center;gap:14px;direction:rtl}
+            .form-control label,.status-control>label{font-size:12px;font-weight:900;color:#111827;white-space:nowrap}
+            .form-control label span{color:#111827}
+            .form-control input,.form-control select{height:39px;width:100%;border:1.5px solid #c5a443;border-radius:18px;background:#fff;padding:0 16px;color:#334155;font-weight:700;outline:none;transition:.25s}
+            .form-control input:focus,.form-control select:focus{border-color:#a98424;box-shadow:0 0 0 5px rgba(197,164,67,.15)}
+            .password-holder{position:relative}
+            .password-toggle{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8}
+            .avatar-upload{display:grid;gap:12px}
+            .avatar-preview{width:105px;height:60px;border-radius:0;background:#f1f1ef;display:grid;place-items:center;position:relative;overflow:hidden}
+            .avatar-preview img{max-width:48px;max-height:42px;object-fit:contain}
+            .avatar-preview button{position:absolute;left:6px;bottom:5px;background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:4px 10px;font-size:11px;font-weight:900;color:#111827}
+            .allowed-types{font-size:12px;font-weight:800;color:#111827}
+            .allowed-types i{color:#1d4ed8;font-size:18px;vertical-align:middle}
+            .status-control{display:grid;grid-template-columns:minmax(145px,180px) minmax(0,1fr);align-items:center;gap:14px}
+            .status-options{display:flex;align-items:center;gap:30px;font-size:12px;font-weight:900;color:#111827}
+            .status-options label{display:flex;align-items:center;gap:8px;cursor:pointer}
+            .status-options input{accent-color:#5eead4;width:16px;height:16px}
+            .form-actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:760px;margin:42px auto 0}
+            .save-main,.cancel-main{height:44px;border-radius:16px;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:10px;transition:.25s}
+            .save-main{background:linear-gradient(90deg,#b8983b,#c7a64a);color:white}
+            .cancel-main{background:white;color:#b8983b;border:1.5px solid #c5a443}
+            .tables-card{padding-top:28px}
+            .mini-table-block{padding:0 0 34px;border-bottom:1px solid #e5e7eb;margin-bottom:34px}
+            .mini-table-block:last-child{border-bottom:0;margin-bottom:0;padding-bottom:18px}
+            .table-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:0}
+            .table-top h3{font-size:20px;font-weight:900;color:#b8983b}
+            .table-top button{min-width:200px;height:43px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,#b8983b,#c7a64a);color:white;font-weight:900;font-size:13px;transition:.25s}
+            .table-shell{overflow:hidden;border-radius:0 0 24px 24px;box-shadow:0 14px 30px rgba(15,23,42,.10)}
+            .table-shell table{width:100%;border-collapse:collapse;text-align:center;font-size:12px;font-weight:900}
+            .table-shell thead{background:#31422f;color:white}
+            .table-shell th{height:36px;border-left:1px solid rgba(255,255,255,.55)}
+            .table-shell td{height:58px;color:#64748b;background:#fff}
+            @media(max-width:1100px){.profile-grid{grid-template-columns:1fr}.form-control,.status-control{grid-template-columns:1fr;gap:8px}.account-grid{grid-template-columns:1fr}}
+            @media(max-width:640px){.profile-card,.tables-card{padding:42px 14px 22px}.form-actions{grid-template-columns:1fr}.table-top{align-items:stretch;flex-direction:column}.table-top button{width:100%;border-radius:16px}.table-shell{overflow-x:auto}.table-shell table{min-width:680px}}
+          </style>
         </form>
       </section>
     </main>
   </div>
 
   <div id="overlay" class="fixed inset-0 z-30 hidden bg-black/40 lg:hidden"></div>
+
+  <!-- Modal: إضافة إنجاز جديد -->
+  <div id="achievementsModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+    <div class="modal-box w-full max-w-md scale-95 rounded-[30px] bg-white p-7 shadow-2xl transition-transform duration-300">
+      <div class="mb-6 flex items-center justify-between">
+        <h3 class="text-xl font-black text-slate-800">إضافة إنجاز جديد</h3>
+        <button type="button" onclick="closeModal('achievementsModal')" class="grid h-10 w-10 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-50 hover:text-red-500"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <form class="space-y-5" onsubmit="event.preventDefault(); closeModal('achievementsModal');">
+        <div>
+          <label class="mb-2 block text-xs font-black text-slate-700">العنوان <span class="text-red-500">*</span></label>
+          <input type="text" class="h-12 w-full rounded-2xl border border-slate-200 px-4 text-sm font-bold text-slate-700 outline-none transition focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="أدخل عنوان الإنجاز" required>
+        </div>
+        <div>
+          <label class="mb-2 block text-xs font-black text-slate-700">المستند / الملف</label>
+          <label class="flex h-12 w-full cursor-pointer items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 transition hover:bg-slate-100">
+            <span class="text-xs font-bold text-slate-500">اختر ملفاً (اختياري)</span>
+            <span class="rounded-xl bg-white px-4 py-1.5 text-xs font-black text-legalGold shadow-sm border border-slate-100">استعراض</span>
+            <input type="file" class="hidden">
+          </label>
+        </div>
+        <div class="flex gap-3 pt-4">
+          <button type="submit" class="flex-1 rounded-2xl bg-gradient-to-l from-legalGold to-legalGoldDark h-12 text-sm font-black text-white shadow-lg shadow-legalGold/30 transition hover:brightness-105">حفظ الإضافة</button>
+          <button type="button" onclick="closeModal('achievementsModal')" class="w-1/3 rounded-2xl bg-slate-100 h-12 text-sm font-black text-slate-600 transition hover:bg-slate-200 hover:text-slate-900">إلغاء</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: إضافة تقييم سنوي -->
+  <div id="evaluationModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+    <div class="modal-box w-full max-w-md scale-95 rounded-[30px] bg-white p-7 shadow-2xl transition-transform duration-300">
+      <div class="mb-6 flex items-center justify-between">
+        <h3 class="text-xl font-black text-slate-800">إضافة تقييم سنوي</h3>
+        <button type="button" onclick="closeModal('evaluationModal')" class="grid h-10 w-10 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-50 hover:text-red-500"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <form class="space-y-5" onsubmit="event.preventDefault(); closeModal('evaluationModal');">
+        <div>
+          <label class="mb-2 block text-xs font-black text-slate-700">العنوان أو السنة <span class="text-red-500">*</span></label>
+          <input type="text" class="h-12 w-full rounded-2xl border border-slate-200 px-4 text-sm font-bold text-slate-700 outline-none transition focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="مثال: تقييم عام 2023" required>
+        </div>
+        <div>
+          <label class="mb-2 block text-xs font-black text-slate-700">المستند / الملف</label>
+          <label class="flex h-12 w-full cursor-pointer items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 transition hover:bg-slate-100">
+            <span class="text-xs font-bold text-slate-500">اختر ملفاً (اختياري)</span>
+            <span class="rounded-xl bg-white px-4 py-1.5 text-xs font-black text-legalGold shadow-sm border border-slate-100">استعراض</span>
+            <input type="file" class="hidden">
+          </label>
+        </div>
+        <div class="flex gap-3 pt-4">
+          <button type="submit" class="flex-1 rounded-2xl bg-gradient-to-l from-legalGold to-legalGoldDark h-12 text-sm font-black text-white shadow-lg shadow-legalGold/30 transition hover:brightness-105">حفظ الإضافة</button>
+          <button type="button" onclick="closeModal('evaluationModal')" class="w-1/3 rounded-2xl bg-slate-100 h-12 text-sm font-black text-slate-600 transition hover:bg-slate-200 hover:text-slate-900">إلغاء</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: إضافة مؤهل أو ترخيص -->
+  <div id="qualificationsModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+    <div class="modal-box w-full max-w-md scale-95 rounded-[30px] bg-white p-7 shadow-2xl transition-transform duration-300">
+      <div class="mb-6 flex items-center justify-between">
+        <h3 class="text-xl font-black text-slate-800">إضافة مؤهل أو ترخيص</h3>
+        <button type="button" onclick="closeModal('qualificationsModal')" class="grid h-10 w-10 place-items-center rounded-2xl bg-slate-100 text-slate-500 transition hover:bg-red-50 hover:text-red-500"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <form class="space-y-5" onsubmit="event.preventDefault(); closeModal('qualificationsModal');">
+        <div>
+          <label class="mb-2 block text-xs font-black text-slate-700">اسم المؤهل أو الترخيص <span class="text-red-500">*</span></label>
+          <input type="text" class="h-12 w-full rounded-2xl border border-slate-200 px-4 text-sm font-bold text-slate-700 outline-none transition focus:border-legalGold focus:ring-4 focus:ring-legalGold/15" placeholder="أدخل اسم المؤهل أو الترخيص" required>
+        </div>
+        <div>
+          <label class="mb-2 block text-xs font-black text-slate-700">المستند / الملف</label>
+          <label class="flex h-12 w-full cursor-pointer items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 transition hover:bg-slate-100">
+            <span class="text-xs font-bold text-slate-500">اختر ملفاً (اختياري)</span>
+            <span class="rounded-xl bg-white px-4 py-1.5 text-xs font-black text-legalGold shadow-sm border border-slate-100">استعراض</span>
+            <input type="file" class="hidden">
+          </label>
+        </div>
+        <div class="flex gap-3 pt-4">
+          <button type="submit" class="flex-1 rounded-2xl bg-gradient-to-l from-legalGold to-legalGoldDark h-12 text-sm font-black text-white shadow-lg shadow-legalGold/30 transition hover:brightness-105">حفظ الإضافة</button>
+          <button type="button" onclick="closeModal('qualificationsModal')" class="w-1/3 rounded-2xl bg-slate-100 h-12 text-sm font-black text-slate-600 transition hover:bg-slate-200 hover:text-slate-900">إلغاء</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div id="successModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
     <div class="modal-box w-full max-w-md rounded-[30px] bg-white p-6 text-center shadow-2xl">
       <div class="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-3xl bg-emerald-100 text-2xl text-emerald-600"><i class="fa-solid fa-check"></i></div>
@@ -238,6 +532,29 @@
   <script src="js/sidebar.js"></script>
   <script src="js/global-search.js"></script>
   <script>
+    // Modal Functions
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      // Trigger reflow
+      void modal.offsetWidth;
+      modal.classList.remove('opacity-0');
+      modal.querySelector('.modal-box').classList.remove('scale-95');
+      modal.querySelector('.modal-box').classList.add('scale-100');
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      modal.classList.add('opacity-0');
+      modal.querySelector('.modal-box').classList.remove('scale-100');
+      modal.querySelector('.modal-box').classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }, 300);
+    }
+
     // Eye toggle for passwords
     document.querySelectorAll('.fa-eye-slash').forEach(icon => {
       icon.parentElement.addEventListener('click', function() {
